@@ -11441,7 +11441,12 @@ pre .code {
     width: 120px; /* Réduit la taille de l'image pour s'adapter aux petits écrans */
     margin: 0 auto; /* Centre l'image dans son conteneur */
   }
-
+  
+  .brand-img {
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+  
   .navbar.affix {
     position: static;
   }
@@ -11452,10 +11457,6 @@ pre .code {
   }
 }
 
-.brand-img {
-  opacity: 1 !important;
-  visibility: visible !important;
-}
 
 .navbar .brand .brand-txt {
   position: relative;
