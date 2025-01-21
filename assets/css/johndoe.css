@@ -11417,46 +11417,23 @@ pre .code {
   text-align: center;
 }
 
-/* Comportement par défaut pour desktop */
 .navbar .brand .brand-img {
   position: absolute;
   left: 50%;
   top: 50%;
-  transform: translate(-50%, -50%);
+  -webkit-transform: translate(-50%, -50%);
+      -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
+  -weblit-transform: translate(-50%, -50%);
   border: 10px solid white;
-  transition: .5s;
+  -webkit-transition: .5s !important;
+  transition: .5s !important;
+  -weblit-transition: .5s !important;
   z-index: 2;
   box-shadow: 0 5px 1px rgba(128, 128, 128, 0.13);
   width: 170px;
   border-radius: 50%;
 }
-
-/* Ajustements pour mobile */
-@media (max-width: 768px) {
-  .navbar .brand .brand-img {
-    position: relative; /* Change la position pour une mise en page mobile */
-    left: auto;
-    top: auto;
-    transform: none; /* Supprime la transformation */
-    width: 120px; /* Réduit la taille de l'image pour s'adapter aux petits écrans */
-    margin: 0 auto; /* Centre l'image dans son conteneur */
-  }
-  
-  .brand-img {
-    opacity: 1 !important;
-    visibility: visible !important;
-  }
-  
-  .navbar.affix {
-    position: static;
-  }
-
-  .navbar.affix .brand-img {
-    top: 0; /* Maintenir la visibilité sur mobile */
-    opacity: 1; /* Assurez-vous que l'image reste visible */
-  }
-}
-
 
 .navbar .brand .brand-txt {
   position: relative;
@@ -11482,6 +11459,11 @@ pre .code {
 .navbar.affix .brand-txt {
   bottom: 0;
   opacity: 1;
+}
+
+.navbar.affix .brand-img {
+  top: -10px;
+  opacity: 0;
 }
 
 .pagination .page-item {
