@@ -266,51 +266,137 @@
                 }
             };
 
+            const getTextList = (selector) => {
+                return Array.from(document.querySelectorAll(selector))
+                    .map((node) => node.textContent ? node.textContent.trim() : '')
+                    .filter((value) => value.length > 0);
+            };
+
+            const appendSectionTitle = (container, value) => {
+                const heading = document.createElement('h2');
+                heading.textContent = value;
+                heading.style.fontSize = '18px';
+                heading.style.margin = '18px 0 8px 0';
+                heading.style.borderBottom = '1px solid #dddddd';
+                heading.style.paddingBottom = '4px';
+                container.appendChild(heading);
+            };
+
             const buildCvPdfContent = (text) => {
                 const wrapper = document.createElement('div');
                 wrapper.style.background = '#ffffff';
                 wrapper.style.color = '#222222';
                 wrapper.style.fontFamily = 'Arial, sans-serif';
                 wrapper.style.padding = '24px';
-                wrapper.style.width = '790px';
+                wrapper.style.width = '794px';
+                wrapper.style.lineHeight = '1.45';
 
-                const title = document.createElement('h1');
-                title.textContent = document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison';
-                title.style.margin = '0';
-                title.style.fontSize = '28px';
-                wrapper.appendChild(title);
+                const name = document.createElement('h1');
+                name.textContent = document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison';
+                name.style.margin = '0';
+                name.style.fontSize = '28px';
+                wrapper.appendChild(name);
 
-                const subtitle = document.createElement('p');
-                subtitle.textContent = document.querySelector('.header-mono')?.textContent?.trim() || '';
-                subtitle.style.margin = '4px 0 16px 0';
-                subtitle.style.fontSize = '16px';
-                subtitle.style.color = '#444444';
-                wrapper.appendChild(subtitle);
+                const role = document.createElement('p');
+                role.textContent = document.querySelector('.header-mono')?.textContent?.trim() || '';
+                role.style.margin = '4px 0 0 0';
+                role.style.fontSize = '16px';
+                role.style.color = '#444444';
+                wrapper.appendChild(role);
 
-                const sectionTitle = document.createElement('h2');
-                sectionTitle.textContent = text.cvPdfTitle;
-                sectionTitle.style.fontSize = '20px';
-                sectionTitle.style.margin = '0 0 16px 0';
-                wrapper.appendChild(sectionTitle);
-
-                const about = document.querySelector('#about')?.cloneNode(true);
-                if (about) {
-                    wrapper.appendChild(about);
+                appendSectionTitle(wrapper, text.aboutWho);
+                const aboutIntro = document.querySelector('#about .about-card:first-child .mb-3')?.textContent?.trim();
+                if (aboutIntro) {
+                    const intro = document.createElement('p');
+                    intro.textContent = aboutIntro;
+                    wrapper.appendChild(intro);
                 }
 
-                const resume = document.querySelector('#resume')?.cloneNode(true);
-                if (resume) {
-                    wrapper.appendChild(resume);
+                appendSectionTitle(wrapper, text.aboutInfo);
+                getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
+                    const line = document.createElement('p');
+                    line.style.margin = '2px 0';
+                    line.textContent = item.replace(/\s+/g, ' ').trim();
+                    wrapper.appendChild(line);
+                });
+
+                appendSectionTitle(wrapper, text.resumeExperience);
+                const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
+                const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
+                const expLists = Array.from(document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul'));
+                const expCount = Math.min(expDates.length, expLists.length, Math.floor(expTexts.length / 2));
+
+                for (let index = 0; index < expCount; index += 1) {
+                    const date = document.createElement('p');
+                    date.style.margin = '10px 0 2px 0';
+                    date.style.fontWeight = '700';
+                    date.textContent = expDates[index];
+                    wrapper.appendChild(date);
+
+                    const roleLine = document.createElement('p');
+                    roleLine.style.margin = '0 0 2px 0';
+                    roleLine.style.fontWeight = '600';
+                    roleLine.textContent = expTexts[index * 2] || '';
+                    wrapper.appendChild(roleLine);
+
+                    const desc = document.createElement('p');
+                    desc.style.margin = '0 0 4px 0';
+                    desc.textContent = expTexts[(index * 2) + 1] || '';
+                    wrapper.appendChild(desc);
+
+                    const bullets = Array.from(expLists[index].querySelectorAll('li'));
+                    bullets.forEach((bulletText) => {
+                        const bullet = document.createElement('p');
+                        bullet.style.margin = '0 0 0 12px';
+                        bullet.textContent = '• ' + (bulletText.textContent ? bulletText.textContent.trim() : '');
+                        wrapper.appendChild(bullet);
+                    });
                 }
 
-                const contact = document.querySelector('.contact-info-card')?.cloneNode(true);
-                if (contact) {
-                    const contactTitle = document.createElement('h3');
-                    contactTitle.textContent = text.getInTouch;
-                    contactTitle.style.marginTop = '20px';
-                    wrapper.appendChild(contactTitle);
-                    wrapper.appendChild(contact);
-                }
+                appendSectionTitle(wrapper, text.resumeEducation);
+                const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
+                const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
+                eduDates.forEach((eduDate, index) => {
+                    const date = document.createElement('p');
+                    date.style.margin = '8px 0 2px 0';
+                    date.style.fontWeight = '700';
+                    date.textContent = eduDate;
+                    wrapper.appendChild(date);
+
+                    const line1 = document.createElement('p');
+                    line1.style.margin = '0';
+                    line1.textContent = eduTexts[index * 2] || '';
+                    wrapper.appendChild(line1);
+
+                    const line2 = document.createElement('p');
+                    line2.style.margin = '0';
+                    line2.textContent = eduTexts[(index * 2) + 1] || '';
+                    wrapper.appendChild(line2);
+                });
+
+                appendSectionTitle(wrapper, text.resumeSkills);
+                getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
+                    const line = document.createElement('p');
+                    line.style.margin = '2px 0';
+                    line.textContent = item;
+                    wrapper.appendChild(line);
+                });
+
+                appendSectionTitle(wrapper, text.resumeLanguages);
+                getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
+                    const line = document.createElement('p');
+                    line.style.margin = '2px 0';
+                    line.textContent = item;
+                    wrapper.appendChild(line);
+                });
+
+                appendSectionTitle(wrapper, text.getInTouch);
+                getTextList('.contact-info-card .d-inline').forEach((item) => {
+                    const line = document.createElement('p');
+                    line.style.margin = '2px 0';
+                    line.textContent = item.replace(/\s+/g, ' ').trim();
+                    wrapper.appendChild(line);
+                });
 
                 return wrapper;
             };
@@ -326,8 +412,9 @@
 
                 const pdfContent = buildCvPdfContent(text);
                 pdfContent.style.position = 'fixed';
-                pdfContent.style.left = '-10000px';
+                pdfContent.style.left = '0';
                 pdfContent.style.top = '0';
+                pdfContent.style.zIndex = '99999';
                 document.body.appendChild(pdfContent);
 
                 window.html2pdf()
