@@ -1,0 +1,149 @@
+    <div class="section contact" id="contact">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="contact-form-card">
+                        <h4 class="contact-title">Send a message</h4>
+                        <form action="https://formspree.io/f/xovvgzqj" method="POST" id="contactForm">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="name" placeholder="Name *" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="Email *" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="subject" placeholder="Subject *" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="7" placeholder="Your Message *"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary" id="submitBtn">
+                                    <span class="button-text">Send Message</span>
+                                    <span class="spinner-border spinner-border-sm d-none" role="status"
+                                        aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </form>
+                        <!-- Success message -->
+                        <div class="alert alert-success d-none" id="successMessage">
+                            Message sent successfully! I'll get back to you soon.
+                        </div>
+                        <!-- Error message -->
+                        <div class="alert alert-danger d-none" id="errorMessage">
+                            Oops! Something went wrong. Please try again.
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        // Show loading spinner
+                        const submitBtn = document.getElementById('submitBtn');
+                        const buttonText = submitBtn.querySelector('.button-text');
+                        const spinner = submitBtn.querySelector('.spinner-border');
+
+                        buttonText.classList.add('d-none');
+                        spinner.classList.remove('d-none');
+                        submitBtn.disabled = true;
+
+                        // Get form data
+                        const formData = new FormData(this);
+
+                        // Send form using Fetch API
+                        fetch("https://formspree.io/f/xovvgzqj", {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Hide spinner
+                                buttonText.classList.remove('d-none');
+                                spinner.classList.add('d-none');
+                                submitBtn.disabled = false;
+
+                                // Show success message
+                                document.getElementById('successMessage').classList.remove('d-none');
+                                // Reset form
+                                document.getElementById('contactForm').reset();
+
+                                // Hide success message after 5 seconds
+                                setTimeout(() => {
+                                    document.getElementById('successMessage').classList.add('d-none');
+                                }, 5000);
+                            })
+                            .catch(error => {
+                                // Hide spinner
+                                buttonText.classList.remove('d-none');
+                                spinner.classList.add('d-none');
+                                submitBtn.disabled = false;
+
+                                // Show error message
+                                document.getElementById('errorMessage').classList.remove('d-none');
+
+                                // Hide error message after 5 seconds
+                                setTimeout(() => {
+                                    document.getElementById('errorMessage').classList.add('d-none');
+                                }, 5000);
+                            });
+                    });
+                </script>
+
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Get in touch</h4>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-mobile icon-md"></i>
+                            </div>
+                            <div class="col-10 ">
+                                <h6 class="d-inline">Phone : <br> <span class="text-muted">+ 261 32 49 084 09</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-map-alt icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Address :<br> <span class="text-muted">IVC 153 bis Ambodivoanjo
+                                        Ankaraobato, Antananarivo, Madagascar.</span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-envelope icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Email :<br> <span class="text-muted">michaeldm034@gmail.com</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <ul class="social-icons pt-4">
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.facebook.com/dmrhrsn"><i class="ti-facebook"
+                                        aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://x.com/dm_michael23"><i class="ti-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.linkedin.com/in/michael-raharison-215901288"><i
+                                        class="ti-linkedin" aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.instagram.com/dm_rhrsn_/"><i class="ti-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark" href="https://github.com/DM034"><i
+                                        class="ti-github" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
