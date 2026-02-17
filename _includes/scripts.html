@@ -352,62 +352,154 @@
                 return lines;
             };
 
+            const buildCvPdfHtml = (lines) => {
+                const container = document.createElement('div');
+                container.style.background = '#ffffff';
+                container.style.color = '#111111';
+                container.style.fontFamily = 'Arial, sans-serif';
+                container.style.padding = '20px';
+                container.style.width = '794px';
+                container.style.lineHeight = '1.4';
+
+                lines.forEach((line) => {
+                    const value = line.value || '';
+                    if (!value) {
+                        const spacer = document.createElement('div');
+                        spacer.style.height = '6px';
+                        container.appendChild(spacer);
+                        return;
+                    }
+
+                    const node = document.createElement('div');
+                    node.textContent = value;
+                    node.style.margin = '0 0 4px 0';
+
+                    if (line.style === 'title') {
+                        node.style.fontSize = '28px';
+                        node.style.fontWeight = '700';
+                        node.style.marginBottom = '6px';
+                    } else if (line.style === 'subtitle') {
+                        node.style.fontSize = '16px';
+                        node.style.color = '#444444';
+                        node.style.marginBottom = '10px';
+                    } else if (line.style === 'section') {
+                        node.style.fontSize = '16px';
+                        node.style.fontWeight = '700';
+                        node.style.marginTop = '10px';
+                        node.style.marginBottom = '6px';
+                    } else if (line.style === 'bold') {
+                        node.style.fontWeight = '700';
+                        node.style.fontSize = '12px';
+                    } else {
+                        node.style.fontSize = '11px';
+                    }
+
+                    container.appendChild(node);
+                });
+
+                return container;
+            };
+
             const generateCvPdf = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
+                const lines = buildCvPdfLines(text);
 
                 const JsPdfClass = window.jspdf && window.jspdf.jsPDF;
-                if (!JsPdfClass) {
+                if (JsPdfClass) {
+                    const doc = new JsPdfClass({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+                    const maxWidth = 185;
+                    const pageHeight = 297;
+                    let y = 14;
+
+                    const addWrappedLine = (value, style) => {
+                        if (!value) {
+                            y += 3;
+                            return;
+                        }
+
+                        if (style === 'title') {
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(20);
+                        } else if (style === 'section') {
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(13);
+                        } else if (style === 'bold') {
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(11);
+                        } else if (style === 'subtitle') {
+                            doc.setFont('helvetica', 'normal');
+                            doc.setFontSize(12);
+                        } else {
+                            doc.setFont('helvetica', 'normal');
+                            doc.setFontSize(11);
+                        }
+
+                        const parts = doc.splitTextToSize(value, maxWidth);
+                        const step = style === 'title' ? 8 : 6;
+
+                        if (y + (parts.length * step) > (pageHeight - 12)) {
+                            doc.addPage();
+                            y = 14;
+                        }
+
+                        doc.text(parts, 12, y);
+                        y += parts.length * step;
+                    };
+
+                    lines.forEach((line) => {
+                        addWrappedLine(line.value, line.style);
+                    });
+
+                    doc.save(text.cvFileName);
+                    return;
+                }
+
+                if (typeof window.html2pdf === 'function') {
+                    const htmlContainer = buildCvPdfHtml(lines);
+                    htmlContainer.style.position = 'fixed';
+                    htmlContainer.style.left = '0';
+                    htmlContainer.style.top = '0';
+                    htmlContainer.style.opacity = '0.01';
+                    htmlContainer.style.zIndex = '-1';
+                    document.body.appendChild(htmlContainer);
+
+                    window.html2pdf()
+                        .set({
+                            margin: [8, 8, 8, 8],
+                            filename: text.cvFileName,
+                            image: { type: 'jpeg', quality: 0.98 },
+                            html2canvas: { scale: 2, useCORS: true },
+                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                        })
+                        .from(htmlContainer)
+                        .save()
+                        .then(() => {
+                            htmlContainer.remove();
+                        })
+                        .catch(() => {
+                            htmlContainer.remove();
+                            alert(text.cvPdfError);
+                        });
+                    return;
+                }
+
+                const printWindow = window.open('', '_blank');
+                if (!printWindow) {
                     alert(text.cvPdfError);
                     return;
                 }
 
-                const doc = new JsPdfClass({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                const maxWidth = 185;
-                const pageHeight = 297;
-                let y = 14;
+                const printableText = lines
+                    .map((line) => line.value || '')
+                    .join('\n');
 
-                const addWrappedLine = (value, style) => {
-                    if (!value) {
-                        y += 3;
-                        return;
-                    }
-
-                    if (style === 'title') {
-                        doc.setFont('helvetica', 'bold');
-                        doc.setFontSize(20);
-                    } else if (style === 'section') {
-                        doc.setFont('helvetica', 'bold');
-                        doc.setFontSize(13);
-                    } else if (style === 'bold') {
-                        doc.setFont('helvetica', 'bold');
-                        doc.setFontSize(11);
-                    } else if (style === 'subtitle') {
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(12);
-                    } else {
-                        doc.setFont('helvetica', 'normal');
-                        doc.setFontSize(11);
-                    }
-
-                    const parts = doc.splitTextToSize(value, maxWidth);
-                    const step = style === 'title' ? 8 : 6;
-
-                    if (y + (parts.length * step) > (pageHeight - 12)) {
-                        doc.addPage();
-                        y = 14;
-                    }
-
-                    doc.text(parts, 12, y);
-                    y += parts.length * step;
-                };
-
-                const lines = buildCvPdfLines(text);
-                lines.forEach((line) => {
-                    addWrappedLine(line.value, line.style);
-                });
-
-                doc.save(text.cvFileName);
+                printWindow.document.write('<!doctype html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title></head><body style="font-family:Arial,sans-serif;white-space:pre-wrap;padding:20px;">' + printableText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
+                printWindow.document.close();
+                printWindow.focus();
+                setTimeout(() => {
+                    printWindow.print();
+                }, 300);
             };
 
             const applyLanguage = (lang) => {
