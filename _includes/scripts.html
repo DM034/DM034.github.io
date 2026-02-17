@@ -52,20 +52,27 @@
                     resumeLanguagesLabel: 'Langages',
                     resumeDatabases: 'Bases de données',
                     resumeOther: 'Autres',
-                    expDate1: 'Avril 2025 - Présent',
-                    expDate2: 'Juin 2024 - Avril 2025',
-                    expDate3: 'Juin 2024 - Août 2024',
-                    expDate4: 'Projet académique',
+                    expDate1: 'Août 2025 - Présent',
+                    expDate2: 'Avril 2025 - Juillet 2025',
+                    expDate3: 'Juin 2024 - Avril 2025',
+                    expDate4: 'Juin 2024 - Août 2024',
+                    expDate5: 'Projet académique',
                     eduDate1: 'Octobre 2025 - Présent',
                     eduDate2: 'Décembre 2024 - Septembre 2025',
                     eduDate3: '2021 - Juin 2024',
                     eduDate4: '2021',
                     eduDate5: '2019',
+                    roleJavaDeveloper: 'Développeur Java - BICI',
                     roleProjectCoordinator: 'Coordinateur de projet - BICI',
                     rolePrintingQuote: 'Gestion des devis d\'impression - Grafiky (BICI)',
                     roleEmbeddedTask: 'Gestionnaire de tâches embarqué - ASTEK',
                     roleAcademicProject: 'Projet académique',
                     roleOnlineCar: 'Plateforme de vente de voitures en ligne',
+                    exp0Text: 'Développement et maintenance de services backend Java pour les applications internes de la banque.',
+                    exp0Bullet1: 'Développement d\'API REST avec Spring Boot',
+                    exp0Bullet2: 'Implémentation de la logique métier et intégration des services',
+                    exp0Bullet3: 'Optimisation des requêtes SQL et amélioration des performances',
+                    exp0Bullet4: 'Écriture de tests unitaires et maintenance corrective',
                     exp1Text: 'Support à la gestion et à la bonne exécution du projet de digitalisation des services.',
                     exp1Bullet1: 'Suivi quotidien de l\'avancement et mise à jour du planning',
                     exp1Bullet2: 'Coordination entre équipes techniques, fonctionnelles et parties prenantes',
@@ -148,20 +155,27 @@
                     resumeLanguagesLabel: 'Language',
                     resumeDatabases: 'Database',
                     resumeOther: 'Other',
-                    expDate1: 'April 2025 - Present',
-                    expDate2: 'June 2024 - April 2025',
-                    expDate3: 'June 2024 - August 2024',
-                    expDate4: 'Academic Project',
+                    expDate1: 'August 2025 - Present',
+                    expDate2: 'April 2025 - July 2025',
+                    expDate3: 'June 2024 - April 2025',
+                    expDate4: 'June 2024 - August 2024',
+                    expDate5: 'Academic Project',
                     eduDate1: 'October 2025 - Present',
                     eduDate2: 'December 2024 - September 2025',
                     eduDate3: '2021 - June 2024',
                     eduDate4: '2021',
                     eduDate5: '2019',
+                    roleJavaDeveloper: 'Java Developer - BICI',
                     roleProjectCoordinator: 'Project Coordinator - BICI',
                     rolePrintingQuote: 'Printing Quote Management - Grafiky (BICI)',
                     roleEmbeddedTask: 'Embedded Task Manager - ASTEK',
                     roleAcademicProject: 'Academic Project',
                     roleOnlineCar: 'Online Car Sales Platform',
+                    exp0Text: 'Development and maintenance of Java backend services for internal banking applications.',
+                    exp0Bullet1: 'Development of REST APIs with Spring Boot',
+                    exp0Bullet2: 'Implementation of business logic and service integration',
+                    exp0Bullet3: 'SQL query optimization and performance improvements',
+                    exp0Bullet4: 'Unit testing and corrective maintenance',
                     exp1Text: 'Support for the management and smooth execution of the services digitalization project.',
                     exp1Bullet1: 'Daily progress monitoring and schedule updates',
                     exp1Bullet2: 'Coordination between technical teams, functional teams, and stakeholders',
@@ -291,11 +305,12 @@
                 }
 
                 const experienceCards = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
-                if (experienceCards.length >= 4) {
+                if (experienceCards.length >= 5) {
                     experienceCards[0].textContent = text.expDate1;
                     experienceCards[1].textContent = text.expDate2;
                     experienceCards[2].textContent = text.expDate3;
                     experienceCards[3].textContent = text.expDate4;
+                    experienceCards[4].textContent = text.expDate5;
                 }
 
                 const educationDates = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
@@ -308,47 +323,57 @@
                 }
 
                 const firstCardTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
-                if (firstCardTextBlocks.length >= 8) {
-                    firstCardTextBlocks[0].textContent = text.roleProjectCoordinator;
-                    firstCardTextBlocks[1].textContent = text.exp1Text;
-                    firstCardTextBlocks[2].textContent = text.rolePrintingQuote;
-                    firstCardTextBlocks[3].textContent = text.exp2Text;
-                    firstCardTextBlocks[4].textContent = text.roleEmbeddedTask;
-                    firstCardTextBlocks[5].textContent = text.exp3Text;
-                    firstCardTextBlocks[6].textContent = text.roleOnlineCar;
-                    firstCardTextBlocks[7].textContent = text.exp4Text;
+                if (firstCardTextBlocks.length >= 10) {
+                    firstCardTextBlocks[0].textContent = text.roleJavaDeveloper;
+                    firstCardTextBlocks[1].textContent = text.exp0Text;
+                    firstCardTextBlocks[2].textContent = text.roleProjectCoordinator;
+                    firstCardTextBlocks[3].textContent = text.exp1Text;
+                    firstCardTextBlocks[4].textContent = text.rolePrintingQuote;
+                    firstCardTextBlocks[5].textContent = text.exp2Text;
+                    firstCardTextBlocks[6].textContent = text.roleEmbeddedTask;
+                    firstCardTextBlocks[7].textContent = text.exp3Text;
+                    firstCardTextBlocks[8].textContent = text.roleOnlineCar;
+                    firstCardTextBlocks[9].textContent = text.exp4Text;
                 }
 
                 const firstCardLists = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul');
-                if (firstCardLists.length >= 4) {
+                if (firstCardLists.length >= 5) {
                     const list1 = firstCardLists[0].querySelectorAll('li');
                     if (list1.length >= 4) {
-                        list1[0].textContent = text.exp1Bullet1;
-                        list1[1].textContent = text.exp1Bullet2;
-                        list1[2].textContent = text.exp1Bullet3;
-                        list1[3].textContent = text.exp1Bullet4;
+                        list1[0].textContent = text.exp0Bullet1;
+                        list1[1].textContent = text.exp0Bullet2;
+                        list1[2].textContent = text.exp0Bullet3;
+                        list1[3].textContent = text.exp0Bullet4;
                     }
 
                     const list2 = firstCardLists[1].querySelectorAll('li');
                     if (list2.length >= 4) {
-                        list2[0].textContent = text.exp2Bullet1;
-                        list2[1].textContent = text.exp2Bullet2;
-                        list2[2].textContent = text.exp2Bullet3;
-                        list2[3].textContent = text.exp2Bullet4;
+                        list2[0].textContent = text.exp1Bullet1;
+                        list2[1].textContent = text.exp1Bullet2;
+                        list2[2].textContent = text.exp1Bullet3;
+                        list2[3].textContent = text.exp1Bullet4;
                     }
 
                     const list3 = firstCardLists[2].querySelectorAll('li');
-                    if (list3.length >= 3) {
-                        list3[0].textContent = text.exp3Bullet1;
-                        list3[1].textContent = text.exp3Bullet2;
-                        list3[2].textContent = text.exp3Bullet3;
+                    if (list3.length >= 4) {
+                        list3[0].textContent = text.exp2Bullet1;
+                        list3[1].textContent = text.exp2Bullet2;
+                        list3[2].textContent = text.exp2Bullet3;
+                        list3[3].textContent = text.exp2Bullet4;
                     }
 
                     const list4 = firstCardLists[3].querySelectorAll('li');
                     if (list4.length >= 3) {
-                        list4[0].textContent = text.exp4Bullet1;
-                        list4[1].textContent = text.exp4Bullet2;
-                        list4[2].textContent = text.exp4Bullet3;
+                        list4[0].textContent = text.exp3Bullet1;
+                        list4[1].textContent = text.exp3Bullet2;
+                        list4[2].textContent = text.exp3Bullet3;
+                    }
+
+                    const list5 = firstCardLists[4].querySelectorAll('li');
+                    if (list5.length >= 3) {
+                        list5[0].textContent = text.exp4Bullet1;
+                        list5[1].textContent = text.exp4Bullet2;
+                        list5[2].textContent = text.exp4Bullet3;
                     }
                 }
 
