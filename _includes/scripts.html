@@ -282,157 +282,132 @@
                 container.appendChild(heading);
             };
 
-            const buildCvPdfContent = (text) => {
-                const wrapper = document.createElement('div');
-                wrapper.style.background = '#ffffff';
-                wrapper.style.color = '#222222';
-                wrapper.style.fontFamily = 'Arial, sans-serif';
-                wrapper.style.padding = '24px';
-                wrapper.style.width = '794px';
-                wrapper.style.lineHeight = '1.45';
+            const buildCvPdfLines = (text) => {
+                const lines = [];
+                const pushLine = (value = '', style = 'normal') => {
+                    lines.push({ value, style });
+                };
 
-                const name = document.createElement('h1');
-                name.textContent = document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison';
-                name.style.margin = '0';
-                name.style.fontSize = '28px';
-                wrapper.appendChild(name);
+                pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
+                pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
+                pushLine('');
 
-                const role = document.createElement('p');
-                role.textContent = document.querySelector('.header-mono')?.textContent?.trim() || '';
-                role.style.margin = '4px 0 0 0';
-                role.style.fontSize = '16px';
-                role.style.color = '#444444';
-                wrapper.appendChild(role);
-
-                appendSectionTitle(wrapper, text.aboutWho);
+                pushLine(text.aboutWho, 'section');
                 const aboutIntro = document.querySelector('#about .about-card:first-child .mb-3')?.textContent?.trim();
-                if (aboutIntro) {
-                    const intro = document.createElement('p');
-                    intro.textContent = aboutIntro;
-                    wrapper.appendChild(intro);
-                }
+                if (aboutIntro) pushLine(aboutIntro);
+                pushLine('');
 
-                appendSectionTitle(wrapper, text.aboutInfo);
+                pushLine(text.aboutInfo, 'section');
                 getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
-                    const line = document.createElement('p');
-                    line.style.margin = '2px 0';
-                    line.textContent = item.replace(/\s+/g, ' ').trim();
-                    wrapper.appendChild(line);
+                    pushLine(item.replace(/\s+/g, ' ').trim());
                 });
+                pushLine('');
 
-                appendSectionTitle(wrapper, text.resumeExperience);
+                pushLine(text.resumeExperience, 'section');
                 const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
                 const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
                 const expLists = Array.from(document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul'));
                 const expCount = Math.min(expDates.length, expLists.length, Math.floor(expTexts.length / 2));
 
                 for (let index = 0; index < expCount; index += 1) {
-                    const date = document.createElement('p');
-                    date.style.margin = '10px 0 2px 0';
-                    date.style.fontWeight = '700';
-                    date.textContent = expDates[index];
-                    wrapper.appendChild(date);
-
-                    const roleLine = document.createElement('p');
-                    roleLine.style.margin = '0 0 2px 0';
-                    roleLine.style.fontWeight = '600';
-                    roleLine.textContent = expTexts[index * 2] || '';
-                    wrapper.appendChild(roleLine);
-
-                    const desc = document.createElement('p');
-                    desc.style.margin = '0 0 4px 0';
-                    desc.textContent = expTexts[(index * 2) + 1] || '';
-                    wrapper.appendChild(desc);
-
-                    const bullets = Array.from(expLists[index].querySelectorAll('li'));
-                    bullets.forEach((bulletText) => {
-                        const bullet = document.createElement('p');
-                        bullet.style.margin = '0 0 0 12px';
-                        bullet.textContent = '• ' + (bulletText.textContent ? bulletText.textContent.trim() : '');
-                        wrapper.appendChild(bullet);
+                    pushLine(expDates[index], 'bold');
+                    pushLine(expTexts[index * 2] || '', 'bold');
+                    pushLine(expTexts[(index * 2) + 1] || '');
+                    Array.from(expLists[index].querySelectorAll('li')).forEach((bulletNode) => {
+                        const bulletText = bulletNode.textContent ? bulletNode.textContent.trim() : '';
+                        if (bulletText) {
+                            pushLine('• ' + bulletText);
+                        }
                     });
+                    pushLine('');
                 }
 
-                appendSectionTitle(wrapper, text.resumeEducation);
+                pushLine(text.resumeEducation, 'section');
                 const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
                 const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
                 eduDates.forEach((eduDate, index) => {
-                    const date = document.createElement('p');
-                    date.style.margin = '8px 0 2px 0';
-                    date.style.fontWeight = '700';
-                    date.textContent = eduDate;
-                    wrapper.appendChild(date);
-
-                    const line1 = document.createElement('p');
-                    line1.style.margin = '0';
-                    line1.textContent = eduTexts[index * 2] || '';
-                    wrapper.appendChild(line1);
-
-                    const line2 = document.createElement('p');
-                    line2.style.margin = '0';
-                    line2.textContent = eduTexts[(index * 2) + 1] || '';
-                    wrapper.appendChild(line2);
+                    pushLine(eduDate, 'bold');
+                    pushLine(eduTexts[index * 2] || '');
+                    pushLine(eduTexts[(index * 2) + 1] || '');
+                    pushLine('');
                 });
 
-                appendSectionTitle(wrapper, text.resumeSkills);
+                pushLine(text.resumeSkills, 'section');
                 getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
-                    const line = document.createElement('p');
-                    line.style.margin = '2px 0';
-                    line.textContent = item;
-                    wrapper.appendChild(line);
+                    pushLine(item);
                 });
+                pushLine('');
 
-                appendSectionTitle(wrapper, text.resumeLanguages);
+                pushLine(text.resumeLanguages, 'section');
                 getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
-                    const line = document.createElement('p');
-                    line.style.margin = '2px 0';
-                    line.textContent = item;
-                    wrapper.appendChild(line);
+                    pushLine(item);
                 });
+                pushLine('');
 
-                appendSectionTitle(wrapper, text.getInTouch);
+                pushLine(text.getInTouch, 'section');
                 getTextList('.contact-info-card .d-inline').forEach((item) => {
-                    const line = document.createElement('p');
-                    line.style.margin = '2px 0';
-                    line.textContent = item.replace(/\s+/g, ' ').trim();
-                    wrapper.appendChild(line);
+                    pushLine(item.replace(/\s+/g, ' ').trim());
                 });
 
-                return wrapper;
+                return lines;
             };
 
             const generateCvPdf = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
 
-                if (typeof window.html2pdf !== 'function') {
+                const JsPdfClass = window.jspdf && window.jspdf.jsPDF;
+                if (!JsPdfClass) {
                     alert(text.cvPdfError);
                     return;
                 }
 
-                const pdfContent = buildCvPdfContent(text);
-                pdfContent.style.position = 'fixed';
-                pdfContent.style.left = '0';
-                pdfContent.style.top = '0';
-                pdfContent.style.zIndex = '99999';
-                document.body.appendChild(pdfContent);
+                const doc = new JsPdfClass({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+                const maxWidth = 185;
+                const pageHeight = 297;
+                let y = 14;
 
-                window.html2pdf()
-                    .set({
-                        margin: [8, 8, 8, 8],
-                        filename: text.cvFileName,
-                        image: { type: 'jpeg', quality: 0.98 },
-                        html2canvas: { scale: 2, useCORS: true },
-                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                    })
-                    .from(pdfContent)
-                    .save()
-                    .then(() => {
-                        pdfContent.remove();
-                    })
-                    .catch(() => {
-                        pdfContent.remove();
-                    });
+                const addWrappedLine = (value, style) => {
+                    if (!value) {
+                        y += 3;
+                        return;
+                    }
+
+                    if (style === 'title') {
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(20);
+                    } else if (style === 'section') {
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(13);
+                    } else if (style === 'bold') {
+                        doc.setFont('helvetica', 'bold');
+                        doc.setFontSize(11);
+                    } else if (style === 'subtitle') {
+                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(12);
+                    } else {
+                        doc.setFont('helvetica', 'normal');
+                        doc.setFontSize(11);
+                    }
+
+                    const parts = doc.splitTextToSize(value, maxWidth);
+                    const step = style === 'title' ? 8 : 6;
+
+                    if (y + (parts.length * step) > (pageHeight - 12)) {
+                        doc.addPage();
+                        y = 14;
+                    }
+
+                    doc.text(parts, 12, y);
+                    y += parts.length * step;
+                };
+
+                const lines = buildCvPdfLines(text);
+                lines.forEach((line) => {
+                    addWrappedLine(line.value, line.style);
+                });
+
+                doc.save(text.cvFileName);
             };
 
             const applyLanguage = (lang) => {
