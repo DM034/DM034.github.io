@@ -14,3 +14,393 @@
     <!-- JohnDoe js -->
     <script src="assets/js/johndoe.js"></script>
 
+    <script>
+        (function () {
+            const translations = {
+                fr: {
+                    pageTitle: 'Michael Raharison - Développeur',
+                    navHome: 'Accueil',
+                    navAbout: 'À propos',
+                    navResume: 'Parcours',
+                    navPortfolio: 'Portfolio',
+                    navBlog: 'Blog',
+                    navContact: 'Contact',
+                    headerSubtitle: 'Bonjour, je suis',
+                    headerRole: 'Développeur',
+                    brandRole: 'Développeur',
+                    aboutWho: 'Qui suis-je ?',
+                    aboutWhoText: 'Un développeur basé sur notre belle planète',
+                    aboutInfo: 'Informations personnelles',
+                    aboutExpertise: 'Mes expertises',
+                    aboutBirthdate: 'Date de naissance',
+                    aboutEmail: 'Email',
+                    aboutPhone: 'Téléphone',
+                    aboutSkype: 'Skype',
+                    aboutAddress: 'Adresse',
+                    aboutWebDev: 'Développement web',
+                    aboutNeedCollection: 'Recueil des besoins',
+                    aboutNeedAnalysis: 'Analyse des besoins',
+                    aboutDesignEstimate: 'Conception et estimation',
+                    aboutDebugging: 'Débogage',
+                    aboutTechWatch: 'Veille technologique',
+                    resumeTitlePrefix: 'Mon',
+                    resumeTitle: ' parcours',
+                    resumeExperience: 'Expérience',
+                    resumeEducation: 'Formation',
+                    resumeSkills: 'Compétences',
+                    resumeLanguages: 'Langues',
+                    resumeLanguagesLabel: 'Langages',
+                    resumeDatabases: 'Bases de données',
+                    resumeOther: 'Autres',
+                    roleProjectCoordinator: 'Coordinateur de projet - BICI',
+                    rolePrintingQuote: 'Gestion des devis d\'impression - Grafiky (BICI)',
+                    roleEmbeddedTask: 'Gestionnaire de tâches embarqué - ASTEK',
+                    roleAcademicProject: 'Projet académique',
+                    roleOnlineCar: 'Plateforme de vente de voitures en ligne',
+                    exp1Text: 'Support à la gestion et à la bonne exécution du projet de digitalisation des services.',
+                    exp1Bullet1: 'Suivi quotidien de l\'avancement et mise à jour du planning',
+                    exp1Bullet2: 'Coordination entre équipes techniques, fonctionnelles et parties prenantes',
+                    exp1Bullet3: 'Rédaction des rapports et des documents de suivi',
+                    exp1Bullet4: 'Vérification de la mise en œuvre des processus qualité',
+                    exp2Text: 'Développement d\'un système de suivi en temps réel des commandes et des flux de production. (Java)',
+                    exp2Bullet1: 'Développement de nouvelles fonctionnalités',
+                    exp2Bullet2: 'Conception et amélioration des pages',
+                    exp2Bullet3: 'Revue de code et assurance qualité',
+                    exp2Bullet4: 'Méthodologie agile/scrum',
+                    exp3Text: 'Plateforme de gestion de projet permettant la création et l\'attribution de tâches. (C++)',
+                    exp3Bullet1: 'Conception du module de rapports et statistiques',
+                    exp3Bullet2: 'Développement de l\'interface utilisateur (QML)',
+                    exp3Bullet3: 'Tests, optimisation et déploiement sur Raspberry Pi 4',
+                    exp4Text: 'Conception et développement d\'une plateforme web de vente de voitures.',
+                    exp4Bullet1: 'Développement avec PHP et CodeIgniter',
+                    exp4Bullet2: 'Base de données MySQL',
+                    exp4Bullet3: 'Navigation et comparaison des véhicules',
+                    eduM2: 'MBDS - Master 2 en développement informatique',
+                    eduM1: 'Master 1 en développement informatique',
+                    eduBachelor: 'Licence en développement informatique',
+                    eduSpecialization: 'Spécialisation en programmation',
+                    eduBaccalaureate: 'Baccalauréat série D',
+                    eduBaccalaureateSubtitle: 'Diplôme de fin d\'études secondaires',
+                    eduTraining: 'Formation en informatique et programmation',
+                    eduTrainingSubtitle: 'IEFPA ACEEM',
+                    eduTrainingDetail: 'Formation initiale en programmation',
+                    langEnglish: 'Anglais (75%)',
+                    langFrench: 'Français (80%)',
+                    langMalagasy: 'Malagasy (95%)',
+                    freelanceTitle: 'Je suis disponible en freelance',
+                    freelanceButton: 'Me contacter',
+                    contactTitle: 'Envoyer un message',
+                    namePlaceholder: 'Nom *',
+                    emailPlaceholder: 'Email *',
+                    subjectPlaceholder: 'Sujet *',
+                    messagePlaceholder: 'Votre message *',
+                    sendButton: 'Envoyer le message',
+                    successMessage: 'Message envoyé avec succès ! Je vous répondrai rapidement.',
+                    errorMessage: 'Oups ! Une erreur est survenue. Veuillez réessayer.',
+                    getInTouch: 'Me contacter',
+                    phoneLabel: 'Téléphone :',
+                    addressLabel: 'Adresse :',
+                    emailLabel: 'Email :',
+                    footerBy: 'Par',
+                    footerTitle: 'Thèmes et tableaux de bord Bootstrap 4'
+                },
+                en: {
+                    pageTitle: 'Michael Raharison - Developer',
+                    navHome: 'Home',
+                    navAbout: 'About',
+                    navResume: 'Resume',
+                    navPortfolio: 'Portfolio',
+                    navBlog: 'Blog',
+                    navContact: 'Contact',
+                    headerSubtitle: 'Hello, I am',
+                    headerRole: 'Developer',
+                    brandRole: 'Developer',
+                    aboutWho: 'Who am I ?',
+                    aboutWhoText: 'A Developer Located In Our Lovely Earth',
+                    aboutInfo: 'Personal Info',
+                    aboutExpertise: 'My Expertise',
+                    aboutBirthdate: 'Birthdate',
+                    aboutEmail: 'Email',
+                    aboutPhone: 'Phone',
+                    aboutSkype: 'Skype',
+                    aboutAddress: 'Address',
+                    aboutWebDev: 'Web Development',
+                    aboutNeedCollection: 'Collection of needs',
+                    aboutNeedAnalysis: 'Analysis of needs',
+                    aboutDesignEstimate: 'Design and estimation',
+                    aboutDebugging: 'Debugging',
+                    aboutTechWatch: 'Technological monitoring',
+                    resumeTitlePrefix: 'My',
+                    resumeTitle: ' Resume',
+                    resumeExperience: 'Expertise',
+                    resumeEducation: 'Education',
+                    resumeSkills: 'Skills',
+                    resumeLanguages: 'Languages',
+                    resumeLanguagesLabel: 'Language',
+                    resumeDatabases: 'Database',
+                    resumeOther: 'Other',
+                    roleProjectCoordinator: 'Project Coordinator - BICI',
+                    rolePrintingQuote: 'Printing Quote Management - Grafiky (BICI)',
+                    roleEmbeddedTask: 'Embedded Task Manager - ASTEK',
+                    roleAcademicProject: 'Academic Project',
+                    roleOnlineCar: 'Online Car Sales Platform',
+                    exp1Text: 'Support for the management and smooth execution of the services digitalization project.',
+                    exp1Bullet1: 'Daily progress monitoring and schedule updates',
+                    exp1Bullet2: 'Coordination between technical teams, functional teams, and stakeholders',
+                    exp1Bullet3: 'Writing reports and tracking documents',
+                    exp1Bullet4: 'Verification of quality process implementation',
+                    exp2Text: 'Development of a real-time tracking system for orders and production flows. (Java)',
+                    exp2Bullet1: 'Development of new features',
+                    exp2Bullet2: 'Design and improvement of pages',
+                    exp2Bullet3: 'Code review and quality assurance',
+                    exp2Bullet4: 'Agile/scrum methodology',
+                    exp3Text: 'Project management platform enabling task creation and assignment. (C++)',
+                    exp3Bullet1: 'Design of reports and statistics module',
+                    exp3Bullet2: 'User interface development (QML)',
+                    exp3Bullet3: 'Testing, optimization and deployment on Raspberry Pi 4',
+                    exp4Text: 'Design and development of a web platform for selling cars.',
+                    exp4Bullet1: 'Development with PHP and CodeIgniter',
+                    exp4Bullet2: 'MySQL database',
+                    exp4Bullet3: 'Navigation and vehicle comparison features',
+                    eduM2: 'MBDS - Master 2 in Computer Development',
+                    eduM1: 'Master 1 in Computer Development',
+                    eduBachelor: 'Bachelor\'s degree in Computer Development',
+                    eduSpecialization: 'Specialization in Programming',
+                    eduBaccalaureate: 'High School Diploma (D)',
+                    eduBaccalaureateSubtitle: 'End of secondary studies diploma',
+                    eduTraining: 'Computer Science and Programming Training',
+                    eduTrainingSubtitle: 'IEFPA ACEEM',
+                    eduTrainingDetail: 'Initial programming training',
+                    langEnglish: 'English (75%)',
+                    langFrench: 'French (80%)',
+                    langMalagasy: 'Malagasy (95%)',
+                    freelanceTitle: 'I Am Available For FreeLance',
+                    freelanceButton: 'Hire me',
+                    contactTitle: 'Send a message',
+                    namePlaceholder: 'Name *',
+                    emailPlaceholder: 'Email *',
+                    subjectPlaceholder: 'Subject *',
+                    messagePlaceholder: 'Your Message *',
+                    sendButton: 'Send Message',
+                    successMessage: 'Message sent successfully! I\'ll get back to you soon.',
+                    errorMessage: 'Oops! Something went wrong. Please try again.',
+                    getInTouch: 'Get in touch',
+                    phoneLabel: 'Phone :',
+                    addressLabel: 'Address :',
+                    emailLabel: 'Email :',
+                    footerBy: 'By',
+                    footerTitle: 'Bootstrap 4 Themes and Dashboards'
+                }
+            };
+
+            const setText = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.textContent = value;
+                }
+            };
+
+            const setHtml = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.innerHTML = value;
+                }
+            };
+
+            const setAttr = (selector, attribute, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.setAttribute(attribute, value);
+                }
+            };
+
+            const applyLanguage = (lang) => {
+                const language = translations[lang] ? lang : 'fr';
+                const text = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = text.pageTitle;
+
+                setText('.header-subtitle', text.headerSubtitle);
+                setText('.header-mono', text.headerRole);
+                setText('.brand-subtitle', text.brandRole);
+
+                const navLinks = document.querySelectorAll('.navbar .nav-link');
+                if (navLinks.length >= 6) {
+                    navLinks[0].textContent = text.navHome;
+                    navLinks[1].textContent = text.navAbout;
+                    navLinks[2].textContent = text.navResume;
+                    navLinks[3].textContent = text.navPortfolio;
+                    navLinks[4].textContent = text.navBlog;
+                    navLinks[5].textContent = text.navContact;
+                }
+
+                const aboutHeaders = document.querySelectorAll('#about h3');
+                if (aboutHeaders.length >= 3) {
+                    aboutHeaders[0].textContent = text.aboutWho;
+                    aboutHeaders[1].textContent = text.aboutInfo;
+                    aboutHeaders[2].textContent = text.aboutExpertise;
+                }
+                setText('#about .about-card .mb-3', text.aboutWhoText);
+
+                const personalInfoLabels = document.querySelectorAll('#about .info span');
+                if (personalInfoLabels.length >= 5) {
+                    personalInfoLabels[0].textContent = text.aboutBirthdate;
+                    personalInfoLabels[1].textContent = text.aboutEmail;
+                    personalInfoLabels[2].textContent = text.aboutPhone;
+                    personalInfoLabels[3].textContent = text.aboutSkype;
+                    personalInfoLabels[4].textContent = text.aboutAddress;
+                }
+
+                setText('#about .about-card:last-child h6', text.aboutWebDev);
+                const expertiseItems = document.querySelectorAll('#about .about-card:last-child ul li');
+                if (expertiseItems.length >= 5) {
+                    expertiseItems[0].textContent = text.aboutNeedCollection;
+                    expertiseItems[1].textContent = text.aboutNeedAnalysis;
+                    expertiseItems[2].textContent = text.aboutDesignEstimate;
+                    expertiseItems[3].textContent = text.aboutDebugging;
+                    expertiseItems[4].textContent = text.aboutTechWatch;
+                }
+
+                setHtml('#resume > .container > h2', '<span class="text-danger">' + text.resumeTitlePrefix + '</span>' + text.resumeTitle);
+
+                const resumeCardHeaders = document.querySelectorAll('#resume .card-header h4');
+                if (resumeCardHeaders.length >= 4) {
+                    resumeCardHeaders[0].textContent = text.resumeExperience;
+                    resumeCardHeaders[1].textContent = text.resumeEducation;
+                    resumeCardHeaders[2].textContent = text.resumeSkills;
+                    resumeCardHeaders[3].textContent = text.resumeLanguages;
+                }
+
+                const experienceCards = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
+                if (experienceCards.length >= 4) {
+                    experienceCards[3].textContent = text.roleAcademicProject;
+                }
+
+                const firstCardTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
+                if (firstCardTextBlocks.length >= 8) {
+                    firstCardTextBlocks[0].textContent = text.roleProjectCoordinator;
+                    firstCardTextBlocks[1].textContent = text.exp1Text;
+                    firstCardTextBlocks[2].textContent = text.rolePrintingQuote;
+                    firstCardTextBlocks[3].textContent = text.exp2Text;
+                    firstCardTextBlocks[4].textContent = text.roleEmbeddedTask;
+                    firstCardTextBlocks[5].textContent = text.exp3Text;
+                    firstCardTextBlocks[6].textContent = text.roleOnlineCar;
+                    firstCardTextBlocks[7].textContent = text.exp4Text;
+                }
+
+                const firstCardLists = document.querySelectorAll('#resume .card:first-child .card-body ul');
+                if (firstCardLists.length >= 4) {
+                    const list1 = firstCardLists[0].querySelectorAll('li');
+                    if (list1.length >= 4) {
+                        list1[0].textContent = text.exp1Bullet1;
+                        list1[1].textContent = text.exp1Bullet2;
+                        list1[2].textContent = text.exp1Bullet3;
+                        list1[3].textContent = text.exp1Bullet4;
+                    }
+
+                    const list2 = firstCardLists[1].querySelectorAll('li');
+                    if (list2.length >= 4) {
+                        list2[0].textContent = text.exp2Bullet1;
+                        list2[1].textContent = text.exp2Bullet2;
+                        list2[2].textContent = text.exp2Bullet3;
+                        list2[3].textContent = text.exp2Bullet4;
+                    }
+
+                    const list3 = firstCardLists[2].querySelectorAll('li');
+                    if (list3.length >= 3) {
+                        list3[0].textContent = text.exp3Bullet1;
+                        list3[1].textContent = text.exp3Bullet2;
+                        list3[2].textContent = text.exp3Bullet3;
+                    }
+
+                    const list4 = firstCardLists[3].querySelectorAll('li');
+                    if (list4.length >= 3) {
+                        list4[0].textContent = text.exp4Bullet1;
+                        list4[1].textContent = text.exp4Bullet2;
+                        list4[2].textContent = text.exp4Bullet3;
+                    }
+                }
+
+                const educationTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p:not(.subtitle)');
+                if (educationTextBlocks.length >= 7) {
+                    educationTextBlocks[0].textContent = text.eduM2;
+                    educationTextBlocks[1].textContent = text.eduM1;
+                    educationTextBlocks[2].textContent = text.eduBachelor;
+                    educationTextBlocks[3].textContent = text.eduSpecialization;
+                    educationTextBlocks[4].textContent = text.eduBaccalaureate;
+                    educationTextBlocks[5].textContent = text.eduTraining;
+                    educationTextBlocks[6].textContent = text.eduTrainingDetail;
+                }
+
+                const educationSubtitles = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p.subtitle');
+                if (educationSubtitles.length >= 5) {
+                    educationSubtitles[0].textContent = 'Université Côte d\'Azur';
+                    educationSubtitles[1].textContent = 'IT University Andoharanofotsy';
+                    educationSubtitles[2].textContent = 'IT University Andoharanofotsy';
+                    educationSubtitles[3].textContent = text.eduBaccalaureateSubtitle;
+                    educationSubtitles[4].textContent = text.eduTrainingSubtitle;
+                }
+
+                const skillHeadings = document.querySelectorAll('#resume .col-lg-4 .card:first-child .card-body h6.title.text-danger');
+                if (skillHeadings.length >= 3) {
+                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
+                    skillHeadings[1].textContent = text.resumeDatabases;
+                    skillHeadings[2].textContent = text.resumeOther;
+                }
+
+                const spokenLanguages = document.querySelectorAll('#resume .col-lg-4 .card:last-child .card-body h6');
+                if (spokenLanguages.length >= 3) {
+                    spokenLanguages[0].textContent = text.langEnglish;
+                    spokenLanguages[1].textContent = text.langFrench;
+                    spokenLanguages[2].textContent = text.langMalagasy;
+                }
+
+                setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
+                setText('.section.bg-dark.py-5 .btn.bg-primary', text.freelanceButton);
+
+                setText('.contact-form-card .contact-title', text.contactTitle);
+                setAttr('#contactForm input[name="name"]', 'placeholder', text.namePlaceholder);
+                setAttr('#contactForm input[name="email"]', 'placeholder', text.emailPlaceholder);
+                setAttr('#contactForm input[name="subject"]', 'placeholder', text.subjectPlaceholder);
+                setAttr('#contactForm textarea[name="message"]', 'placeholder', text.messagePlaceholder);
+                setText('#submitBtn .button-text', text.sendButton);
+                setText('#successMessage', text.successMessage);
+                setText('#errorMessage', text.errorMessage);
+
+                setText('.contact-info-card .contact-title', text.getInTouch);
+                const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
+                if (contactLabels.length >= 3) {
+                    const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
+                    const addressValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'IVC 153 bis Ambodivoanjo Ankaraobato, Antananarivo, Madagascar.';
+                    const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
+
+                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
+                    contactLabels[1].innerHTML = text.addressLabel + '<br> <span class="text-muted">' + addressValue + '</span>';
+                    contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
+                }
+
+                setHtml('.footer .small.mb-0.text-light',
+                    '© 2024 ' + text.footerBy + ' <a href="https://DM034.github.io" target="_blank"><span class="text-danger" title="' + text.footerTitle + '">Michael Raharison</span></a>'
+                );
+
+                const languageSelect = document.getElementById('languageSelect');
+                if (languageSelect) {
+                    languageSelect.value = language;
+                }
+
+                localStorage.setItem('siteLanguage', language);
+            };
+
+            const languageSelect = document.getElementById('languageSelect');
+            const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
+            applyLanguage(initialLanguage);
+
+            if (languageSelect) {
+                languageSelect.addEventListener('change', function (event) {
+                    applyLanguage(event.target.value);
+                });
+            }
+        })();
+    </script>
+
