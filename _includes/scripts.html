@@ -13,6 +13,7 @@
 
     <!-- JohnDoe js -->
     <script src="assets/js/johndoe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <script>
         (function () {
@@ -116,6 +117,10 @@
                     phoneLabel: 'Téléphone :',
                     addressLabel: 'Adresse :',
                     emailLabel: 'Email :',
+                    downloadCvButton: 'Télécharger CV PDF',
+                    cvFileName: 'CV_Michael_Raharison_FR.pdf',
+                    cvPdfTitle: 'Curriculum Vitae',
+                    cvPdfError: 'La génération du PDF est indisponible pour le moment.',
                     footerBy: 'Par',
                     footerTitle: 'Thèmes et tableaux de bord Bootstrap 4'
                 },
@@ -218,9 +223,26 @@
                     phoneLabel: 'Phone :',
                     addressLabel: 'Address :',
                     emailLabel: 'Email :',
+                    downloadCvButton: 'Download CV PDF',
+                    cvFileName: 'CV_Michael_Raharison_EN.pdf',
+                    cvPdfTitle: 'Curriculum Vitae',
+                    cvPdfError: 'PDF generation is currently unavailable.',
                     footerBy: 'By',
                     footerTitle: 'Bootstrap 4 Themes and Dashboards'
                 }
+            };
+
+            const getActiveLanguage = () => {
+                const languageSelect = document.getElementById('languageSelect');
+                const selected = languageSelect ? languageSelect.value : null;
+                const saved = localStorage.getItem('siteLanguage');
+                if (selected && translations[selected]) {
+                    return selected;
+                }
+                if (saved && translations[saved]) {
+                    return saved;
+                }
+                return 'fr';
             };
 
             const setText = (selector, value) => {
@@ -242,6 +264,88 @@
                 if (element) {
                     element.setAttribute(attribute, value);
                 }
+            };
+
+            const buildCvPdfContent = (text) => {
+                const wrapper = document.createElement('div');
+                wrapper.style.background = '#ffffff';
+                wrapper.style.color = '#222222';
+                wrapper.style.fontFamily = 'Arial, sans-serif';
+                wrapper.style.padding = '24px';
+                wrapper.style.width = '790px';
+
+                const title = document.createElement('h1');
+                title.textContent = document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison';
+                title.style.margin = '0';
+                title.style.fontSize = '28px';
+                wrapper.appendChild(title);
+
+                const subtitle = document.createElement('p');
+                subtitle.textContent = document.querySelector('.header-mono')?.textContent?.trim() || '';
+                subtitle.style.margin = '4px 0 16px 0';
+                subtitle.style.fontSize = '16px';
+                subtitle.style.color = '#444444';
+                wrapper.appendChild(subtitle);
+
+                const sectionTitle = document.createElement('h2');
+                sectionTitle.textContent = text.cvPdfTitle;
+                sectionTitle.style.fontSize = '20px';
+                sectionTitle.style.margin = '0 0 16px 0';
+                wrapper.appendChild(sectionTitle);
+
+                const about = document.querySelector('#about')?.cloneNode(true);
+                if (about) {
+                    wrapper.appendChild(about);
+                }
+
+                const resume = document.querySelector('#resume')?.cloneNode(true);
+                if (resume) {
+                    wrapper.appendChild(resume);
+                }
+
+                const contact = document.querySelector('.contact-info-card')?.cloneNode(true);
+                if (contact) {
+                    const contactTitle = document.createElement('h3');
+                    contactTitle.textContent = text.getInTouch;
+                    contactTitle.style.marginTop = '20px';
+                    wrapper.appendChild(contactTitle);
+                    wrapper.appendChild(contact);
+                }
+
+                return wrapper;
+            };
+
+            const generateCvPdf = (lang) => {
+                const language = translations[lang] ? lang : 'fr';
+                const text = translations[language];
+
+                if (typeof window.html2pdf !== 'function') {
+                    alert(text.cvPdfError);
+                    return;
+                }
+
+                const pdfContent = buildCvPdfContent(text);
+                pdfContent.style.position = 'fixed';
+                pdfContent.style.left = '-10000px';
+                pdfContent.style.top = '0';
+                document.body.appendChild(pdfContent);
+
+                window.html2pdf()
+                    .set({
+                        margin: [8, 8, 8, 8],
+                        filename: text.cvFileName,
+                        image: { type: 'jpeg', quality: 0.98 },
+                        html2canvas: { scale: 2, useCORS: true },
+                        jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                    })
+                    .from(pdfContent)
+                    .save()
+                    .then(() => {
+                        pdfContent.remove();
+                    })
+                    .catch(() => {
+                        pdfContent.remove();
+                    });
             };
 
             const applyLanguage = (lang) => {
@@ -410,6 +514,7 @@
                 setText('#submitBtn .button-text', text.sendButton);
                 setText('#successMessage', text.successMessage);
                 setText('#errorMessage', text.errorMessage);
+                setText('#downloadCvBtn', text.downloadCvButton);
 
                 setText('.contact-info-card .contact-title', text.getInTouch);
                 const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
@@ -436,12 +541,19 @@
             };
 
             const languageSelect = document.getElementById('languageSelect');
+            const downloadCvBtn = document.getElementById('downloadCvBtn');
             const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
             applyLanguage(initialLanguage);
 
             if (languageSelect) {
                 languageSelect.addEventListener('change', function (event) {
                     applyLanguage(event.target.value);
+                });
+            }
+
+            if (downloadCvBtn) {
+                downloadCvBtn.addEventListener('click', function () {
+                    generateCvPdf(getActiveLanguage());
                 });
             }
         })();
