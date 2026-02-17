@@ -289,7 +289,7 @@
                     firstCardTextBlocks[7].textContent = text.exp4Text;
                 }
 
-                const firstCardLists = document.querySelectorAll('#resume .card:first-child .card-body ul');
+                const firstCardLists = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul');
                 if (firstCardLists.length >= 4) {
                     const list1 = firstCardLists[0].querySelectorAll('li');
                     if (list1.length >= 4) {
@@ -342,14 +342,14 @@
                     educationSubtitles[4].textContent = text.eduTrainingSubtitle;
                 }
 
-                const skillHeadings = document.querySelectorAll('#resume .col-lg-4 .card:first-child .card-body h6.title.text-danger');
+                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
                 if (skillHeadings.length >= 3) {
                     skillHeadings[0].textContent = text.resumeLanguagesLabel;
                     skillHeadings[1].textContent = text.resumeDatabases;
                     skillHeadings[2].textContent = text.resumeOther;
                 }
 
-                const spokenLanguages = document.querySelectorAll('#resume .col-lg-4 .card:last-child .card-body h6');
+                const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
                 if (spokenLanguages.length >= 3) {
                     spokenLanguages[0].textContent = text.langEnglish;
                     spokenLanguages[1].textContent = text.langFrench;
