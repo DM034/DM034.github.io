@@ -52,6 +52,15 @@
                     resumeLanguagesLabel: 'Langages',
                     resumeDatabases: 'Bases de données',
                     resumeOther: 'Autres',
+                    expDate1: 'Avril 2025 - Présent',
+                    expDate2: 'Juin 2024 - Avril 2025',
+                    expDate3: 'Juin 2024 - Août 2024',
+                    expDate4: 'Projet académique',
+                    eduDate1: 'Octobre 2025 - Présent',
+                    eduDate2: 'Décembre 2024 - Septembre 2025',
+                    eduDate3: '2021 - Juin 2024',
+                    eduDate4: '2021',
+                    eduDate5: '2019',
                     roleProjectCoordinator: 'Coordinateur de projet - BICI',
                     rolePrintingQuote: 'Gestion des devis d\'impression - Grafiky (BICI)',
                     roleEmbeddedTask: 'Gestionnaire de tâches embarqué - ASTEK',
@@ -139,6 +148,15 @@
                     resumeLanguagesLabel: 'Language',
                     resumeDatabases: 'Database',
                     resumeOther: 'Other',
+                    expDate1: 'April 2025 - Present',
+                    expDate2: 'June 2024 - April 2025',
+                    expDate3: 'June 2024 - August 2024',
+                    expDate4: 'Academic Project',
+                    eduDate1: 'October 2025 - Present',
+                    eduDate2: 'December 2024 - September 2025',
+                    eduDate3: '2021 - June 2024',
+                    eduDate4: '2021',
+                    eduDate5: '2019',
                     roleProjectCoordinator: 'Project Coordinator - BICI',
                     rolePrintingQuote: 'Printing Quote Management - Grafiky (BICI)',
                     roleEmbeddedTask: 'Embedded Task Manager - ASTEK',
@@ -274,7 +292,19 @@
 
                 const experienceCards = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
                 if (experienceCards.length >= 4) {
-                    experienceCards[3].textContent = text.roleAcademicProject;
+                    experienceCards[0].textContent = text.expDate1;
+                    experienceCards[1].textContent = text.expDate2;
+                    experienceCards[2].textContent = text.expDate3;
+                    experienceCards[3].textContent = text.expDate4;
+                }
+
+                const educationDates = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
+                if (educationDates.length >= 5) {
+                    educationDates[0].textContent = text.eduDate1;
+                    educationDates[1].textContent = text.eduDate2;
+                    educationDates[2].textContent = text.eduDate3;
+                    educationDates[3].textContent = text.eduDate4;
+                    educationDates[4].textContent = text.eduDate5;
                 }
 
                 const firstCardTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
