@@ -290,78 +290,65 @@
                     lines.push({ value, style });
                 };
 
-                // Header: Name and title
+                // Header: Name and title (no extra line)
                 pushLine('Michael Raharison', 'title');
-                pushLine('Développeur', 'subtitle');
+                pushLine('Développeur Java | Coordinateur de Projet', 'subtitle');
+                pushLine('michael@example.com | +261 34 XX XX XX | linkedin.com/in/michael-raharison', 'contact');
                 pushLine('');
 
                 // Experience
-                pushLine(text.resumeExperience, 'section');
+                pushLine('EXPÉRIENCE PROFESSIONNELLE', 'section');
+                pushLine('');
                 
                 // Exp 1
-                pushLine('Août 2025 - Présent', 'bold');
-                pushLine('Développeur Java - BICI (Projet ASYNC)');
+                pushLine('Développeur Java - BICI (Projet ASYNC)', 'bold');
+                pushLine('Août 2025 - Présent', 'date');
                 pushLine('');
 
                 // Exp 2
-                pushLine('Avril 2025 - Juillet 2025', 'bold');
-                pushLine('Coordinateur de projet - BICI');
+                pushLine('Coordinateur de Projet - BICI', 'bold');
+                pushLine('Avril 2025 - Juillet 2025', 'date');
                 pushLine('');
 
                 // Exp 3
-                pushLine('Juin 2024 - Avril 2025', 'bold');
-                pushLine('Gestion des devis d\'impression - Grafiky (BICI)');
+                pushLine('Manager Devis Impression - Grafiky (BICI)', 'bold');
+                pushLine('Juin 2024 - Avril 2025', 'date');
                 pushLine('');
 
                 // Exp 4
-                pushLine('Juin 2024 - Août 2024', 'bold');
-                pushLine('Gestionnaire de tâches embarqué - ASTEK');
+                pushLine('Développeur Embarqué - ASTEK', 'bold');
+                pushLine('Juin 2024 - Août 2024', 'date');
                 pushLine('');
 
                 // Education
-                pushLine(text.resumeEducation, 'section');
-                pushLine('Octobre 2025 - Présent', 'bold');
-                pushLine('MBDS - Master 2 en développement informatique');
+                pushLine('FORMATION ACADEMIQUE', 'section');
                 pushLine('');
                 
-                pushLine('Décembre 2024 - Septembre 2025', 'bold');
-                pushLine('Master 1 en développement informatique');
+                pushLine('MBDS - Master 2 en Développement Informatique', 'bold');
+                pushLine('Octobre 2025 - Présent', 'date');
                 pushLine('');
                 
-                pushLine('2021 - Juin 2024', 'bold');
-                pushLine('Licence en développement informatique');
+                pushLine('Master 1 - Développement Informatique', 'bold');
+                pushLine('Décembre 2024 - Septembre 2025', 'date');
                 pushLine('');
                 
-                pushLine('2021', 'bold');
-                pushLine('Spécialisation en programmation');
-                pushLine('');
-                
-                pushLine('2019', 'bold');
-                pushLine('Baccalauréat série D');
+                pushLine('Licence - Développement Informatique', 'bold');
+                pushLine('2021 - Juin 2024', 'date');
                 pushLine('');
 
                 // Skills
-                pushLine(text.resumeSkills, 'section');
-                pushLine('Java');
-                pushLine('SQL');
-                pushLine('PostgreSQL');
-                pushLine('Oracle');
-                pushLine('C++');
-                pushLine('QML');
-                pushLine('JavaScript');
+                pushLine('COMPETENCES TECHNIQUES', 'section');
+                pushLine('');
+                
+                pushLine('Langages  Java • SQL • C++ • JavaScript • QML', 'skills');
+                pushLine('Bases de Données  PostgreSQL • Oracle • MySQL', 'skills');
+                pushLine('Outils & Frameworks  APJ • Bootstrap • Git • Agile/Scrum', 'skills');
                 pushLine('');
 
                 // Languages
-                pushLine(text.resumeLanguages, 'section');
-                pushLine('Français');
-                pushLine('Anglais');
+                pushLine('LANGUES', 'section');
                 pushLine('');
-
-                // Contact
-                pushLine(text.getInTouch, 'section');
-                pushLine('Email: michael@example.com');
-                pushLine('Téléphone: +261 34 XX XX XX');
-                pushLine('LinkedIn: linkedin.com/in/michael-raharison');
+                pushLine('Français (Natif) • Anglais (Courant)', 'skills');
                 
                 console.log('CV PDF lines built:', lines.length, 'lines');
                 return lines;
@@ -370,44 +357,73 @@
             const buildCvPdfHtml = (lines) => {
                 const container = document.createElement('div');
                 container.style.background = '#ffffff';
-                container.style.color = '#111111';
-                container.style.fontFamily = 'Arial, sans-serif';
-                container.style.padding = '20px';
-                container.style.width = '794px';
-                container.style.lineHeight = '1.4';
+                container.style.color = '#1a1a1a';
+                container.style.fontFamily = '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
+                container.style.padding = '30px';
+                container.style.width = '750px';
+                container.style.lineHeight = '1.5';
+                container.style.maxWidth = '100%';
 
-                lines.forEach((line) => {
+                lines.forEach((line, index) => {
                     const value = line.value || '';
                     
                     if (!value) {
                         const spacer = document.createElement('div');
-                        spacer.style.height = '6px';
+                        spacer.style.height = '8px';
                         container.appendChild(spacer);
                         return;
                     }
 
                     const node = document.createElement('div');
                     node.textContent = value;
-                    node.style.margin = '0 0 4px 0';
+                    node.style.margin = '0';
 
                     if (line.style === 'title') {
-                        node.style.fontSize = '28px';
+                        node.style.fontSize = '32px';
                         node.style.fontWeight = '700';
-                        node.style.marginBottom = '6px';
+                        node.style.marginBottom = '3px';
+                        node.style.color = '#0066cc';
+                        node.style.letterSpacing = '-0.5px';
                     } else if (line.style === 'subtitle') {
-                        node.style.fontSize = '16px';
-                        node.style.color = '#444444';
-                        node.style.marginBottom = '10px';
+                        node.style.fontSize = '14px';
+                        node.style.color = '#666666';
+                        node.style.fontWeight = '500';
+                        node.style.marginBottom = '8px';
+                        node.style.letterSpacing = '0.5px';
+                    } else if (line.style === 'contact') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#555555';
+                        node.style.marginBottom = '12px';
+                        node.style.borderBottom = '2px solid #0066cc';
+                        node.style.paddingBottom = '8px';
                     } else if (line.style === 'section') {
-                        node.style.fontSize = '16px';
+                        node.style.fontSize = '13px';
                         node.style.fontWeight = '700';
-                        node.style.marginTop = '10px';
-                        node.style.marginBottom = '6px';
+                        node.style.color = '#ffffff';
+                        node.style.background = '#0066cc';
+                        node.style.padding = '6px 10px';
+                        node.style.marginTop = '12px';
+                        node.style.marginBottom = '8px';
+                        node.style.letterSpacing = '0.5px';
                     } else if (line.style === 'bold') {
                         node.style.fontWeight = '700';
                         node.style.fontSize = '12px';
+                        node.style.color = '#1a1a1a';
+                        node.style.marginTop = '6px';
+                    } else if (line.style === 'date') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#0066cc';
+                        node.style.fontStyle = 'italic';
+                        node.style.marginBottom = '4px';
+                    } else if (line.style === 'skills') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#333333';
+                        node.style.marginBottom = '4px';
+                        node.style.lineHeight = '1.6';
                     } else {
                         node.style.fontSize = '11px';
+                        node.style.color = '#333333';
+                        node.style.marginBottom = '2px';
                     }
 
                     container.appendChild(node);
@@ -491,44 +507,66 @@
                         console.log('Using jsPDF...');
                         const jsPDFLib = window.jspdf.jsPDF;
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                        const maxWidth = 185;
+                        const maxWidth = 170;
                         const pageHeight = 297;
-                        let y = 14;
+                        let y = 15;
                         let lineCount = 0;
 
                         lines.forEach((line) => {
                             if (!line.value) {
-                                y += 3;
+                                y += 4;
                                 return;
                             }
 
                             lineCount++;
+                            
+                            // Set font and size based on style
                             if (line.style === 'title') {
                                 doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(20);
+                                doc.setFontSize(22);
+                                doc.setTextColor(0, 102, 204); // Blue
+                            } else if (line.style === 'subtitle') {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(11);
+                                doc.setTextColor(102, 102, 102); // Gray
+                            } else if (line.style === 'contact') {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(10);
+                                doc.setTextColor(85, 85, 85);
                             } else if (line.style === 'section') {
                                 doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(13);
+                                doc.setFontSize(11);
+                                doc.setTextColor(255, 255, 255); // White
+                                // Draw background rectangle for section
+                                doc.setFillColor(0, 102, 204); // Blue background
+                                doc.rect(15, y - 3.5, 170, 5.5, 'F');
                             } else if (line.style === 'bold') {
                                 doc.setFont('helvetica', 'bold');
                                 doc.setFontSize(11);
-                            } else if (line.style === 'subtitle') {
+                                doc.setTextColor(26, 26, 26); // Dark
+                            } else if (line.style === 'date') {
+                                doc.setFont('helvetica', 'italic');
+                                doc.setFontSize(10);
+                                doc.setTextColor(0, 102, 204); // Blue
+                            } else if (line.style === 'skills') {
                                 doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(12);
+                                doc.setFontSize(10);
+                                doc.setTextColor(51, 51, 51);
                             } else {
                                 doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(11);
+                                doc.setFontSize(10);
+                                doc.setTextColor(51, 51, 51);
                             }
 
                             const parts = doc.splitTextToSize(line.value, maxWidth);
-                            const step = line.style === 'title' ? 8 : 6;
+                            const step = line.style === 'title' ? 8 : (line.style === 'section' ? 6.5 : 5);
 
                             if (y + (parts.length * step) > (pageHeight - 12)) {
                                 doc.addPage();
-                                y = 14;
+                                y = 15;
                             }
 
-                            doc.text(parts, 12, y);
+                            doc.text(parts, 20, y);
                             y += parts.length * step;
                         });
 
