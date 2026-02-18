@@ -793,6 +793,14 @@
 
             const languageSelect = document.getElementById('languageSelect');
             const downloadCvBtn = document.getElementById('downloadCvBtn');
+            
+            console.log('=== Page Initialization ===');
+            console.log('languageSelect found:', !!languageSelect, languageSelect);
+            console.log('downloadCvBtn found:', !!downloadCvBtn, downloadCvBtn);
+            console.log('downloadCvBtn ID:', downloadCvBtn?.id);
+            console.log('downloadCvBtn class:', downloadCvBtn?.className);
+            console.log('downloadCvBtn text:', downloadCvBtn?.textContent);
+            
             const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
             applyLanguage(initialLanguage);
 
@@ -803,9 +811,15 @@
             }
 
             if (downloadCvBtn) {
+                console.log('✓ Binding PDF button click handler...');
                 downloadCvBtn.addEventListener('click', function () {
+                    console.log('✓ PDF button clicked!');
                     generateCvPdf(getActiveLanguage());
                 });
+                console.log('✓ PDF button handler bound successfully');
+            } else {
+                console.error('❌ downloadCvBtn NOT FOUND! Searched for id="downloadCvBtn"');
+                console.log('All buttons on page:', document.querySelectorAll('button'));
             }
         })();
     </script>
