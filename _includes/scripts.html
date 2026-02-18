@@ -446,142 +446,115 @@
                     return;
                 }
 
-                // Check library availability
-                const hasHtml2pdf = typeof window.html2pdf === 'function';
-                const hasHtml2canvas = !!window.html2canvas;
-                const hasJsPdf = !!(window.jspdf && window.jspdf.jsPDF);
-                
-                console.log('Libraries available:', {
-                    html2pdf: hasHtml2pdf,
-                    html2canvas: hasHtml2canvas,
-                    jsPDF: hasJsPdf
-                });
-
-                // Try html2pdf first (better image support)
-                if (hasHtml2pdf && hasHtml2canvas) {
-                    try {
-                        console.log('Using html2pdf...');
-                        const htmlContainer = buildCvPdfHtml(lines);
-                        document.body.appendChild(htmlContainer);
-
-                        window.html2pdf()
-                            .set({
-                                margin: 6,
-                                filename: text.cvFileName,
-                                image: { type: 'jpeg', quality: 0.98 },
-                                html2canvas: { scale: 2, useCORS: true },
-                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                            })
-                            .from(htmlContainer)
-                            .save()
-                            .then(() => {
-                                console.log('PDF saved successfully');
-                                if (htmlContainer.parentNode) {
-                                    htmlContainer.parentNode.removeChild(htmlContainer);
-                                }
-                            })
-                            .catch((err) => {
-                                console.error('html2pdf error:', err);
-                                if (htmlContainer.parentNode) {
-                                    htmlContainer.parentNode.removeChild(htmlContainer);
-                                }
-                                console.log('Falling back to jsPDF...');
-                                tryJsPdfGenerate(lines, text);
-                            });
-                        return;
-                    } catch (err) {
-                        console.error('html2pdf exception:', err);
-                        tryJsPdfGenerate(lines, text);
-                        return;
-                    }
+                // Check if jsPDF is available
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    console.error('jsPDF not available!');
+                    console.log('Available window.jspdf:', window.jspdf);
+                    alert('Erreur: jsPDF non disponible');
+                    return;
                 }
 
-                console.log('html2pdf not available, using jsPDF...');
                 tryJsPdfGenerate(lines, text);
             };
 
             const tryJsPdfGenerate = (lines, text) => {
-                // Try jsPDF
-                if (window.jspdf && window.jspdf.jsPDF) {
-                    try {
-                        console.log('Using jsPDF...');
-                        const jsPDFLib = window.jspdf.jsPDF;
-                        const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                        const maxWidth = 170;
-                        const pageHeight = 297;
-                        let y = 15;
-                        let lineCount = 0;
+                try {
+                    console.log('Creating jsPDF document...');
+                    const { jsPDF } = window.jspdf;
+                    const pdf = new jsPDF({ 
+                        orientation: 'portrait',
+                        unit: 'mm', 
+                        format: 'a4'
+                    });
 
-                        lines.forEach((line) => {
-                            if (!line.value) {
-                                y += 4;
-                                return;
-                            }
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const maxWidth = pageWidth - 20;
+                    const lineHeight = 5;
+                    let yPosition = 15;
+                    let pageNum = 1;
 
-                            lineCount++;
-                            
-                            // Set font and size based on style
-                            if (line.style === 'title') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(22);
-                                doc.setTextColor(0, 102, 204); // Blue
-                            } else if (line.style === 'subtitle') {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(11);
-                                doc.setTextColor(102, 102, 102); // Gray
-                            } else if (line.style === 'contact') {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(10);
-                                doc.setTextColor(85, 85, 85);
-                            } else if (line.style === 'section') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(11);
-                                doc.setTextColor(255, 255, 255); // White
-                                // Draw background rectangle for section
-                                doc.setFillColor(0, 102, 204); // Blue background
-                                doc.rect(15, y - 3.5, 170, 5.5, 'F');
-                            } else if (line.style === 'bold') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(11);
-                                doc.setTextColor(26, 26, 26); // Dark
-                            } else if (line.style === 'date') {
-                                doc.setFont('helvetica', 'italic');
-                                doc.setFontSize(10);
-                                doc.setTextColor(0, 102, 204); // Blue
-                            } else if (line.style === 'skills') {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(10);
-                                doc.setTextColor(51, 51, 51);
-                            } else {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(10);
-                                doc.setTextColor(51, 51, 51);
-                            }
+                    console.log('Starting to write PDF content...');
 
-                            const parts = doc.splitTextToSize(line.value, maxWidth);
-                            const step = line.style === 'title' ? 8 : (line.style === 'section' ? 6.5 : 5);
+                    lines.forEach((line, index) => {
+                        if (!line.value) {
+                            yPosition += 2;
+                            return;
+                        }
 
-                            if (y + (parts.length * step) > (pageHeight - 12)) {
-                                doc.addPage();
-                                y = 15;
-                            }
+                        const value = line.value;
 
-                            doc.text(parts, 20, y);
-                            y += parts.length * step;
-                        });
+                        // Check for page break
+                        if (yPosition > 270) {
+                            pdf.addPage();
+                            yPosition = 15;
+                            pageNum++;
+                            console.log('Added page', pageNum);
+                        }
 
-                        console.log('jsPDF: Generated', lineCount, 'lines');
-                        doc.save(text.cvFileName);
-                        console.log('PDF saved as:', text.cvFileName);
-                        return;
-                    } catch (err) {
-                        console.error('jsPDF error:', err);
-                    }
+                        // Style the line
+                        if (line.style === 'title') {
+                            pdf.setFontSize(24);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(0, 102, 204);
+                        } else if (line.style === 'subtitle') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(102, 102, 102);
+                        } else if (line.style === 'contact') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(85, 85, 85);
+                        } else if (line.style === 'section') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(255, 255, 255);
+                            pdf.setFillColor(0, 102, 204);
+                            pdf.rect(10, yPosition - 3, maxWidth + 10, 5, 'F');
+                        } else if (line.style === 'bold') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(26, 26, 26);
+                        } else if (line.style === 'date') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'italic');
+                            pdf.setTextColor(0, 102, 204);
+                        } else if (line.style === 'skills') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(51, 51, 51);
+                        } else {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(51, 51, 51);
+                        }
+
+                        // Split text to fit width
+                        const splitText = pdf.splitTextToSize(value, maxWidth);
+                        
+                        // Calculate if we need a page break
+                        const textHeight = splitText.length * (lineHeight - 1);
+                        if (yPosition + textHeight > 270) {
+                            pdf.addPage();
+                            yPosition = 15;
+                            pageNum++;
+                        }
+
+                        // Write the text
+                        pdf.text(splitText, 15, yPosition);
+                        yPosition += textHeight + 1;
+                    });
+
+                    console.log('PDF content written, saving...');
+                    pdf.save(text.cvFileName);
+                    console.log('PDF saved successfully as:', text.cvFileName);
+                    return true;
+
+                } catch (err) {
+                    console.error('jsPDF generation failed:', err);
+                    console.error('Error stack:', err.stack);
+                    alert('Erreur lors de la génération du PDF: ' + err.message);
+                    return false;
                 }
-
-                // Last resort: text window
-                console.log('Using text fallback...');
-                openTextFallback(lines, text);
             };
 
             const openTextFallback = (lines, text) => {
