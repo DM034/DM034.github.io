@@ -290,62 +290,99 @@
                     lines.push({ value, style });
                 };
 
-                // Header: Name and title only
-                pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
-                pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
+                // Header: Name and title
+                pushLine('Michael Raharison', 'title');
+                pushLine('Développeur', 'subtitle');
                 pushLine('');
 
                 // Experience
                 pushLine(text.resumeExperience, 'section');
-                const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
-                const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
-                const expLists = Array.from(document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul'));
-                const expCount = Math.min(expDates.length, expLists.length, Math.floor(expTexts.length / 2));
+                
+                // Exp 1: Java Developer
+                pushLine('Août 2025 - Présent', 'bold');
+                pushLine('Développeur Java - BICI (Projet ASYNC)', 'bold');
+                pushLine('Développement et maintenance de services backend Java avec le framework APJ.');
+                pushLine('• Développement de services Java avec le framework APJ');
+                pushLine('• Implémentation de la logique métier et intégration des services');
+                pushLine('• Conception et optimisation des accès aux données Oracle et PostgreSQL');
+                pushLine('• Écriture de tests unitaires et maintenance corrective');
+                pushLine('');
 
-                for (let index = 0; index < expCount; index += 1) {
-                    pushLine(expDates[index], 'bold');
-                    pushLine(expTexts[index * 2] || '', 'bold');
-                    pushLine(expTexts[(index * 2) + 1] || '');
-                    Array.from(expLists[index].querySelectorAll('li')).forEach((bulletNode) => {
-                        const bulletText = bulletNode.textContent ? bulletNode.textContent.trim() : '';
-                        if (bulletText) {
-                            pushLine('• ' + bulletText);
-                        }
-                    });
-                    pushLine('');
-                }
+                // Exp 2: Project Coordinator
+                pushLine('Avril 2025 - Juillet 2025', 'bold');
+                pushLine('Coordinateur de projet - BICI', 'bold');
+                pushLine('Support à la gestion et à la bonne exécution du projet de digitalisation des services.');
+                pushLine('• Suivi quotidien de l\'avancement et mise à jour du planning');
+                pushLine('• Coordination entre équipes techniques, fonctionnelles et parties prenantes');
+                pushLine('• Rédaction des rapports et des documents de suivi');
+                pushLine('• Vérification de la mise en œuvre des processus qualité');
+                pushLine('');
+
+                // Exp 3: Printing Quote Manager
+                pushLine('Juin 2024 - Avril 2025', 'bold');
+                pushLine('Gestion des devis d\'impression - Grafiky (BICI)', 'bold');
+                pushLine('Développement d\'un système de suivi en temps réel des commandes et des flux de production. (Java)');
+                pushLine('• Développement de nouvelles fonctionnalités');
+                pushLine('• Conception et amélioration des pages');
+                pushLine('• Revue de code et assurance qualité');
+                pushLine('• Méthodologie agile/scrum');
+                pushLine('');
+
+                // Exp 4: Embedded Task Manager
+                pushLine('Juin 2024 - Août 2024', 'bold');
+                pushLine('Gestionnaire de tâches embarqué - ASTEK', 'bold');
+                pushLine('Plateforme de gestion de projet permettant la création et l\'attribution de tâches. (C++)');
+                pushLine('• Conception du module de rapports et statistiques');
+                pushLine('• Développement de l\'interface utilisateur (QML)');
+                pushLine('• Tests, optimisation et déploiement sur Raspberry Pi 4');
+                pushLine('');
 
                 // Education
                 pushLine(text.resumeEducation, 'section');
-                const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
-                const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
-                eduDates.forEach((eduDate, index) => {
-                    pushLine(eduDate, 'bold');
-                    pushLine(eduTexts[index * 2] || '');
-                    pushLine(eduTexts[(index * 2) + 1] || '');
-                    pushLine('');
-                });
+                pushLine('Octobre 2025 - Présent', 'bold');
+                pushLine('MBDS - Master 2 en développement informatique');
+                pushLine('');
+                
+                pushLine('Décembre 2024 - Septembre 2025', 'bold');
+                pushLine('Master 1 en développement informatique');
+                pushLine('');
+                
+                pushLine('2021 - Juin 2024', 'bold');
+                pushLine('Licence en développement informatique');
+                pushLine('');
+                
+                pushLine('2021', 'bold');
+                pushLine('Spécialisation en programmation');
+                pushLine('');
+                
+                pushLine('2019', 'bold');
+                pushLine('Baccalauréat série D');
+                pushLine('');
 
                 // Skills
                 pushLine(text.resumeSkills, 'section');
-                getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
-                    pushLine(item);
-                });
+                pushLine('Java');
+                pushLine('SQL');
+                pushLine('PostgreSQL');
+                pushLine('Oracle');
+                pushLine('C++');
+                pushLine('QML');
+                pushLine('JavaScript');
                 pushLine('');
 
                 // Languages
                 pushLine(text.resumeLanguages, 'section');
-                getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
-                    pushLine(item);
-                });
+                pushLine('Français');
+                pushLine('Anglais');
                 pushLine('');
 
                 // Contact
                 pushLine(text.getInTouch, 'section');
-                getTextList('.contact-info-card .d-inline').forEach((item) => {
-                    pushLine(item.replace(/\s+/g, ' ').trim());
-                });
-
+                pushLine('Email: michael@example.com');
+                pushLine('Téléphone: +261 34 XX XX XX');
+                pushLine('LinkedIn: linkedin.com/in/michael-raharison');
+                
+                console.log('CV PDF lines built:', lines.length, 'lines');
                 return lines;
             };
 
