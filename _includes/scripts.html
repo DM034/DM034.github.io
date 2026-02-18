@@ -290,18 +290,12 @@
                     lines.push({ value, style });
                 };
 
+                // Header: Name and title only
                 pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
                 pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
                 pushLine('');
-                // Note: Photo will be added separately in PDF generation
-                pushLine('__PHOTO_PLACEHOLDER__', 'photo');
 
-                pushLine(text.aboutInfo, 'section');
-                getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
-                    pushLine(item.replace(/\s+/g, ' ').trim());
-                });
-                pushLine('');
-
+                // Experience
                 pushLine(text.resumeExperience, 'section');
                 const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
                 const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
@@ -321,6 +315,7 @@
                     pushLine('');
                 }
 
+                // Education
                 pushLine(text.resumeEducation, 'section');
                 const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
                 const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
@@ -331,18 +326,21 @@
                     pushLine('');
                 });
 
+                // Skills
                 pushLine(text.resumeSkills, 'section');
                 getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
                     pushLine(item);
                 });
                 pushLine('');
 
+                // Languages
                 pushLine(text.resumeLanguages, 'section');
                 getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
                     pushLine(item);
                 });
                 pushLine('');
 
+                // Contact
                 pushLine(text.getInTouch, 'section');
                 getTextList('.contact-info-card .d-inline').forEach((item) => {
                     pushLine(item.replace(/\s+/g, ' ').trim());
@@ -362,24 +360,6 @@
 
                 lines.forEach((line) => {
                     const value = line.value || '';
-                    
-                    // Handle photo placeholder
-                    if (line.style === 'photo') {
-                        const photoDiv = document.createElement('div');
-                        photoDiv.style.textAlign = 'center';
-                        photoDiv.style.marginBottom = '15px';
-                        
-                        const img = document.createElement('img');
-                        img.src = 'assets/imgs/avatar.jpg';
-                        img.style.width = '120px';
-                        img.style.height = '120px';
-                        img.style.borderRadius = '50%';
-                        img.style.border = '2px solid #ddd';
-                        
-                        photoDiv.appendChild(img);
-                        container.appendChild(photoDiv);
-                        return;
-                    }
                     
                     if (!value) {
                         const spacer = document.createElement('div');
@@ -499,12 +479,6 @@
                         let lineCount = 0;
 
                         lines.forEach((line) => {
-                            // Skip photo placeholder in jsPDF
-                            if (line.style === 'photo') {
-                                y += 25; // Reserve space for photo
-                                return;
-                            }
-
                             if (!line.value) {
                                 y += 3;
                                 return;
