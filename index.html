@@ -1371,12 +1371,20 @@
             };
 
             const generateCvPdf = (lang) => {
+                console.log('=== PDF Generation Started ===');
+                console.log('  Language:', lang);
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
                 const lines = buildCvPdfLines(text);
+                console.log('  CV lines built:', lines.length);
 
                 // Try jsPDF first
+                console.log('  Checking jsPDF availability...');
+                console.log('    window.jspdf:', !!window.jspdf);
+                if (window.jspdf) console.log('    window.jspdf.jsPDF:', !!window.jspdf.jsPDF);
+                
                 if (window.jspdf && window.jspdf.jsPDF) {
+                    console.log('  ✓ jsPDF is available, generating...');
                     try {
                         const jsPDFLib = window.jspdf.jsPDF;
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
@@ -1414,16 +1422,21 @@
                                 doc.addPage();
                                 y = 14;
                             }
-
                             doc.text(parts, 12, y);
                             y += parts.length * step;
                         });
 
+                        console.log('  ✓ PDF content rendered, saving...');
+                        console.log('    Filename:', text.cvFileName);
                         doc.save(text.cvFileName);
+                        console.log('  ✓✓✓ PDF SAVED SUCCESSFULLY!');
                         return;
                     } catch (err) {
-                        console.warn('jsPDF error, falling back:', err);
+                        console.error('❌ jsPDF error:', err);
+                        console.warn('  Falling back to html2pdf...');
                     }
+                } else {
+                    console.warn('❌ jsPDF not available, trying html2pdf...');
                 }
 
                 // Try html2pdf as fallback
@@ -1675,6 +1688,11 @@
             const languageSelect = document.getElementById('languageSelect');
             const downloadCvBtn = document.getElementById('downloadCvBtn');
             const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
+            
+            console.log('✓ Looking for elements...');
+            console.log('  languageSelect:', !!languageSelect, languageSelect);
+            console.log('  downloadCvBtn:', !!downloadCvBtn, downloadCvBtn);
+            
             applyLanguage(initialLanguage);
 
             if (languageSelect) {
@@ -1684,9 +1702,15 @@
             }
 
             if (downloadCvBtn) {
+                console.log('✓ Binding PDF button click handler...');
                 downloadCvBtn.addEventListener('click', function () {
+                    console.log('✓✓✓ PDF BUTTON CLICKED! Calling generateCvPdf...');
+                    console.log('  Active language:', getActiveLanguage());
                     generateCvPdf(getActiveLanguage());
                 });
+                console.log('✓ PDF button handler bound successfully');
+            } else {
+                console.error('❌ downloadCvBtn NOT FOUND!');
             }
         })();
     </script>
