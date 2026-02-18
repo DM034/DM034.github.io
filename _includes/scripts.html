@@ -460,8 +460,17 @@
             const tryJsPdfGenerate = (lines, text) => {
                 try {
                     console.log('Creating jsPDF document...');
-                    const { jsPDF } = window.jspdf;
-                    const pdf = new jsPDF({ 
+                    
+                    // Debug: Check what's available
+                    console.log('window.jspdf:', window.jspdf);
+                    console.log('typeof window.jspdf:', typeof window.jspdf);
+                    
+                    if (!window.jspdf || !window.jspdf.jsPDF) {
+                        throw new Error('jsPDF library not available on window.jspdf.jsPDF');
+                    }
+
+                    // Create PDF with correct syntax
+                    const pdf = new window.jspdf.jsPDF({ 
                         orientation: 'portrait',
                         unit: 'mm', 
                         format: 'a4'
@@ -546,13 +555,20 @@
 
                     console.log('PDF content written, saving...');
                     pdf.save(text.cvFileName);
-                    console.log('PDF saved successfully as:', text.cvFileName);
+                    console.log('✓ PDF saved successfully as:', text.cvFileName);
                     return true;
 
                 } catch (err) {
-                    console.error('jsPDF generation failed:', err);
+                    console.error('❌ jsPDF generation failed:', err);
+                    console.error('Error message:', err.message);
                     console.error('Error stack:', err.stack);
-                    alert('Erreur lors de la génération du PDF: ' + err.message);
+                    
+                    // More detailed diagnostics
+                    console.log('=== Diagnostics ===');
+                    console.log('window.jspdf type:', typeof window.jspdf);
+                    console.log('window.jspdf keys:', Object.keys(window.jspdf || {}));
+                    
+                    alert('Erreur PDF: ' + err.message + '\n\nVérifiez la console (F12) pour plus de détails.');
                     return false;
                 }
             };
