@@ -419,13 +419,34 @@
             };
 
             const generateCvPdf = (lang) => {
+                console.log('=== PDF Generation Started ===');
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
+                console.log('Language:', language);
+                
                 const lines = buildCvPdfLines(text);
+                console.log('Lines extracted:', lines.length, 'lines');
+                
+                if (lines.length === 0) {
+                    alert('Erreur: Aucun contenu trouvé pour le CV');
+                    return;
+                }
+
+                // Check library availability
+                const hasHtml2pdf = typeof window.html2pdf === 'function';
+                const hasHtml2canvas = !!window.html2canvas;
+                const hasJsPdf = !!(window.jspdf && window.jspdf.jsPDF);
+                
+                console.log('Libraries available:', {
+                    html2pdf: hasHtml2pdf,
+                    html2canvas: hasHtml2canvas,
+                    jsPDF: hasJsPdf
+                });
 
                 // Try html2pdf first (better image support)
-                if (typeof window.html2pdf === 'function' && window.html2canvas) {
+                if (hasHtml2pdf && hasHtml2canvas) {
                     try {
+                        console.log('Using html2pdf...');
                         const htmlContainer = buildCvPdfHtml(lines);
                         document.body.appendChild(htmlContainer);
 
@@ -440,22 +461,28 @@
                             .from(htmlContainer)
                             .save()
                             .then(() => {
+                                console.log('PDF saved successfully');
                                 if (htmlContainer.parentNode) {
                                     htmlContainer.parentNode.removeChild(htmlContainer);
                                 }
                             })
-                            .catch(() => {
+                            .catch((err) => {
+                                console.error('html2pdf error:', err);
                                 if (htmlContainer.parentNode) {
                                     htmlContainer.parentNode.removeChild(htmlContainer);
                                 }
+                                console.log('Falling back to jsPDF...');
                                 tryJsPdfGenerate(lines, text);
                             });
                         return;
                     } catch (err) {
-                        console.warn('html2pdf error, falling back to jsPDF:', err);
+                        console.error('html2pdf exception:', err);
+                        tryJsPdfGenerate(lines, text);
+                        return;
                     }
                 }
 
+                console.log('html2pdf not available, using jsPDF...');
                 tryJsPdfGenerate(lines, text);
             };
 
@@ -463,11 +490,13 @@
                 // Try jsPDF
                 if (window.jspdf && window.jspdf.jsPDF) {
                     try {
+                        console.log('Using jsPDF...');
                         const jsPDFLib = window.jspdf.jsPDF;
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
                         const maxWidth = 185;
                         const pageHeight = 297;
                         let y = 14;
+                        let lineCount = 0;
 
                         lines.forEach((line) => {
                             // Skip photo placeholder in jsPDF
@@ -481,6 +510,7 @@
                                 return;
                             }
 
+                            lineCount++;
                             if (line.style === 'title') {
                                 doc.setFont('helvetica', 'bold');
                                 doc.setFontSize(20);
@@ -510,32 +540,44 @@
                             y += parts.length * step;
                         });
 
+                        console.log('jsPDF: Generated', lineCount, 'lines');
                         doc.save(text.cvFileName);
+                        console.log('PDF saved as:', text.cvFileName);
                         return;
                     } catch (err) {
-                        console.warn('jsPDF error, falling back to text:', err);
+                        console.error('jsPDF error:', err);
                     }
                 }
 
                 // Last resort: text window
+                console.log('Using text fallback...');
                 openTextFallback(lines, text);
             };
 
             const openTextFallback = (lines, text) => {
+                console.log('Opening text fallback window...');
                 const textLines = lines
                     .map((line) => line.value || '')
                     .filter((val) => val !== '')
                     .join('\n');
 
-                const win = window.open('', '_blank');
-                if (!win) {
-                    alert(text.cvPdfError);
+                if (textLines.length === 0) {
+                    alert('Erreur: Aucun contenu à afficher');
                     return;
                 }
 
-                win.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
+                const win = window.open('', '_blank');
+                if (!win) {
+                    alert('Impossible d\'ouvrir une nouvelle fenêtre. Vérifiez les blocages de pop-up.');
+                    return;
+                }
+
+                const htmlContent = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>';
+                
+                win.document.write(htmlContent);
                 win.document.close();
                 win.focus();
+                console.log('Text window opened with', textLines.split('\n').length, 'lines');
             };
 
             const applyLanguage = (lang) => {
