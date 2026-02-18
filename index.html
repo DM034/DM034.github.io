@@ -250,20 +250,1446 @@
 
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
     <!-- <a href="components.html" class="btn btn-primary btn-component affix" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a> -->
-    {% include header.html %}
-    {% include navbar.html %}
-    {% include about.html %}
+        <header class="header">
+        <div class="container">
+            <ul class="social-icons pt-3">
+                <li class="social-item"><a class="social-link text-light" href="https://www.facebook.com/dmrhrsn"><i
+                            class="ti-facebook" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="https://x.com/dm_michael23"><i
+                            class="ti-twitter" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light"
+                        href="https://www.linkedin.com/in/michael-raharison-215901288"><i class="ti-linkedin"
+                            aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="https://www.instagram.com/dm_rhrsn_/"><i
+                            class="ti-instagram" aria-hidden="true"></i></a></li>
+                <li class="social-item"><a class="social-link text-light" href="https://github.com/DM034"><i
+                            class="ti-github" aria-hidden="true"></i></a></li>
+            </ul>
+            <div class="header-content">
+                <h4 class="header-subtitle">Bonjour, je suis</h4>
+                <h1 class="header-title">Michael Raharison</h1>
+                <h6 class="header-mono">Développeur</h6>
+                <!-- <a href="./assets/pdf/cv_mraharisonvjan2025ve.pdf" download class="btn btn-primary btn-rounded">
+                    <i class="ti-printer pr-2"></i>Print Resume
+                </a> -->
+                <!-- <div class="dropdown">
+                    <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="resumeDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ti-printer pr-2"></i>Print Resume
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="resumeDropdown">
+                        <a class="dropdown-item" href="https://dm034.github.io/assets/pdf/cv_mraharisonvjan2025ve.pdf"
+                            download>
+                            <i class="ti-printer pr-2"></i>English Version
+                        </a>
+                        <a class="dropdown-item" href="https://dm034.github.io/assets/pdf/cv_mraharisonvjan2025vf.pdf"
+                            download>
+                            <i class="ti-printer pr-2"></i>French Version
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+        </div>
+    </header>
 
-    {% include resume.html %}
+        <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white affix" data-spy="affix" data-offset-top="510">
+        <div class="container">
+            <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse"
+                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="mt-sm-20 navbar-collapse collapse" id="navbarSupportedContent" style="">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Accueil</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">À propos</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#resume" class="nav-link">Parcours</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav brand">
+                    <img src="assets/imgs/image3.jpeg" alt="" class="brand-img">
+                    <li class="brand-txt">
+                        <h5 class="brand-title">Michael Raharison</h5>
+                        <div class="brand-subtitle">Développeur</div>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <li class="nav-item">
+                        <a href="#portfolio" class="nav-link">Portfolio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#blog" class="nav-link active">Blog</a>
+                    </li>
+                    <li class="nav-item last-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item d-flex align-items-center ml-lg-3">
+                        <select id="languageSelect" class="custom-select custom-select-sm" aria-label="Language selector">
+                            <option value="fr">Français</option>
+                            <option value="en">English</option>
+                        </select>
+                    </li>
+                    <li class="nav-item d-flex align-items-center ml-lg-2 mt-2 mt-lg-0">
+                        <button id="downloadCvBtn" class="btn btn-primary btn-sm" type="button">Télécharger CV PDF</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
 
-    {% include freelance.html %}
+        <div class="container-fluid">
+        <div id="about" class="row about-section">
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Qui suis-je ?</h3>
+                <span class="line mb-5"></span>
+                <h5 class="mb-3">Un développeur basé sur notre belle planète</h5>
+                <!-- <p class="mt-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.sit amet, Qui deserunt consequatur fugit repellendusillo voluptas?</p> -->
+                <!-- <a href="./assets/pdf/cv_mraharisonvjan2025ve.pdf" download class="btn btn-primary btn-rounded">
+                    <i class="ti-printer pr-2"></i>Download My CV
+                </a> -->
+                <!-- <a href="https://dm034.github.io/assets/pdf/cv_mraharisonvjan2025ve.pdf" download class="btn btn-primary btn-rounded">
+                    <i class="ti-printer pr-2"></i>Download My CV
+                </a> -->
+                <!-- <div class="dropdown">
+                    <button class="btn btn-primary btn-rounded dropdown-toggle" type="button" id="cvDropdown"
+                        data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i class="ti-printer pr-2"></i>Download My CV
+                    </button>
+                    <div class="dropdown-menu" aria-labelledby="cvDropdown">
+                        <a class="dropdown-item" href="https://dm034.github.io/assets/pdf/cv_mraharisonvjan2025ve.pdf"
+                            download>
+                            <i class="ti-printer pr-2"></i>English Version
+                        </a>
+                        <a class="dropdown-item" href="https://dm034.github.io/assets/pdf/cv_mraharisonvjan2025vf.pdf"
+                            download>
+                            <i class="ti-printer pr-2"></i>French Version
+                        </a>
+                    </div>
+                </div> -->
+            </div>
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Informations personnelles</h3>
+                <span class="line mb-5"></span>
+                <ul class="mt40 info list-unstyled">
+                    <li><span>Date de naissance</span> : 28/12/2000</li>
+                    <li><span>Email</span> : michaeldm034@gmail.com</li>
+                    <li><span>Téléphone</span> : + 261 32 49 084 09</li>
+                    <li><span>Skype</span> : Michael Raharison </li>
+                    <li><span>Adresse</span> : IVC 153 bis Ambodivoanjo Ankaraobato, Antananarivo, Madagascar.</li>
+                </ul>
+                <ul class="social-icons pt-3">
+                    <li class="social-item"><a class="social-link text-dark" href="https://www.facebook.com/dmrhrsn"><i
+                                class="ti-facebook" aria-hidden="true"></i></a></li>
+                    <li class="social-item"><a class="social-link text-dark" href="https://x.com/dm_michael23"><i
+                                class="ti-twitter" aria-hidden="true"></i></a></li>
+                    <li class="social-item"><a class="social-link text-dark"
+                            href="https://www.linkedin.com/in/michael-raharison-215901288"><i class="ti-linkedin"
+                                aria-hidden="true"></i></a></li>
+                    <li class="social-item"><a class="social-link text-dark"
+                            href="https://www.instagram.com/dm_rhrsn_/"><i class="ti-instagram"
+                                aria-hidden="true"></i></a></li>
+                    <li class="social-item"><a class="social-link text-dark" href="https://github.com/DM034"><i
+                                class="ti-github" aria-hidden="true"></i></a></li>
+                </ul>
+            </div>
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Mes expertises</h3>
+                <span class="line mb-5"></span>
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><i class="ti-paint-bucket icon-lg"></i></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>Développement web</h6>
+                        <ul>
+                            <li>Recueil des besoins</li>
+                            <li>Analyse des besoins</li>
+                            <li>Conception et estimation</li>
+                            <li>Débogage</li>
+                            <li>Veille technologique</li>
+                        </ul>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
-    {% include portfolio-blog-commented.html %}
 
-    {% include contact.html %}
-    {% include footer.html %}
 
-    {% include scripts.html %}
+        <section class="section" id="resume">
+        <div class="container">
+            <h2 class="mb-5"><span class="text-danger">Mon</span> parcours</h2>
+            <div class="row">
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Expérience</h4>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="title text-danger">Août 2025 - Présent</h6>
+                            <p>Développeur Java - BICI (Projet ASYNC)</p>
+                            <p class="subtitle">
+                            <p>Développement et maintenance de services backend Java avec le framework APJ.</p>
+                            <ul>
+                                <li>Développement de services Java avec le framework APJ</li>
+                                <li>Implémentation de la logique métier et intégration des services</li>
+                                <li>Conception et optimisation des accès aux données Oracle et PostgreSQL</li>
+                                <li>Écriture de tests unitaires et maintenance corrective</li>
+                            </ul>
+                            </p>
+                            <hr>
+                            <h6 class="title text-danger">Avril 2025 - Juillet 2025</h6>
+                            <p>Coordinateur de projet - BICI</p>
+                            <p class="subtitle">
+                            <p>Support à la gestion et à la bonne exécution du projet de digitalisation des services.</p>
+                            <ul>
+                                <li>Suivi quotidien de l'avancement et mise à jour du planning</li>
+                                <li>Coordination entre équipes techniques, fonctionnelles et parties prenantes</li>
+                                <li>Rédaction des rapports et des documents de suivi</li>
+                                <li>Vérification de la mise en œuvre des processus qualité</li>
+                            </ul>
+                            </p>
+                            <hr>
+                            <h6 class="title text-danger">Juin 2024 - Avril 2025</h6>
+                            <p>Gestion des devis d'impression - Grafiky (BICI)</p>
+                            <p class="subtitle">
+                            <p>Développement d'un système de suivi en temps réel des commandes et des flux de production. (Java)</p>
+                            <ul>
+                                <li>Développement de nouvelles fonctionnalités</li>
+                                <li>Conception et amélioration des pages</li>
+                                <li>Revue de code et assurance qualité</li>
+                                <li>Méthodologie agile/scrum</li>
+                            </ul>
+                            </p>
+                            <hr>
+                            <h6 class="title text-danger">Juin 2024 - Août 2024</h6>
+                            <p>Gestionnaire de tâches embarqué - ASTEK</p>
+                            <p class="subtitle">
+                            <p>Plateforme de gestion de projet permettant la création et l'attribution de tâches. (C++)</p>
+                            <ul>
+                                <li>Conception du module de rapports et statistiques</li>
+                                <li>Développement de l'interface utilisateur (QML)</li>
+                                <li>Tests, optimisation et déploiement sur Raspberry Pi 4</li>
+                            </ul>
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-6 col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="mt-2">
+                                <h4>Formation</h4>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="card-body">
+                            <h6 class="title text-danger">Octobre 2025 - Présent</h6>
+                            <p>MBDS - Master 2 en développement informatique</p>
+                            <p class="subtitle">Université Côte d'Azur</p>
+                            <hr>
+                            <h6 class="title text-danger">Décembre 2024 - Septembre 2025</h6>
+                            <p>Master 1 en développement informatique</p>
+                            <p class="subtitle">IT University Andoharanofotsy</p>
+                            <hr>
+                            <h6 class="title text-danger">2021 - Juin 2024</h6>
+                            <p>Licence en développement informatique</p>
+                            <p class="subtitle">IT University Andoharanofotsy</p>
+                            <p>Spécialisation en programmation</p>
+                            <hr>
+                            <h6 class="title text-danger">2021</h6>
+                            <p>Baccalauréat série D</p>
+                            <p class="subtitle">Diplôme de fin d'études secondaires</p>
+                            <hr>
+                            <h6 class="title text-danger">2019</h6>
+                            <p>Formation en informatique et programmation</p>
+                            <p class="subtitle">IEFPA ACEEM</p>
+                            <p>Formation initiale en programmation</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2">Compétences</h4>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="card-body pb-2">
+                            <h6 class="title text-danger">Langage</h6>
+                            <h6>Java</h6>
+                            <h6>C++</h6>
+                            <h6>C#</h6>
+                            <h6>.NET</h6>
+                            <h6 class="title text-danger">Bases de données</h6>
+                            <h6>PostgreSQL</h6>
+                            <h6>Oracle</h6>
+                            <h6>MySQL</h6>
+                            <h6 class="title text-danger">Autres</h6>
+                            <h6>Linux</h6>
+                            <h6>Git</h6>
+                            <h6>Français</h6>
+                            <h6>Malagasy</h6>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+
+        <section class="section bg-dark py-5">
+        <div class="container text-center">
+            <h2 class="text-light mb-5 font-weight-normal">Je suis disponible en freelance</h2>
+            <a href="mailto:michaeldm034@gmail.com?subject=Opportunité freelance&body=Bonjour, je suis intéressé(e) pour travailler avec vous..."
+                class="btn bg-primary w-lg">Me contacter</a>
+        </div>
+    </section>
+
+
+    
+    <!-- Portfolio Section
+    <section class="section bg-custom-gray" id="portfolio">
+        <div class="container">
+            <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
+            <div class="portfolio">
+                
+                <div class="portfolio-container" style="position: relative; height: 1256.56px;"> 
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 0px; top: 0px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/web-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>   
+                        </div>             
+                    </div>
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 345px; top: 0px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/web-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div> 
+                        </div>                         
+                    </div>
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 345px; top: 276.531px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                         
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSTISING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>    
+                        </div>              
+                    </div> 
+                    <div class="col-md-6 col-lg-4 web" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/web-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+
+                    <div class="col-md-6 col-lg-4 advertising" style="position: absolute; display: none;"> 
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                               
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSITING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                       
+                    </div> 
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 0px; top: 507.922px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/web-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
+                           <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 345px; top: 526.187px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">       
+                           <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSITING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                       
+                    </div> 
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 0px; top: 756.375px;"> 
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">            
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERTISING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>
+                                
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding new" style="position: absolute; left: 345px; top: 775.843px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                        
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding new" style="position: absolute; left: 0px; top: 1019.91px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">   
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                    
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                      
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                      
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-5.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">          
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-5.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                   
+                    </div>
+                </div> 
+            </div>  
+        </div>            
+    </section>
+    <!-- End of portfolio section 
+
+    <section class="section" id="blog">
+        <div class="container">
+            <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
+            <div class="row">
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h6 class="title">Consectetur adipisicing elit</h6>
+
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
+                            <a href="#"><i class="ti-comment"></i> 123</a>
+                        </p>
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
+
+                        <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
+                        <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper -->
+
+    <!-- blog-card
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h6 class="title">Explicabo illo</h6>
+
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
+                            <a href="#"><i class="ti-comment"></i> 264</a>
+                        </p>
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper
+                <!-- blog-card
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h4 class="title">Porro Quisqua</h4>
+
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 431</a>
+                            <a href="#"><i class="ti-comment"></i> 312</a>
+                        </p>
+                        
+                        <p> consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper
+
+            </div>
+        </div>
+    </section> -->
+
+
+        <div class="section contact" id="contact">
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="contact-form-card">
+                        <h4 class="contact-title">Envoyer un message</h4>
+                        <form action="https://formspree.io/f/xovvgzqj" method="POST" id="contactForm">
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="name" placeholder="Nom *" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="email" name="email" placeholder="Email *" required>
+                            </div>
+                            <div class="form-group">
+                                <input class="form-control" type="text" name="subject" placeholder="Sujet *" required>
+                            </div>
+                            <div class="form-group">
+                                <textarea class="form-control" name="message" rows="7" placeholder="Votre message *"
+                                    required></textarea>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="form-control btn btn-primary" id="submitBtn">
+                                    <span class="button-text">Envoyer le message</span>
+                                    <span class="spinner-border spinner-border-sm d-none" role="status"
+                                        aria-hidden="true"></span>
+                                </button>
+                            </div>
+                        </form>
+                        <!-- Success message -->
+                        <div class="alert alert-success d-none" id="successMessage">
+                            Message envoyé avec succès ! Je vous répondrai rapidement.
+                        </div>
+                        <!-- Error message -->
+                        <div class="alert alert-danger d-none" id="errorMessage">
+                            Oups ! Une erreur est survenue. Veuillez réessayer.
+                        </div>
+                    </div>
+                </div>
+
+                <script>
+                    document.getElementById('contactForm').addEventListener('submit', function (e) {
+                        e.preventDefault();
+
+                        // Show loading spinner
+                        const submitBtn = document.getElementById('submitBtn');
+                        const buttonText = submitBtn.querySelector('.button-text');
+                        const spinner = submitBtn.querySelector('.spinner-border');
+
+                        buttonText.classList.add('d-none');
+                        spinner.classList.remove('d-none');
+                        submitBtn.disabled = true;
+
+                        // Get form data
+                        const formData = new FormData(this);
+
+                        // Send form using Fetch API
+                        fetch("https://formspree.io/f/xovvgzqj", {
+                            method: "POST",
+                            body: formData,
+                            headers: {
+                                'Accept': 'application/json'
+                            }
+                        })
+                            .then(response => response.json())
+                            .then(data => {
+                                // Hide spinner
+                                buttonText.classList.remove('d-none');
+                                spinner.classList.add('d-none');
+                                submitBtn.disabled = false;
+
+                                // Show success message
+                                document.getElementById('successMessage').classList.remove('d-none');
+                                // Reset form
+                                document.getElementById('contactForm').reset();
+
+                                // Hide success message after 5 seconds
+                                setTimeout(() => {
+                                    document.getElementById('successMessage').classList.add('d-none');
+                                }, 5000);
+                            })
+                            .catch(error => {
+                                // Hide spinner
+                                buttonText.classList.remove('d-none');
+                                spinner.classList.add('d-none');
+                                submitBtn.disabled = false;
+
+                                // Show error message
+                                document.getElementById('errorMessage').classList.remove('d-none');
+
+                                // Hide error message after 5 seconds
+                                setTimeout(() => {
+                                    document.getElementById('errorMessage').classList.add('d-none');
+                                }, 5000);
+                            });
+                    });
+                </script>
+
+                <div class="col-lg-4">
+                    <div class="contact-info-card">
+                        <h4 class="contact-title">Me contacter</h4>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-mobile icon-md"></i>
+                            </div>
+                            <div class="col-10 ">
+                                <h6 class="d-inline">Téléphone : <br> <span class="text-muted">+ 261 32 49 084 09</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-map-alt icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Adresse :<br> <span class="text-muted">IVC 153 bis Ambodivoanjo
+                                        Ankaraobato, Antananarivo, Madagascar.</span></h6>
+                            </div>
+                        </div>
+                        <div class="row mb-2">
+                            <div class="col-1 pt-1 mr-1">
+                                <i class="ti-envelope icon-md"></i>
+                            </div>
+                            <div class="col-10">
+                                <h6 class="d-inline">Email :<br> <span class="text-muted">michaeldm034@gmail.com</span>
+                                </h6>
+                            </div>
+                        </div>
+                        <ul class="social-icons pt-4">
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.facebook.com/dmrhrsn"><i class="ti-facebook"
+                                        aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://x.com/dm_michael23"><i class="ti-twitter" aria-hidden="true"></i></a>
+                            </li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.linkedin.com/in/michael-raharison-215901288"><i
+                                        class="ti-linkedin" aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark"
+                                    href="https://www.instagram.com/dm_rhrsn_/"><i class="ti-instagram"
+                                        aria-hidden="true"></i></a></li>
+                            <li class="social-item"><a class="social-link text-dark" href="https://github.com/DM034"><i
+                                        class="ti-github" aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+        <footer class="footer py-3">
+        <div class="container">
+            <p class="small mb-0 text-light">
+                © 2024 Par <a href="https://DM034.github.io" target="_blank"><span class="text-danger"
+                        title="Thèmes et tableaux de bord Bootstrap 4">Michael Raharison</span></a>
+            </p>
+        </div>
+    </footer>
+
+
+        <!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Isotope  -->
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+
+    <!-- Google mpas -->
+
+
+    <!-- JohnDoe js -->
+    <script src="assets/js/johndoe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+
+    <script>
+        (function () {
+            const translations = {
+                fr: {
+                    pageTitle: 'Michael Raharison - Développeur',
+                    navHome: 'Accueil',
+                    navAbout: 'À propos',
+                    navResume: 'Parcours',
+                    navPortfolio: 'Portfolio',
+                    navBlog: 'Blog',
+                    navContact: 'Contact',
+                    headerSubtitle: 'Bonjour, je suis',
+                    headerRole: 'Développeur',
+                    brandRole: 'Développeur',
+                    aboutWho: 'Qui suis-je ?',
+                    aboutWhoText: 'Un développeur basé sur notre belle planète',
+                    aboutInfo: 'Informations personnelles',
+                    aboutExpertise: 'Mes expertises',
+                    aboutBirthdate: 'Date de naissance',
+                    aboutEmail: 'Email',
+                    aboutPhone: 'Téléphone',
+                    aboutSkype: 'Skype',
+                    aboutAddress: 'Adresse',
+                    aboutWebDev: 'Développement web',
+                    aboutNeedCollection: 'Recueil des besoins',
+                    aboutNeedAnalysis: 'Analyse des besoins',
+                    aboutDesignEstimate: 'Conception et estimation',
+                    aboutDebugging: 'Débogage',
+                    aboutTechWatch: 'Veille technologique',
+                    resumeTitlePrefix: 'Mon',
+                    resumeTitle: ' parcours',
+                    resumeExperience: 'Expérience',
+                    resumeEducation: 'Formation',
+                    resumeSkills: 'Compétences',
+                    resumeLanguages: 'Langues',
+                    resumeLanguagesLabel: 'Langages',
+                    resumeDatabases: 'Bases de données',
+                    resumeOther: 'Autres',
+                    expDate1: 'Août 2025 - Présent',
+                    expDate2: 'Avril 2025 - Juillet 2025',
+                    expDate3: 'Juin 2024 - Avril 2025',
+                    expDate4: 'Juin 2024 - Août 2024',
+                    eduDate1: 'Octobre 2025 - Présent',
+                    eduDate2: 'Décembre 2024 - Septembre 2025',
+                    eduDate3: '2021 - Juin 2024',
+                    eduDate4: '2021',
+                    eduDate5: '2019',
+                    roleJavaDeveloper: 'Développeur Java - BICI (Projet ASYNC)',
+                    roleProjectCoordinator: 'Coordinateur de projet - BICI',
+                    rolePrintingQuote: 'Gestion des devis d\'impression - Grafiky (BICI)',
+                    roleEmbeddedTask: 'Gestionnaire de tâches embarqué - ASTEK',
+                    roleAcademicProject: 'Projet académique',
+                    roleOnlineCar: 'Plateforme de vente de voitures en ligne',
+                    exp0Text: 'Développement et maintenance de services backend Java avec le framework APJ.',
+                    exp0Bullet1: 'Développement de services Java avec le framework APJ',
+                    exp0Bullet2: 'Implémentation de la logique métier et intégration des services',
+                    exp0Bullet3: 'Conception et optimisation des accès aux données Oracle et PostgreSQL',
+                    exp0Bullet4: 'Écriture de tests unitaires et maintenance corrective',
+                    exp1Text: 'Support à la gestion et à la bonne exécution du projet de digitalisation des services.',
+                    exp1Bullet1: 'Suivi quotidien de l\'avancement et mise à jour du planning',
+                    exp1Bullet2: 'Coordination entre équipes techniques, fonctionnelles et parties prenantes',
+                    exp1Bullet3: 'Rédaction des rapports et des documents de suivi',
+                    exp1Bullet4: 'Vérification de la mise en œuvre des processus qualité',
+                    exp2Text: 'Développement d\'un système de suivi en temps réel des commandes et des flux de production. (Java)',
+                    exp2Bullet1: 'Développement de nouvelles fonctionnalités',
+                    exp2Bullet2: 'Conception et amélioration des pages',
+                    exp2Bullet3: 'Revue de code et assurance qualité',
+                    exp2Bullet4: 'Méthodologie agile/scrum',
+                    exp3Text: 'Plateforme de gestion de projet permettant la création et l\'attribution de tâches. (C++)',
+                    exp3Bullet1: 'Conception du module de rapports et statistiques',
+                    exp3Bullet2: 'Développement de l\'interface utilisateur (QML)',
+                    exp3Bullet3: 'Tests, optimisation et déploiement sur Raspberry Pi 4',
+                    exp4Text: 'Conception et développement d\'une plateforme web de vente de voitures.',
+                    exp4Bullet1: 'Développement avec PHP et CodeIgniter',
+                    exp4Bullet2: 'Base de données MySQL',
+                    exp4Bullet3: 'Navigation et comparaison des véhicules',
+                    eduM2: 'MBDS - Master 2 en développement informatique',
+                    eduM1: 'Master 1 en développement informatique',
+                    eduBachelor: 'Licence en développement informatique',
+                    eduSpecialization: 'Spécialisation en programmation',
+                    eduBaccalaureate: 'Baccalauréat série D',
+                    eduBaccalaureateSubtitle: 'Diplôme de fin d\'études secondaires',
+                    eduTraining: 'Formation en informatique et programmation',
+                    eduTrainingSubtitle: 'IEFPA ACEEM',
+                    eduTrainingDetail: 'Formation initiale en programmation',
+                    langEnglish: 'Anglais',
+                    langFrench: 'Français',
+                    langMalagasy: 'Malagasy',
+                    freelanceTitle: 'Je suis disponible en freelance',
+                    freelanceButton: 'Me contacter',
+                    contactTitle: 'Envoyer un message',
+                    namePlaceholder: 'Nom *',
+                    emailPlaceholder: 'Email *',
+                    subjectPlaceholder: 'Sujet *',
+                    messagePlaceholder: 'Votre message *',
+                    sendButton: 'Envoyer le message',
+                    successMessage: 'Message envoyé avec succès ! Je vous répondrai rapidement.',
+                    errorMessage: 'Oups ! Une erreur est survenue. Veuillez réessayer.',
+                    getInTouch: 'Me contacter',
+                    phoneLabel: 'Téléphone :',
+                    addressLabel: 'Adresse :',
+                    emailLabel: 'Email :',
+                    downloadCvButton: 'Télécharger CV PDF',
+                    cvFileName: 'CV_Michael_Raharison_FR.pdf',
+                    cvPdfTitle: 'Curriculum Vitae',
+                    cvPdfError: 'La génération du PDF est indisponible pour le moment.',
+                    footerBy: 'Par',
+                    footerTitle: 'Thèmes et tableaux de bord Bootstrap 4'
+                },
+                en: {
+                    pageTitle: 'Michael Raharison - Developer',
+                    navHome: 'Home',
+                    navAbout: 'About',
+                    navResume: 'Resume',
+                    navPortfolio: 'Portfolio',
+                    navBlog: 'Blog',
+                    navContact: 'Contact',
+                    headerSubtitle: 'Hello, I am',
+                    headerRole: 'Developer',
+                    brandRole: 'Developer',
+                    aboutWho: 'Who am I ?',
+                    aboutWhoText: 'A Developer Located In Our Lovely Earth',
+                    aboutInfo: 'Personal Info',
+                    aboutExpertise: 'My Expertise',
+                    aboutBirthdate: 'Birthdate',
+                    aboutEmail: 'Email',
+                    aboutPhone: 'Phone',
+                    aboutSkype: 'Skype',
+                    aboutAddress: 'Address',
+                    aboutWebDev: 'Web Development',
+                    aboutNeedCollection: 'Collection of needs',
+                    aboutNeedAnalysis: 'Analysis of needs',
+                    aboutDesignEstimate: 'Design and estimation',
+                    aboutDebugging: 'Debugging',
+                    aboutTechWatch: 'Technological monitoring',
+                    resumeTitlePrefix: 'My',
+                    resumeTitle: ' Resume',
+                    resumeExperience: 'Expertise',
+                    resumeEducation: 'Education',
+                    resumeSkills: 'Skills',
+                    resumeLanguages: 'Languages',
+                    resumeLanguagesLabel: 'Language',
+                    resumeDatabases: 'Database',
+                    resumeOther: 'Other',
+                    expDate1: 'August 2025 - Present',
+                    expDate2: 'April 2025 - July 2025',
+                    expDate3: 'June 2024 - April 2025',
+                    expDate4: 'June 2024 - August 2024',
+                    eduDate1: 'October 2025 - Present',
+                    eduDate2: 'December 2024 - September 2025',
+                    eduDate3: '2021 - June 2024',
+                    eduDate4: '2021',
+                    eduDate5: '2019',
+                    roleJavaDeveloper: 'Java Developer - BICI (ASYNC Project)',
+                    roleProjectCoordinator: 'Project Coordinator - BICI',
+                    rolePrintingQuote: 'Printing Quote Management - Grafiky (BICI)',
+                    roleEmbeddedTask: 'Embedded Task Manager - ASTEK',
+                    roleAcademicProject: 'Academic Project',
+                    roleOnlineCar: 'Online Car Sales Platform',
+                    exp0Text: 'Development and maintenance of Java backend services with the APJ framework.',
+                    exp0Bullet1: 'Development of Java services with the APJ framework',
+                    exp0Bullet2: 'Implementation of business logic and service integration',
+                    exp0Bullet3: 'Design and optimization of Oracle and PostgreSQL data access',
+                    exp0Bullet4: 'Unit testing and corrective maintenance',
+                    exp1Text: 'Support for the management and smooth execution of the services digitalization project.',
+                    exp1Bullet1: 'Daily progress monitoring and schedule updates',
+                    exp1Bullet2: 'Coordination between technical teams, functional teams, and stakeholders',
+                    exp1Bullet3: 'Writing reports and tracking documents',
+                    exp1Bullet4: 'Verification of quality process implementation',
+                    exp2Text: 'Development of a real-time tracking system for orders and production flows. (Java)',
+                    exp2Bullet1: 'Development of new features',
+                    exp2Bullet2: 'Design and improvement of pages',
+                    exp2Bullet3: 'Code review and quality assurance',
+                    exp2Bullet4: 'Agile/scrum methodology',
+                    exp3Text: 'Project management platform enabling task creation and assignment. (C++)',
+                    exp3Bullet1: 'Design of reports and statistics module',
+                    exp3Bullet2: 'User interface development (QML)',
+                    exp3Bullet3: 'Testing, optimization and deployment on Raspberry Pi 4',
+                    exp4Text: 'Design and development of a web platform for selling cars.',
+                    exp4Bullet1: 'Development with PHP and CodeIgniter',
+                    exp4Bullet2: 'MySQL database',
+                    exp4Bullet3: 'Navigation and vehicle comparison features',
+                    eduM2: 'MBDS - Master 2 in Computer Development',
+                    eduM1: 'Master 1 in Computer Development',
+                    eduBachelor: 'Bachelor\'s degree in Computer Development',
+                    eduSpecialization: 'Specialization in Programming',
+                    eduBaccalaureate: 'High School Diploma (D)',
+                    eduBaccalaureateSubtitle: 'End of secondary studies diploma',
+                    eduTraining: 'Computer Science and Programming Training',
+                    eduTrainingSubtitle: 'IEFPA ACEEM',
+                    eduTrainingDetail: 'Initial programming training',
+                    langEnglish: 'English',
+                    langFrench: 'French',
+                    langMalagasy: 'Malagasy',
+                    freelanceTitle: 'I Am Available For FreeLance',
+                    freelanceButton: 'Hire me',
+                    contactTitle: 'Send a message',
+                    namePlaceholder: 'Name *',
+                    emailPlaceholder: 'Email *',
+                    subjectPlaceholder: 'Subject *',
+                    messagePlaceholder: 'Your Message *',
+                    sendButton: 'Send Message',
+                    successMessage: 'Message sent successfully! I\'ll get back to you soon.',
+                    errorMessage: 'Oops! Something went wrong. Please try again.',
+                    getInTouch: 'Get in touch',
+                    phoneLabel: 'Phone :',
+                    addressLabel: 'Address :',
+                    emailLabel: 'Email :',
+                    downloadCvButton: 'Download CV PDF',
+                    cvFileName: 'CV_Michael_Raharison_EN.pdf',
+                    cvPdfTitle: 'Curriculum Vitae',
+                    cvPdfError: 'PDF generation is currently unavailable.',
+                    footerBy: 'By',
+                    footerTitle: 'Bootstrap 4 Themes and Dashboards'
+                }
+            };
+
+            const getActiveLanguage = () => {
+                const languageSelect = document.getElementById('languageSelect');
+                const selected = languageSelect ? languageSelect.value : null;
+                const saved = localStorage.getItem('siteLanguage');
+                if (selected && translations[selected]) {
+                    return selected;
+                }
+                if (saved && translations[saved]) {
+                    return saved;
+                }
+                return 'fr';
+            };
+
+            const setText = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.textContent = value;
+                }
+            };
+
+            const setHtml = (selector, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.innerHTML = value;
+                }
+            };
+
+            const setAttr = (selector, attribute, value) => {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.setAttribute(attribute, value);
+                }
+            };
+
+            const getTextList = (selector) => {
+                return Array.from(document.querySelectorAll(selector))
+                    .map((node) => node.textContent ? node.textContent.trim() : '')
+                    .filter((value) => value.length > 0);
+            };
+
+            const appendSectionTitle = (container, value) => {
+                const heading = document.createElement('h2');
+                heading.textContent = value;
+                heading.style.fontSize = '18px';
+                heading.style.margin = '18px 0 8px 0';
+                heading.style.borderBottom = '1px solid #dddddd';
+                heading.style.paddingBottom = '4px';
+                container.appendChild(heading);
+            };
+
+            const buildCvPdfLines = (text) => {
+                const lines = [];
+                const pushLine = (value = '', style = 'normal') => {
+                    lines.push({ value, style });
+                };
+
+                pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
+                pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
+                pushLine('');
+
+                pushLine(text.aboutWho, 'section');
+                const aboutIntro = document.querySelector('#about .about-card:first-child .mb-3')?.textContent?.trim();
+                if (aboutIntro) pushLine(aboutIntro);
+                pushLine('');
+
+                pushLine(text.aboutInfo, 'section');
+                getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
+                    pushLine(item.replace(/\s+/g, ' ').trim());
+                });
+                pushLine('');
+
+                pushLine(text.resumeExperience, 'section');
+                const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
+                const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
+                const expLists = Array.from(document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul'));
+                const expCount = Math.min(expDates.length, expLists.length, Math.floor(expTexts.length / 2));
+
+                for (let index = 0; index < expCount; index += 1) {
+                    pushLine(expDates[index], 'bold');
+                    pushLine(expTexts[index * 2] || '', 'bold');
+                    pushLine(expTexts[(index * 2) + 1] || '');
+                    Array.from(expLists[index].querySelectorAll('li')).forEach((bulletNode) => {
+                        const bulletText = bulletNode.textContent ? bulletNode.textContent.trim() : '';
+                        if (bulletText) {
+                            pushLine('• ' + bulletText);
+                        }
+                    });
+                    pushLine('');
+                }
+
+                pushLine(text.resumeEducation, 'section');
+                const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
+                const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
+                eduDates.forEach((eduDate, index) => {
+                    pushLine(eduDate, 'bold');
+                    pushLine(eduTexts[index * 2] || '');
+                    pushLine(eduTexts[(index * 2) + 1] || '');
+                    pushLine('');
+                });
+
+                pushLine(text.resumeSkills, 'section');
+                getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
+                    pushLine(item);
+                });
+                pushLine('');
+
+                pushLine(text.resumeLanguages, 'section');
+                getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
+                    pushLine(item);
+                });
+                pushLine('');
+
+                pushLine(text.getInTouch, 'section');
+                getTextList('.contact-info-card .d-inline').forEach((item) => {
+                    pushLine(item.replace(/\s+/g, ' ').trim());
+                });
+
+                return lines;
+            };
+
+            const buildCvPdfHtml = (lines) => {
+                const container = document.createElement('div');
+                container.style.background = '#ffffff';
+                container.style.color = '#111111';
+                container.style.fontFamily = 'Arial, sans-serif';
+                container.style.padding = '20px';
+                container.style.width = '794px';
+                container.style.lineHeight = '1.4';
+
+                lines.forEach((line) => {
+                    const value = line.value || '';
+                    if (!value) {
+                        const spacer = document.createElement('div');
+                        spacer.style.height = '6px';
+                        container.appendChild(spacer);
+                        return;
+                    }
+
+                    const node = document.createElement('div');
+                    node.textContent = value;
+                    node.style.margin = '0 0 4px 0';
+
+                    if (line.style === 'title') {
+                        node.style.fontSize = '28px';
+                        node.style.fontWeight = '700';
+                        node.style.marginBottom = '6px';
+                    } else if (line.style === 'subtitle') {
+                        node.style.fontSize = '16px';
+                        node.style.color = '#444444';
+                        node.style.marginBottom = '10px';
+                    } else if (line.style === 'section') {
+                        node.style.fontSize = '16px';
+                        node.style.fontWeight = '700';
+                        node.style.marginTop = '10px';
+                        node.style.marginBottom = '6px';
+                    } else if (line.style === 'bold') {
+                        node.style.fontWeight = '700';
+                        node.style.fontSize = '12px';
+                    } else {
+                        node.style.fontSize = '11px';
+                    }
+
+                    container.appendChild(node);
+                });
+
+                return container;
+            };
+
+            const generateCvPdf = (lang) => {
+                const language = translations[lang] ? lang : 'fr';
+                const text = translations[language];
+                const lines = buildCvPdfLines(text);
+
+                // Try jsPDF first
+                if (window.jspdf && window.jspdf.jsPDF) {
+                    try {
+                        const jsPDFLib = window.jspdf.jsPDF;
+                        const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+                        const maxWidth = 185;
+                        const pageHeight = 297;
+                        let y = 14;
+
+                        lines.forEach((line) => {
+                            if (!line.value) {
+                                y += 3;
+                                return;
+                            }
+
+                            if (line.style === 'title') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(20);
+                            } else if (line.style === 'section') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(13);
+                            } else if (line.style === 'bold') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(11);
+                            } else if (line.style === 'subtitle') {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(12);
+                            } else {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(11);
+                            }
+
+                            const parts = doc.splitTextToSize(line.value, maxWidth);
+                            const step = line.style === 'title' ? 8 : 6;
+
+                            if (y + (parts.length * step) > (pageHeight - 12)) {
+                                doc.addPage();
+                                y = 14;
+                            }
+
+                            doc.text(parts, 12, y);
+                            y += parts.length * step;
+                        });
+
+                        doc.save(text.cvFileName);
+                        return;
+                    } catch (err) {
+                        console.warn('jsPDF error, falling back:', err);
+                    }
+                }
+
+                // Try html2pdf as fallback
+                if (typeof window.html2pdf === 'function' && window.html2canvas) {
+                    try {
+                        const htmlContainer = buildCvPdfHtml(lines);
+                        document.body.appendChild(htmlContainer);
+
+                        window.html2pdf()
+                            .set({
+                                margin: 6,
+                                filename: text.cvFileName,
+                                image: { type: 'jpeg', quality: 0.98 },
+                                html2canvas: { scale: 2, useCORS: true },
+                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                            })
+                            .from(htmlContainer)
+                            .save()
+                            .then(() => {
+                                if (htmlContainer.parentNode) {
+                                    htmlContainer.parentNode.removeChild(htmlContainer);
+                                }
+                            })
+                            .catch(() => {
+                                if (htmlContainer.parentNode) {
+                                    htmlContainer.parentNode.removeChild(htmlContainer);
+                                }
+                                openTextFallback(lines, text);
+                            });
+                        return;
+                    } catch (err) {
+                        console.warn('html2pdf error, falling back:', err);
+                    }
+                }
+
+                // Last resort: text window
+                openTextFallback(lines, text);
+            };
+
+            const openTextFallback = (lines, text) => {
+                const textLines = lines
+                    .map((line) => line.value || '')
+                    .filter((val) => val !== '')
+                    .join('\n');
+
+                const win = window.open('', '_blank');
+                if (!win) {
+                    alert(text.cvPdfError);
+                    return;
+                }
+
+                win.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
+                win.document.close();
+                win.focus();
+            };
+
+            const applyLanguage = (lang) => {
+                const language = translations[lang] ? lang : 'fr';
+                const text = translations[language];
+
+                document.documentElement.lang = language;
+                document.title = text.pageTitle;
+
+                setText('.header-subtitle', text.headerSubtitle);
+                setText('.header-mono', text.headerRole);
+                setText('.brand-subtitle', text.brandRole);
+
+                const navLinks = document.querySelectorAll('.navbar .nav-link');
+                if (navLinks.length >= 6) {
+                    navLinks[0].textContent = text.navHome;
+                    navLinks[1].textContent = text.navAbout;
+                    navLinks[2].textContent = text.navResume;
+                    navLinks[3].textContent = text.navPortfolio;
+                    navLinks[4].textContent = text.navBlog;
+                    navLinks[5].textContent = text.navContact;
+                }
+
+                const aboutHeaders = document.querySelectorAll('#about h3');
+                if (aboutHeaders.length >= 3) {
+                    aboutHeaders[0].textContent = text.aboutWho;
+                    aboutHeaders[1].textContent = text.aboutInfo;
+                    aboutHeaders[2].textContent = text.aboutExpertise;
+                }
+                setText('#about .about-card .mb-3', text.aboutWhoText);
+
+                const personalInfoLabels = document.querySelectorAll('#about .info span');
+                if (personalInfoLabels.length >= 5) {
+                    personalInfoLabels[0].textContent = text.aboutBirthdate;
+                    personalInfoLabels[1].textContent = text.aboutEmail;
+                    personalInfoLabels[2].textContent = text.aboutPhone;
+                    personalInfoLabels[3].textContent = text.aboutSkype;
+                    personalInfoLabels[4].textContent = text.aboutAddress;
+                }
+
+                setText('#about .about-card:last-child h6', text.aboutWebDev);
+                const expertiseItems = document.querySelectorAll('#about .about-card:last-child ul li');
+                if (expertiseItems.length >= 5) {
+                    expertiseItems[0].textContent = text.aboutNeedCollection;
+                    expertiseItems[1].textContent = text.aboutNeedAnalysis;
+                    expertiseItems[2].textContent = text.aboutDesignEstimate;
+                    expertiseItems[3].textContent = text.aboutDebugging;
+                    expertiseItems[4].textContent = text.aboutTechWatch;
+                }
+
+                setHtml('#resume > .container > h2', '<span class="text-danger">' + text.resumeTitlePrefix + '</span>' + text.resumeTitle);
+
+                const resumeCardHeaders = document.querySelectorAll('#resume .card-header h4');
+                if (resumeCardHeaders.length >= 4) {
+                    resumeCardHeaders[0].textContent = text.resumeExperience;
+                    resumeCardHeaders[1].textContent = text.resumeEducation;
+                    resumeCardHeaders[2].textContent = text.resumeSkills;
+                    resumeCardHeaders[3].textContent = text.resumeLanguages;
+                }
+
+                const experienceCards = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
+                if (experienceCards.length >= 4) {
+                    experienceCards[0].textContent = text.expDate1;
+                    experienceCards[1].textContent = text.expDate2;
+                    experienceCards[2].textContent = text.expDate3;
+                    experienceCards[3].textContent = text.expDate4;
+                }
+
+                const educationDates = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
+                if (educationDates.length >= 5) {
+                    educationDates[0].textContent = text.eduDate1;
+                    educationDates[1].textContent = text.eduDate2;
+                    educationDates[2].textContent = text.eduDate3;
+                    educationDates[3].textContent = text.eduDate4;
+                    educationDates[4].textContent = text.eduDate5;
+                }
+
+                const firstCardTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
+                if (firstCardTextBlocks.length >= 8) {
+                    firstCardTextBlocks[0].textContent = text.roleJavaDeveloper;
+                    firstCardTextBlocks[1].textContent = text.exp0Text;
+                    firstCardTextBlocks[2].textContent = text.roleProjectCoordinator;
+                    firstCardTextBlocks[3].textContent = text.exp1Text;
+                    firstCardTextBlocks[4].textContent = text.rolePrintingQuote;
+                    firstCardTextBlocks[5].textContent = text.exp2Text;
+                    firstCardTextBlocks[6].textContent = text.roleEmbeddedTask;
+                    firstCardTextBlocks[7].textContent = text.exp3Text;
+                }
+
+                const firstCardLists = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul');
+                if (firstCardLists.length >= 4) {
+                    const list1 = firstCardLists[0].querySelectorAll('li');
+                    if (list1.length >= 4) {
+                        list1[0].textContent = text.exp0Bullet1;
+                        list1[1].textContent = text.exp0Bullet2;
+                        list1[2].textContent = text.exp0Bullet3;
+                        list1[3].textContent = text.exp0Bullet4;
+                    }
+
+                    const list2 = firstCardLists[1].querySelectorAll('li');
+                    if (list2.length >= 4) {
+                        list2[0].textContent = text.exp1Bullet1;
+                        list2[1].textContent = text.exp1Bullet2;
+                        list2[2].textContent = text.exp1Bullet3;
+                        list2[3].textContent = text.exp1Bullet4;
+                    }
+
+                    const list3 = firstCardLists[2].querySelectorAll('li');
+                    if (list3.length >= 4) {
+                        list3[0].textContent = text.exp2Bullet1;
+                        list3[1].textContent = text.exp2Bullet2;
+                        list3[2].textContent = text.exp2Bullet3;
+                        list3[3].textContent = text.exp2Bullet4;
+                    }
+
+                    const list4 = firstCardLists[3].querySelectorAll('li');
+                    if (list4.length >= 3) {
+                        list4[0].textContent = text.exp3Bullet1;
+                        list4[1].textContent = text.exp3Bullet2;
+                        list4[2].textContent = text.exp3Bullet3;
+                    }
+                }
+
+                const educationTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p:not(.subtitle)');
+                if (educationTextBlocks.length >= 7) {
+                    educationTextBlocks[0].textContent = text.eduM2;
+                    educationTextBlocks[1].textContent = text.eduM1;
+                    educationTextBlocks[2].textContent = text.eduBachelor;
+                    educationTextBlocks[3].textContent = text.eduSpecialization;
+                    educationTextBlocks[4].textContent = text.eduBaccalaureate;
+                    educationTextBlocks[5].textContent = text.eduTraining;
+                    educationTextBlocks[6].textContent = text.eduTrainingDetail;
+                }
+
+                const educationSubtitles = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p.subtitle');
+                if (educationSubtitles.length >= 5) {
+                    educationSubtitles[0].textContent = 'Université Côte d\'Azur';
+                    educationSubtitles[1].textContent = 'IT University Andoharanofotsy';
+                    educationSubtitles[2].textContent = 'IT University Andoharanofotsy';
+                    educationSubtitles[3].textContent = text.eduBaccalaureateSubtitle;
+                    educationSubtitles[4].textContent = text.eduTrainingSubtitle;
+                }
+
+                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
+                if (skillHeadings.length >= 3) {
+                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
+                    skillHeadings[1].textContent = text.resumeDatabases;
+                    skillHeadings[2].textContent = text.resumeOther;
+                }
+
+                const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
+                if (spokenLanguages.length >= 3) {
+                    spokenLanguages[0].textContent = text.langEnglish;
+                    spokenLanguages[1].textContent = text.langFrench;
+                    spokenLanguages[2].textContent = text.langMalagasy;
+                }
+
+                setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
+                setText('.section.bg-dark.py-5 .btn.bg-primary', text.freelanceButton);
+
+                setText('.contact-form-card .contact-title', text.contactTitle);
+                setAttr('#contactForm input[name="name"]', 'placeholder', text.namePlaceholder);
+                setAttr('#contactForm input[name="email"]', 'placeholder', text.emailPlaceholder);
+                setAttr('#contactForm input[name="subject"]', 'placeholder', text.subjectPlaceholder);
+                setAttr('#contactForm textarea[name="message"]', 'placeholder', text.messagePlaceholder);
+                setText('#submitBtn .button-text', text.sendButton);
+                setText('#successMessage', text.successMessage);
+                setText('#errorMessage', text.errorMessage);
+                setText('#downloadCvBtn', text.downloadCvButton);
+
+                setText('.contact-info-card .contact-title', text.getInTouch);
+                const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
+                if (contactLabels.length >= 3) {
+                    const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
+                    const addressValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'IVC 153 bis Ambodivoanjo Ankaraobato, Antananarivo, Madagascar.';
+                    const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
+
+                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
+                    contactLabels[1].innerHTML = text.addressLabel + '<br> <span class="text-muted">' + addressValue + '</span>';
+                    contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
+                }
+
+                setHtml('.footer .small.mb-0.text-light',
+                    '© 2024 ' + text.footerBy + ' <a href="https://DM034.github.io" target="_blank"><span class="text-danger" title="' + text.footerTitle + '">Michael Raharison</span></a>'
+                );
+
+                const languageSelect = document.getElementById('languageSelect');
+                if (languageSelect) {
+                    languageSelect.value = language;
+                }
+
+                localStorage.setItem('siteLanguage', language);
+            };
+
+            const languageSelect = document.getElementById('languageSelect');
+            const downloadCvBtn = document.getElementById('downloadCvBtn');
+            const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
+            applyLanguage(initialLanguage);
+
+            if (languageSelect) {
+                languageSelect.addEventListener('change', function (event) {
+                    applyLanguage(event.target.value);
+                });
+            }
+
+            if (downloadCvBtn) {
+                downloadCvBtn.addEventListener('click', function () {
+                    generateCvPdf(getActiveLanguage());
+                });
+            }
+        })();
+    </script>
+
+
 
 
 

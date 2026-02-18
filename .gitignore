@@ -1,0 +1,15 @@
+# Development scripts
+compile_templates.py
+
+# IDEs
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Build artifacts
+_site/
+.jekyll-cache/
+*.gem

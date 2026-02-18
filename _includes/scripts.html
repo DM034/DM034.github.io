@@ -13,6 +13,8 @@
 
     <!-- JohnDoe js -->
     <script src="assets/js/johndoe.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
     <script>
@@ -291,11 +293,8 @@
                 pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
                 pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
                 pushLine('');
-
-                pushLine(text.aboutWho, 'section');
-                const aboutIntro = document.querySelector('#about .about-card:first-child .mb-3')?.textContent?.trim();
-                if (aboutIntro) pushLine(aboutIntro);
-                pushLine('');
+                // Note: Photo will be added separately in PDF generation
+                pushLine('__PHOTO_PLACEHOLDER__', 'photo');
 
                 pushLine(text.aboutInfo, 'section');
                 getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
@@ -363,6 +362,25 @@
 
                 lines.forEach((line) => {
                     const value = line.value || '';
+                    
+                    // Handle photo placeholder
+                    if (line.style === 'photo') {
+                        const photoDiv = document.createElement('div');
+                        photoDiv.style.textAlign = 'center';
+                        photoDiv.style.marginBottom = '15px';
+                        
+                        const img = document.createElement('img');
+                        img.src = 'assets/imgs/avatar.jpg';
+                        img.style.width = '120px';
+                        img.style.height = '120px';
+                        img.style.borderRadius = '50%';
+                        img.style.border = '2px solid #ddd';
+                        
+                        photoDiv.appendChild(img);
+                        container.appendChild(photoDiv);
+                        return;
+                    }
+                    
                     if (!value) {
                         const spacer = document.createElement('div');
                         spacer.style.height = '6px';
@@ -405,101 +423,119 @@
                 const text = translations[language];
                 const lines = buildCvPdfLines(text);
 
-                const JsPdfClass = window.jspdf && window.jspdf.jsPDF;
-                if (JsPdfClass) {
-                    const doc = new JsPdfClass({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                    const maxWidth = 185;
-                    const pageHeight = 297;
-                    let y = 14;
+                // Try html2pdf first (better image support)
+                if (typeof window.html2pdf === 'function' && window.html2canvas) {
+                    try {
+                        const htmlContainer = buildCvPdfHtml(lines);
+                        document.body.appendChild(htmlContainer);
 
-                    const addWrappedLine = (value, style) => {
-                        if (!value) {
-                            y += 3;
-                            return;
-                        }
-
-                        if (style === 'title') {
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(20);
-                        } else if (style === 'section') {
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(13);
-                        } else if (style === 'bold') {
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(11);
-                        } else if (style === 'subtitle') {
-                            doc.setFont('helvetica', 'normal');
-                            doc.setFontSize(12);
-                        } else {
-                            doc.setFont('helvetica', 'normal');
-                            doc.setFontSize(11);
-                        }
-
-                        const parts = doc.splitTextToSize(value, maxWidth);
-                        const step = style === 'title' ? 8 : 6;
-
-                        if (y + (parts.length * step) > (pageHeight - 12)) {
-                            doc.addPage();
-                            y = 14;
-                        }
-
-                        doc.text(parts, 12, y);
-                        y += parts.length * step;
-                    };
-
-                    lines.forEach((line) => {
-                        addWrappedLine(line.value, line.style);
-                    });
-
-                    doc.save(text.cvFileName);
-                    return;
+                        window.html2pdf()
+                            .set({
+                                margin: 6,
+                                filename: text.cvFileName,
+                                image: { type: 'jpeg', quality: 0.98 },
+                                html2canvas: { scale: 2, useCORS: true },
+                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
+                            })
+                            .from(htmlContainer)
+                            .save()
+                            .then(() => {
+                                if (htmlContainer.parentNode) {
+                                    htmlContainer.parentNode.removeChild(htmlContainer);
+                                }
+                            })
+                            .catch(() => {
+                                if (htmlContainer.parentNode) {
+                                    htmlContainer.parentNode.removeChild(htmlContainer);
+                                }
+                                tryJsPdfGenerate(lines, text);
+                            });
+                        return;
+                    } catch (err) {
+                        console.warn('html2pdf error, falling back to jsPDF:', err);
+                    }
                 }
 
-                if (typeof window.html2pdf === 'function') {
-                    const htmlContainer = buildCvPdfHtml(lines);
-                    htmlContainer.style.position = 'fixed';
-                    htmlContainer.style.left = '0';
-                    htmlContainer.style.top = '0';
-                    htmlContainer.style.opacity = '0.01';
-                    htmlContainer.style.zIndex = '-1';
-                    document.body.appendChild(htmlContainer);
+                tryJsPdfGenerate(lines, text);
+            };
 
-                    window.html2pdf()
-                        .set({
-                            margin: [8, 8, 8, 8],
-                            filename: text.cvFileName,
-                            image: { type: 'jpeg', quality: 0.98 },
-                            html2canvas: { scale: 2, useCORS: true },
-                            jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                        })
-                        .from(htmlContainer)
-                        .save()
-                        .then(() => {
-                            htmlContainer.remove();
-                        })
-                        .catch(() => {
-                            htmlContainer.remove();
-                            alert(text.cvPdfError);
+            const tryJsPdfGenerate = (lines, text) => {
+                // Try jsPDF
+                if (window.jspdf && window.jspdf.jsPDF) {
+                    try {
+                        const jsPDFLib = window.jspdf.jsPDF;
+                        const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
+                        const maxWidth = 185;
+                        const pageHeight = 297;
+                        let y = 14;
+
+                        lines.forEach((line) => {
+                            // Skip photo placeholder in jsPDF
+                            if (line.style === 'photo') {
+                                y += 25; // Reserve space for photo
+                                return;
+                            }
+
+                            if (!line.value) {
+                                y += 3;
+                                return;
+                            }
+
+                            if (line.style === 'title') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(20);
+                            } else if (line.style === 'section') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(13);
+                            } else if (line.style === 'bold') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(11);
+                            } else if (line.style === 'subtitle') {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(12);
+                            } else {
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(11);
+                            }
+
+                            const parts = doc.splitTextToSize(line.value, maxWidth);
+                            const step = line.style === 'title' ? 8 : 6;
+
+                            if (y + (parts.length * step) > (pageHeight - 12)) {
+                                doc.addPage();
+                                y = 14;
+                            }
+
+                            doc.text(parts, 12, y);
+                            y += parts.length * step;
                         });
-                    return;
+
+                        doc.save(text.cvFileName);
+                        return;
+                    } catch (err) {
+                        console.warn('jsPDF error, falling back to text:', err);
+                    }
                 }
 
-                const printWindow = window.open('', '_blank');
-                if (!printWindow) {
+                // Last resort: text window
+                openTextFallback(lines, text);
+            };
+
+            const openTextFallback = (lines, text) => {
+                const textLines = lines
+                    .map((line) => line.value || '')
+                    .filter((val) => val !== '')
+                    .join('\n');
+
+                const win = window.open('', '_blank');
+                if (!win) {
                     alert(text.cvPdfError);
                     return;
                 }
 
-                const printableText = lines
-                    .map((line) => line.value || '')
-                    .join('\n');
-
-                printWindow.document.write('<!doctype html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title></head><body style="font-family:Arial,sans-serif;white-space:pre-wrap;padding:20px;">' + printableText.replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
-                printWindow.document.close();
-                printWindow.focus();
-                setTimeout(() => {
-                    printWindow.print();
-                }, 300);
+                win.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
+                win.document.close();
+                win.focus();
             };
 
             const applyLanguage = (lang) => {
