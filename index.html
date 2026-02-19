@@ -1,255 +1,16 @@
 ---
 ---
-
 <html lang="fr">
-
 <head>
-    <style>
-        .LGLeeN-keyboard-shortcuts-view {
-            display: -webkit-box;
-            display: -webkit-flex;
-            display: -moz-box;
-            display: -ms-flexbox;
-            display: flex
-        }
-
-        .LGLeeN-keyboard-shortcuts-view table,
-        .LGLeeN-keyboard-shortcuts-view tbody,
-        .LGLeeN-keyboard-shortcuts-view td,
-        .LGLeeN-keyboard-shortcuts-view tr {
-            background: inherit;
-            border: none;
-            margin: 0;
-            padding: 0
-        }
-
-        .LGLeeN-keyboard-shortcuts-view table {
-            display: table
-        }
-
-        .LGLeeN-keyboard-shortcuts-view tr {
-            display: table-row
-        }
-
-        .LGLeeN-keyboard-shortcuts-view td {
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            display: table-cell;
-            color: #000;
-            padding: 6px;
-            vertical-align: middle;
-            white-space: nowrap
-        }
-
-        .LGLeeN-keyboard-shortcuts-view td:first-child {
-            text-align: end
-        }
-
-        .LGLeeN-keyboard-shortcuts-view td kbd {
-            background-color: #e8eaed;
-            border-radius: 2px;
-            border: none;
-            -moz-box-sizing: border-box;
-            box-sizing: border-box;
-            color: inherit;
-            display: inline-block;
-            font-family: Google Sans Text, Roboto, Arial, sans-serif;
-            line-height: 16px;
-            margin: 0 2px;
-            min-height: 20px;
-            min-width: 20px;
-            padding: 2px 4px;
-            position: relative;
-            text-align: center
-        }
-    </style>
-    <style>
-        .gm-control-active>img {
-            -webkit-box-sizing: content-box;
-            box-sizing: content-box;
-            display: none;
-            left: 50%;
-            pointer-events: none;
-            position: absolute;
-            top: 50%;
-            -webkit-transform: translate(-50%, -50%);
-            -ms-transform: translate(-50%, -50%);
-            transform: translate(-50%, -50%)
-        }
-
-        .gm-control-active>img:nth-child(1) {
-            display: block
-        }
-
-        .gm-control-active:focus>img:nth-child(1),
-        .gm-control-active:hover>img:nth-child(1),
-        .gm-control-active:active>img:nth-child(1),
-        .gm-control-active:disabled>img:nth-child(1) {
-            display: none
-        }
-
-        .gm-control-active:focus>img:nth-child(2),
-        .gm-control-active:hover>img:nth-child(2) {
-            display: block
-        }
-
-        .gm-control-active:active>img:nth-child(3) {
-            display: block
-        }
-
-        .gm-control-active:disabled>img:nth-child(4) {
-            display: block
-        }
-
-    </style>
-    <link type="text/css" rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Google+Sans_old:400,500,700|Google+Sans+Text_old:400,500,700&amp;lang=en">
-    <link type="text/css" rel="stylesheet"
-        href="https://fonts.googleapis.com/css?family=Google+Sans+Text_old:400&amp;text=%E2%86%90%E2%86%92%E2%86%91%E2%86%93&amp;lang=en">
-    <style>
-        .gm-style .gm-style-cc a,
-        .gm-style .gm-style-cc button,
-        .gm-style .gm-style-cc span,
-        .gm-style .gm-style-mtc div {
-            font-size: 10px;
-            -webkit-box-sizing: border-box;
-            box-sizing: border-box
-        }
-
-        .gm-style .gm-style-cc a,
-        .gm-style .gm-style-cc button,
-        .gm-style .gm-style-cc span {
-            outline-offset: 3px
-        }
-
-    </style>
-    <style>
-        @media print {
-
-            .gm-style .gmnoprint,
-            .gmnoprint {
-                display: none
-            }
-        }
-
-        @media screen {
-
-            .gm-style .gmnoscreen,
-            .gmnoscreen {
-                display: none
-            }
-        }
-    </style>
-    <style>
-        .dismissButton {
-            background-color: #fff;
-            border: 1px solid #dadce0;
-            color: #1a73e8;
-            border-radius: 4px;
-            font-family: Roboto, sans-serif;
-            font-size: 14px;
-            height: 36px;
-            cursor: pointer;
-            padding: 0 24px
-        }
-
-        .dismissButton:hover {
-            background-color: rgba(66, 133, 244, .04);
-            border: 1px solid #d2e3fc
-        }
-
-        .dismissButton:focus {
-            background-color: rgba(66, 133, 244, .12);
-            border: 1px solid #d2e3fc;
-            outline: 0
-        }
-
-        .dismissButton:focus:not(:focus-visible) {
-            background-color: #fff;
-            border: 1px solid #dadce0;
-            outline: none
-        }
-
-        .dismissButton:focus-visible {
-            background-color: rgba(66, 133, 244, .12);
-            border: 1px solid #d2e3fc;
-            outline: 0
-        }
-
-        .dismissButton:hover:focus {
-            background-color: rgba(66, 133, 244, .16);
-            border: 1px solid #d2e2fd
-        }
-
-        .dismissButton:hover:focus:not(:focus-visible) {
-            background-color: rgba(66, 133, 244, .04);
-            border: 1px solid #d2e3fc
-        }
-
-        .dismissButton:hover:focus-visible {
-            background-color: rgba(66, 133, 244, .16);
-            border: 1px solid #d2e2fd
-        }
-
-        .dismissButton:active {
-            background-color: rgba(66, 133, 244, .16);
-            border: 1px solid #d2e2fd;
-            -webkit-box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15);
-            box-shadow: 0 1px 2px 0 rgba(60, 64, 67, .3), 0 1px 3px 1px rgba(60, 64, 67, .15)
-        }
-
-        .dismissButton:disabled {
-            background-color: #fff;
-            border: 1px solid #f1f3f4;
-            color: #3c4043
-        }
-
-    </style>
-    <style>
-        .gm-style-moc {
-            background-color: rgba(0, 0, 0, .45);
-            pointer-events: none;
-            text-align: center;
-            -webkit-transition: opacity ease-in-out;
-            transition: opacity ease-in-out
-        }
-
-        .gm-style-mot {
-            color: white;
-            font-family: Roboto, Arial, sans-serif;
-            font-size: 22px;
-            margin: 0;
-            position: relative;
-            top: 50%;
-            transform: translateY(-50%);
-            -webkit-transform: translateY(-50%);
-            -ms-transform: translateY(-50%)
-        }
-
-    </style>
-    <style>
-        .gm-style img {
-            max-width: none;
-        }
-
-        .gm-style {
-            font: 400 11px Roboto, Arial, sans-serif;
-            text-decoration: none;
-        }
-    </style>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="description" content="DM's portfolio">
     <meta name="author" content="DM">
     <title>Michael Raharison - Développeur</title>
-    <!-- font icons -->
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/johndoe.css">
-
 </head>
-
 <body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
-    <!-- <a href="components.html" class="btn btn-primary btn-component affix" data-spy="affix" data-offset-top="600"><i class="ti-shift-left-alt"></i> Components</a> -->
         <header class="header">
         <div class="container">
             <ul class="social-icons pt-3">
@@ -299,7 +60,7 @@
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="mt-sm-20 navbar-collapse collapse" id="navbarSupportedContent" style="">
+            <div class="mt-sm-20 navbar-collapse collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav mr-auto">
                     <li class="nav-item">
                         <a href="#home" class="nav-link">Accueil</a>
@@ -419,7 +180,6 @@
     </div>
 
 
-
         <section class="section" id="resume">
         <div class="container">
             <h2 class="mb-5"><span class="text-danger">Mon</span> parcours</h2>
@@ -524,41 +284,26 @@
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                            <h6>Communication</h6>
-                            <h6>Travail en équipe</h6>
-                            <h6>Résolution de problèmes</h6>
-                            <h6>Adaptabilité</h6>
-                            <h6>Gestion du temps</h6>
-                        </div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="pull-left">
-                                <h4 class="mt-2">Techno</h4>
-                                <span class="line"></span>
-                            </div>
-                        </div>
-                        <div class="card-body pb-2">
+                            <h6 class="title text-danger">Langage</h6>
                             <h6>Java</h6>
                             <h6>C++</h6>
                             <h6>C#</h6>
                             <h6>.NET</h6>
+                            <h6 class="title text-danger">Bases de données</h6>
                             <h6>PostgreSQL</h6>
                             <h6>Oracle</h6>
                             <h6>MySQL</h6>
+                            <h6 class="title text-danger">Autres</h6>
                             <h6>Linux</h6>
                             <h6>Git</h6>
-                            <h6 class="title text-danger">Langues parlées</h6>
-                            <h6 class="spoken-lang-item">Anglais</h6>
-                            <h6 class="spoken-lang-item">Français</h6>
-                            <h6 class="spoken-lang-item">Malagasy</h6>
+                            <h6>Français</h6>
+                            <h6>Malagasy</h6>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-
 
 
 
@@ -573,115 +318,246 @@
         </div>
     </section>
 
-
     
-    <!-- Portfolio Section -->
+    <!-- Portfolio Section
     <section class="section bg-custom-gray" id="portfolio">
         <div class="container">
             <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
             <div class="portfolio">
                 
-                <div class="portfolio-container">
-                    <!-- Backend Projects -->
-                    <div class="col-md-6 col-lg-4 backend new">
+                <div class="portfolio-container" style="position: relative; height: 1256.56px;"> 
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 0px; top: 0px;">
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/BiblioFlow" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">BiblioFlow</h6>
-                                    <p class="subtitle">Digital Library (C# .NET | Razor Pages | EF Core | SQL Server)</p>
+                            <img src="assets/imgs/web-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div>   
                         </div>             
                     </div>
-
-                    <div class="col-md-6 col-lg-4 backend new">
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 345px; top: 0px;">
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/spring-cicd-demo" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">Spring CI/CD Demo</h6>
-                                    <p class="subtitle">Spring Boot Application with CI/CD Pipeline</p>
+                            <img src="assets/imgs/web-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div> 
                         </div>                         
                     </div>
-
-                    <!-- Frontend Projects -->
-                    <div class="col-md-6 col-lg-4 frontend new">
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 345px; top: 276.531px;">
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/Gondor_chic_DIL_M1_frontend" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">Gondor Chic DIL</h6>
-                                    <p class="subtitle">Angular Frontend | Master 1 Project | TypeScript</p>
+                            <img src="assets/imgs/advertising-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                         
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSTISING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div>    
                         </div>              
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 frontend new">
+                    </div> 
+                    <div class="col-md-6 col-lg-4 web" style="position: absolute; display: none;">
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/one-page-wonder-analyse" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">One Page Wonder</h6>
-                                    <p class="subtitle">Web Analysis & Development | TypeScript</p>
+                            <img src="assets/imgs/web-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div>
                         </div>                                                     
                     </div>
 
-                    <!-- Full-Stack Projects -->
-                    <div class="col-md-6 col-lg-4 fullstack new">
+                    <div class="col-md-6 col-lg-4 advertising" style="position: absolute; display: none;"> 
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/forum-forge-suite" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">Forum Forge Suite</h6>
-                                    <p class="subtitle">Full-Stack Forum Application | TypeScript</p>
-                                </div>
-                            </div>
-                        </div>                                                     
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 fullstack new">
-                        <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/m1p12mean-Michael-Maroussia-BACK" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">MEAN Stack Project</h6>
-                                    <p class="subtitle">MongoDB | Express | Angular | Node.js</p>
+                            <img src="assets/imgs/advertising-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                               
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSITING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div>
                         </div>                                                       
-                    </div>
-
-                    <div class="col-md-6 col-lg-4 fullstack new">
+                    </div> 
+                    <div class="col-md-6 col-lg-4 web new" style="position: absolute; left: 0px; top: 507.922px;">
                         <div class="portfolio-item">
-                            <div class="content-holder" style="background-color: #f8f8f8; padding: 20px; min-height: 300px; display: flex; flex-direction: column; align-items: center; justify-content: center; position: relative;">
-                                <a href="https://github.com/DM034/MADA-IMMO" target="_blank" class="text-danger" title="View on GitHub" style="position: absolute; top: 10px; right: 10px;"><i class="ti-github" style="font-size: 24px;"></i></a>
-                                <div class="text-holder" style="text-align: center;">
-                                    <h6 class="title">MADA IMMO</h6>
-                                    <p class="subtitle">Real Estate Platform | JavaScript | Full-Stack</p>
+                            <img src="assets/imgs/web-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
+                           <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/web-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">WEB</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div>
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 345px; top: 526.187px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">       
+                           <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERSITING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                       
+                    </div> 
+                    <div class="col-md-6 col-lg-4 advertising new" style="position: absolute; left: 0px; top: 756.375px;"> 
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/advertising-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">            
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/advertising-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">ADVERTISING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
                                 </div>
                             </div>
                         </div>
+                                
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding new" style="position: absolute; left: 345px; top: 775.843px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-1.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                        
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-1.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div> 
+                        </div>
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-2.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">  
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-2.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                     
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding new" style="position: absolute; left: 0px; top: 1019.91px;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-3.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">   
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-3.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                    
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-4.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">                      
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-4.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                      
+                    </div> 
+                    <div class="col-md-6 col-lg-4 branding" style="position: absolute; display: none;">
+                        <div class="portfolio-item">
+                            <img src="assets/imgs/branding-5.jpg" class="img-fluid" alt="Download free bootstrap 4 admin dashboard, free boootstrap 4 templates">          
+                            <div class="content-holder">
+                                <a class="img-popup" href="assets/imgs/branding-5.jpg"></a>
+                                <div class="text-holder">
+                                    <h6 class="title">BRANDING</h6>
+                                    <p class="subtitle">Expedita corporis doloremque velit in totam!</p>
+                                </div>
+                            </div>
+                        </div>                                                   
                     </div>
                 </div> 
             </div>  
         </div>            
     </section>
-    <!-- End of portfolio section -->
+    <!-- End of portfolio section 
 
-    <!-- Blog section disabled
     <section class="section" id="blog">
         <div class="container">
             <h2 class="mb-5">Latest <span class="text-danger">News</span></h2>
-        </div>
-    </section>
-    --> -->
+            <div class="row">
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog1.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h6 class="title">Consectetur adipisicing elit</h6>
 
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 234</a>
+                            <a href="#"><i class="ti-comment"></i> 123</a>
+                        </p>
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Amet nesciunt qui sit velit delectus voluptates, repellat ipsum culpa id deleniti. Rerum debitis facilis accusantium neque numquam mollitia modi quasi distinctio.</p>
+
+                        <p><b>Necessitatibus nihil impedit! Ex nisi eveniet, dolor aliquid consequuntur repudiandae.</b></p>
+                        <p>Magnam in repellat enim harum omnis aperiam! Explicabo illo, commodi, dolor blanditiis cupiditate harum nisi vero accusamus laudantium voluptatibus dolores quae obcaecati.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper -->
+
+    <!-- blog-card
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog2.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h6 class="title">Explicabo illo</h6>
+
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 456</a>
+                            <a href="#"><i class="ti-comment"></i> 264</a>
+                        </p>
+                        
+                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper
+                <!-- blog-card
+                <div class="blog-card">
+                    <div class="img-holder">
+                        <img src="assets/imgs/blog3.jpg" alt="Download free bootstrap 4 landing page, free boootstrap 4 templates, Download free bootstrap 4.1 landing page, free boootstrap 4.1.1 templates, meyawo Landing page">
+                    </div>
+                    <div class="content-holder">
+                        <h4 class="title">Porro Quisqua</h4>
+
+                        <p class="post-details">
+                            <a href="#">By: Admin</a>
+                            <a href="#"><i class="ti-heart text-danger"></i> 431</a>
+                            <a href="#"><i class="ti-comment"></i> 312</a>
+                        </p>
+                        
+                        <p> consectetur adipisicing elit. Impedit excepturi laborum enim, vitae ipsam atque eum, ad iusto consequuntur voluptas, esse doloribus. Perferendis porro quisquam vitae exercitationem aliquid, minus eos laborum repudiandae, cumque debitis iusto omnis praesentium? Laborum placeat sit adipisci illum tempore maxime, esse qui quae? Molestias excepturi corporis similique doloribus. Esse vitae earum architecto nulla non dolores illum at perspiciatis quod, et deleniti cupiditate reiciendis harum facere, delectus eum commodi soluta distinctio sit repudiandae possimus sunt. Ipsum, rem.</p>
+
+                        <a href="#" class="read-more">Read more <i class="ti-angle-double-right"></i></a>
+                    </div>
+                </div><!-- end of blog wrapper
+
+            </div>
+        </div>
+    </section> -->
 
         <div class="section contact" id="contact">
 
@@ -789,16 +665,17 @@
                                 <i class="ti-mobile icon-md"></i>
                             </div>
                             <div class="col-10 ">
-                                <h6 class="d-inline">Téléphone : <br> <span class="text-muted"><a href="https://wa.me/261324908409" target="_blank">+ 261 32 49 084 09</a></span>
+                                <h6 class="d-inline">Téléphone : <br> <span class="text-muted">+ 261 32 49 084 09</span>
                                 </h6>
                             </div>
                         </div>
                         <div class="row mb-2">
                             <div class="col-1 pt-1 mr-1">
-                                <i class="ti-link icon-md"></i>
+                                <i class="ti-map-alt icon-md"></i>
                             </div>
                             <div class="col-10">
-                                <h6 class="d-inline">LinkedIn :<br> <span class="text-muted"><a href="https://www.linkedin.com/in/michael-raharison-215901288" target="_blank">Michael Raharison</a></span></h6>
+                                <h6 class="d-inline">Adresse :<br> <span class="text-muted">IVC 153 bis Ambodivoanjo
+                                        Ankaraobato, Antananarivo, Madagascar.</span></h6>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -843,7 +720,6 @@
         </div>
     </footer>
 
-
         <!-- core  -->
     <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
     <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
@@ -865,6 +741,7 @@
 
     <script>
         (function () {
+            
             const translations = {
                 fr: {
                     pageTitle: 'Michael Raharison - Développeur',
@@ -897,25 +774,10 @@
                     resumeExperience: 'Expérience',
                     resumeEducation: 'Formation',
                     resumeSkills: 'Compétences',
-                    resumeLanguages: 'Techno',
-                    spokenLanguages: 'Langues parlées',
+                    resumeLanguages: 'Langues',
                     resumeLanguagesLabel: 'Langages',
                     resumeDatabases: 'Bases de données',
                     resumeOther: 'Autres',
-                    softSkill1: 'Communication',
-                    softSkill2: 'Travail en équipe',
-                    softSkill3: 'Résolution de problèmes',
-                    softSkill4: 'Adaptabilité',
-                    softSkill5: 'Gestion du temps',
-                    tech1: 'Java',
-                    tech2: 'C++',
-                    tech3: 'C#',
-                    tech4: '.NET',
-                    tech5: 'PostgreSQL',
-                    tech6: 'Oracle',
-                    tech7: 'MySQL',
-                    tech8: 'Linux',
-                    tech9: 'Git',
                     expDate1: 'Août 2025 - Présent',
                     expDate2: 'Avril 2025 - Juillet 2025',
                     expDate3: 'Juin 2024 - Avril 2025',
@@ -978,7 +840,7 @@
                     errorMessage: 'Oups ! Une erreur est survenue. Veuillez réessayer.',
                     getInTouch: 'Me contacter',
                     phoneLabel: 'Téléphone :',
-                    linkedinLabel: 'LinkedIn :',
+                    addressLabel: 'Adresse :',
                     emailLabel: 'Email :',
                     downloadCvButton: 'Télécharger CV PDF',
                     cvFileName: 'CV_Michael_Raharison_FR.pdf',
@@ -1018,25 +880,10 @@
                     resumeExperience: 'Experience',
                     resumeEducation: 'Education',
                     resumeSkills: 'Skills',
-                    resumeLanguages: 'Tech Stack',
-                    spokenLanguages: 'Spoken Languages',
+                    resumeLanguages: 'Languages',
                     resumeLanguagesLabel: 'Language',
                     resumeDatabases: 'Database',
                     resumeOther: 'Other',
-                    softSkill1: 'Communication',
-                    softSkill2: 'Teamwork',
-                    softSkill3: 'Problem solving',
-                    softSkill4: 'Adaptability',
-                    softSkill5: 'Time management',
-                    tech1: 'Java',
-                    tech2: 'C++',
-                    tech3: 'C#',
-                    tech4: '.NET',
-                    tech5: 'PostgreSQL',
-                    tech6: 'Oracle',
-                    tech7: 'MySQL',
-                    tech8: 'Linux',
-                    tech9: 'Git',
                     expDate1: 'August 2025 - Present',
                     expDate2: 'April 2025 - July 2025',
                     expDate3: 'June 2024 - April 2025',
@@ -1099,7 +946,7 @@
                     errorMessage: 'Oops! Something went wrong. Please try again.',
                     getInTouch: 'Get in touch',
                     phoneLabel: 'Phone :',
-                    linkedinLabel: 'LinkedIn :',
+                    addressLabel: 'Address :',
                     emailLabel: 'Email :',
                     downloadCvButton: 'Download CV PDF',
                     cvFileName: 'CV_Michael_Raharison_EN.pdf',
@@ -1160,134 +1007,145 @@
                 container.appendChild(heading);
             };
 
-            const buildCvPdfLines = (text, language) => {
+            const buildCvPdfLines = (text) => {
                 const lines = [];
                 const pushLine = (value = '', style = 'normal') => {
                     lines.push({ value, style });
                 };
 
-                pushLine(document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison', 'title');
-                pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
+                // Header: Name and title (no extra line)
+                pushLine('Michael Raharison', 'title');
+                pushLine('Développeur Java | Coordinateur de Projet', 'subtitle');
+                pushLine('michael@example.com | +261 34 XX XX XX | linkedin.com/in/michael-raharison', 'contact');
                 pushLine('');
 
-                pushLine(text.resumeExperience, 'section');
-                const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
-                const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
-                const expLists = Array.from(document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul'));
-                const expCount = Math.min(expDates.length, expLists.length, Math.floor(expTexts.length / 2));
-
-                for (let index = 0; index < expCount; index += 1) {
-                    pushLine(expDates[index], 'bold');
-                    pushLine(expTexts[index * 2] || '', 'bold');
-                    pushLine(expTexts[(index * 2) + 1] || '');
-                    Array.from(expLists[index].querySelectorAll('li')).forEach((bulletNode) => {
-                        const bulletText = bulletNode.textContent ? bulletNode.textContent.trim() : '';
-                        if (bulletText) {
-                            pushLine('• ' + bulletText);
-                        }
-                    });
-                    pushLine('');
-                }
-
-                pushLine(text.resumeEducation, 'section');
-                const eduDates = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
-                const eduTexts = getTextList('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p');
-                eduDates.forEach((eduDate, index) => {
-                    pushLine(eduDate, 'bold');
-                    pushLine(eduTexts[index * 2] || '');
-                    pushLine(eduTexts[(index * 2) + 1] || '');
-                    pushLine('');
-                });
-
-                const softSkills = language === 'fr'
-                    ? [
-                        'Communication',
-                        'Travail en équipe',
-                        'Résolution de problèmes',
-                        'Adaptabilité',
-                        'Gestion du temps'
-                    ]
-                    : [
-                        'Communication',
-                        'Teamwork',
-                        'Problem solving',
-                        'Adaptability',
-                        'Time management'
-                    ];
-
-                pushLine(text.resumeSkills, 'section');
-                softSkills.forEach((item) => {
-                    pushLine(item);
-                });
+                // Experience
+                pushLine('EXPÉRIENCE PROFESSIONNELLE', 'section');
+                pushLine('');
+                
+                // Exp 1
+                pushLine('Développeur Java - BICI (Projet ASYNC)', 'bold');
+                pushLine('Août 2025 - Présent', 'date');
                 pushLine('');
 
-                const languageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6:not(.title):not(.spoken-lang-item)')
-                    .map((item) => item.trim())
-                    .filter((item) => item.length > 0);
-
-                pushLine(text.resumeLanguages, 'section');
-                Array.from(new Set(languageLines))
-                    .filter((item) => item && item.trim().length > 0)
-                    .forEach((item) => {
-                        pushLine(item);
-                    });
+                // Exp 2
+                pushLine('Coordinateur de Projet - BICI', 'bold');
+                pushLine('Avril 2025 - Juillet 2025', 'date');
                 pushLine('');
 
-                pushLine(text.spokenLanguages, 'section');
-                const spokenLanguageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.spoken-lang-item');
-                (spokenLanguageLines.length > 0 ? spokenLanguageLines : [text.langEnglish, text.langFrench, text.langMalagasy]).forEach((item) => {
-                    pushLine(item);
-                });
+                // Exp 3
+                pushLine('Manager Devis Impression - Grafiky (BICI)', 'bold');
+                pushLine('Juin 2024 - Avril 2025', 'date');
                 pushLine('');
 
-                pushLine(text.getInTouch, 'section');
-                getTextList('.contact-info-card .d-inline').forEach((item) => {
-                    pushLine(item.replace(/\s+/g, ' ').trim());
-                });
+                // Exp 4
+                pushLine('Gestionnaire de tâches embarqué - ASTEK', 'bold');
+                pushLine('Juin 2024 - Août 2024', 'date');
+                pushLine('');
 
+                // Education
+                pushLine('FORMATION ACADEMIQUE', 'section');
+                pushLine('');
+                
+                pushLine('MBDS - Master 2 en Développement Informatique', 'bold');
+                pushLine('Octobre 2025 - Présent', 'date');
+                pushLine('');
+                
+                pushLine('Master 1 - Développement Informatique', 'bold');
+                pushLine('Décembre 2024 - Septembre 2025', 'date');
+                pushLine('');
+                
+                pushLine('Licence - Développement Informatique', 'bold');
+                pushLine('2021 - Juin 2024', 'date');
+                pushLine('');
+
+                // Skills
+                pushLine('COMPETENCES TECHNIQUES', 'section');
+                pushLine('');
+                
+                pushLine('Langages  Java • SQL • C++ • JavaScript • QML', 'skills');
+                pushLine('Bases de Données  PostgreSQL • Oracle • MySQL', 'skills');
+                pushLine('Outils & Frameworks  APJ • Bootstrap • Git • Agile/Scrum', 'skills');
+                pushLine('');
+
+                // Languages
+                pushLine('LANGUES', 'section');
+                pushLine('');
+                pushLine('Français (Natif) • Anglais (Courant)', 'skills');
+                
                 return lines;
             };
 
             const buildCvPdfHtml = (lines) => {
                 const container = document.createElement('div');
                 container.style.background = '#ffffff';
-                container.style.color = '#111111';
-                container.style.fontFamily = 'Arial, sans-serif';
-                container.style.padding = '20px';
-                container.style.width = '794px';
-                container.style.lineHeight = '1.4';
+                container.style.color = '#1a1a1a';
+                container.style.fontFamily = '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
+                container.style.padding = '30px';
+                container.style.width = '750px';
+                container.style.lineHeight = '1.5';
+                container.style.maxWidth = '100%';
 
-                lines.forEach((line) => {
+                lines.forEach((line, index) => {
                     const value = line.value || '';
+                    
                     if (!value) {
                         const spacer = document.createElement('div');
-                        spacer.style.height = '6px';
+                        spacer.style.height = '8px';
                         container.appendChild(spacer);
                         return;
                     }
 
                     const node = document.createElement('div');
                     node.textContent = value;
-                    node.style.margin = '0 0 4px 0';
+                    node.style.margin = '0';
 
                     if (line.style === 'title') {
-                        node.style.fontSize = '28px';
+                        node.style.fontSize = '32px';
                         node.style.fontWeight = '700';
-                        node.style.marginBottom = '6px';
+                        node.style.marginBottom = '3px';
+                        node.style.color = '#0066cc';
+                        node.style.letterSpacing = '-0.5px';
                     } else if (line.style === 'subtitle') {
-                        node.style.fontSize = '16px';
-                        node.style.color = '#444444';
-                        node.style.marginBottom = '10px';
+                        node.style.fontSize = '14px';
+                        node.style.color = '#666666';
+                        node.style.fontWeight = '500';
+                        node.style.marginBottom = '8px';
+                        node.style.letterSpacing = '0.5px';
+                    } else if (line.style === 'contact') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#555555';
+                        node.style.marginBottom = '12px';
+                        node.style.borderBottom = '2px solid #0066cc';
+                        node.style.paddingBottom = '8px';
                     } else if (line.style === 'section') {
-                        node.style.fontSize = '16px';
+                        node.style.fontSize = '13px';
                         node.style.fontWeight = '700';
-                        node.style.marginTop = '10px';
-                        node.style.marginBottom = '6px';
+                        node.style.color = '#ffffff';
+                        node.style.background = '#0066cc';
+                        node.style.padding = '6px 10px';
+                        node.style.marginTop = '12px';
+                        node.style.marginBottom = '8px';
+                        node.style.letterSpacing = '0.5px';
                     } else if (line.style === 'bold') {
                         node.style.fontWeight = '700';
                         node.style.fontSize = '12px';
+                        node.style.color = '#1a1a1a';
+                        node.style.marginTop = '6px';
+                    } else if (line.style === 'date') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#0066cc';
+                        node.style.fontStyle = 'italic';
+                        node.style.marginBottom = '4px';
+                    } else if (line.style === 'skills') {
+                        node.style.fontSize = '11px';
+                        node.style.color = '#333333';
+                        node.style.marginBottom = '4px';
+                        node.style.lineHeight = '1.6';
                     } else {
                         node.style.fontSize = '11px';
+                        node.style.color = '#333333';
+                        node.style.marginBottom = '2px';
                     }
 
                     container.appendChild(node);
@@ -1296,262 +1154,131 @@
                 return container;
             };
 
-            const getProfilePhotoDataUrl = () => {
-                return new Promise((resolve) => {
-                    try {
-                        const profileImage = document.querySelector('.brand-img');
-                        const source = profileImage?.getAttribute('src') || 'assets/imgs/image3.jpeg';
-                        const image = new Image();
-                        image.crossOrigin = 'anonymous';
-
-                        image.onload = function () {
-                            try {
-                                const canvas = document.createElement('canvas');
-                                canvas.width = image.naturalWidth || image.width;
-                                canvas.height = image.naturalHeight || image.height;
-                                const context = canvas.getContext('2d');
-                                if (!context) {
-                                    resolve(null);
-                                    return;
-                                }
-                                context.drawImage(image, 0, 0);
-                                const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
-                                resolve(dataUrl);
-                            } catch (error) {
-                                resolve(null);
-                            }
-                        };
-
-                        image.onerror = function () {
-                            resolve(null);
-                        };
-
-                        image.src = source;
-                    } catch (error) {
-                        resolve(null);
-                    }
-                });
-            };
-
-            const generateCvPdf = async (lang) => {
+            const generateCvPdf = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
-                const lines = buildCvPdfLines(text, language);
-                const profilePhotoDataUrl = await getProfilePhotoDataUrl();
-
-                if (window.jspdf && window.jspdf.jsPDF) {
-                    try {
-                        const jsPDFLib = window.jspdf.jsPDF;
-                        const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                        const pageHeight = 297;
-                        const pageWidth = 210;
-                        const margin = 10;
-                        const gutter = 6;
-                        const headerHeight = 18;
-                        const contentTop = margin + headerHeight;
-                        const contentBottom = pageHeight - 10;
-                        const leftWidth = 62;
-                        const rightWidth = pageWidth - (margin * 2) - gutter - leftWidth;
-                        const leftX = margin;
-                        const rightX = margin + leftWidth + gutter;
-
-                        const titleLine = lines.find((line) => line.style === 'title' && line.value)?.value || 'Michael Raharison';
-                        const subtitleLine = lines.find((line) => line.style === 'subtitle' && line.value)?.value || '';
-
-                        const getSectionLines = (sectionTitle) => {
-                            const sectionIndex = lines.findIndex((line) => line.style === 'section' && line.value === sectionTitle);
-                            if (sectionIndex < 0) {
-                                return [];
-                            }
-                            const sectionLines = [];
-                            for (let index = sectionIndex + 1; index < lines.length; index += 1) {
-                                const line = lines[index];
-                                if (line.style === 'section') {
-                                    break;
-                                }
-                                if (line.value) {
-                                    sectionLines.push(line);
-                                }
-                            }
-                            return sectionLines;
-                        };
-
-                        const skillLines = getSectionLines(text.resumeSkills);
-                        const spokenLanguageLines = getSectionLines(text.spokenLanguages);
-                        const languageLines = getSectionLines(text.resumeLanguages);
-                        const contactLines = getSectionLines(text.getInTouch);
-                        const experienceLines = getSectionLines(text.resumeExperience);
-                        const educationLines = getSectionLines(text.resumeEducation);
-
-                        const drawPageHeader = () => {
-                            doc.setFillColor(248, 250, 252);
-                            doc.rect(0, 0, pageWidth, margin + headerHeight, 'F');
-
-                            if (profilePhotoDataUrl) {
-                                const imageWidth = 20;
-                                const imageHeight = 20;
-                                const imageX = pageWidth - margin - imageWidth;
-                                const imageY = margin - 2;
-                                const imageFormat = profilePhotoDataUrl.indexOf('data:image/png') === 0 ? 'PNG' : 'JPEG';
-                                doc.setDrawColor(203, 213, 225);
-                                doc.roundedRect(imageX - 0.7, imageY - 0.7, imageWidth + 1.4, imageHeight + 1.4, 1.6, 1.6, 'S');
-                                doc.addImage(profilePhotoDataUrl, imageFormat, imageX, imageY, imageWidth, imageHeight);
-                            }
-
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(17);
-                            doc.setTextColor(17, 24, 39);
-                            doc.text(titleLine, margin, margin + 6);
-
-                            doc.setFont('helvetica', 'normal');
-                            doc.setFontSize(9.5);
-                            doc.setTextColor(75, 85, 99);
-                            if (subtitleLine) {
-                                doc.text(subtitleLine, margin, margin + 11);
-                            }
-
-                            doc.setDrawColor(226, 232, 240);
-                            doc.line(margin, margin + 14, pageWidth - margin, margin + 14);
-                        };
-
-                        drawPageHeader();
-
-                        const leftState = { y: contentTop };
-                        const rightState = { y: contentTop };
-
-                        const ensureColumnSpace = (state, neededHeight) => {
-                            return state.y + neededHeight <= contentBottom;
-                        };
-
-                        const drawSectionTitle = (state, x, width, label) => {
-                            if (!ensureColumnSpace(state, 7)) {
-                                return false;
-                            }
-                            doc.setFillColor(11, 94, 215);
-                            doc.rect(x, state.y - 3.5, width, 5.5, 'F');
-                            doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(9.4);
-                            doc.setTextColor(255, 255, 255);
-                            doc.text(label, x + 1.8, state.y + 0.2);
-                            state.y += 6.5;
-                            return true;
-                        };
-
-                        const drawBodyLine = (state, x, width, line, compact) => {
-                            const lineSpacing = compact ? 3.9 : 4.5;
-                            const isBullet = line.value.startsWith('• ');
-                            const textValue = isBullet ? line.value.slice(2) : line.value;
-                            const indent = isBullet ? 2.8 : 0;
-                            const isLinkedIn = textValue.includes('Michael Raharison') || textValue.includes('LinkedIn :');
-                            const isPhone = textValue.includes('+ 261') || textValue.includes('261');
-                            const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
-                            const whatsappUrl = 'https://wa.me/261324908409';
-
-                            if (line.style === 'bold') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(9.1);
-                                doc.setTextColor(31, 41, 55);
-                            } else {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(8.5);
-                                doc.setTextColor(45, 55, 72);
-                            }
-
-                            const parts = doc.splitTextToSize(textValue, width - indent);
-                            if (!ensureColumnSpace(state, parts.length * lineSpacing + 0.8)) {
-                                return false;
-                            }
-
-                            if (isBullet) {
-                                doc.setTextColor(11, 94, 215);
-                                doc.text('•', x, state.y);
-                                if (line.style === 'bold') {
-                                    doc.setTextColor(31, 41, 55);
-                                } else {
-                                    doc.setTextColor(45, 55, 72);
-                                }
-                            }
-
-                            if ((isLinkedIn || isPhone) && parts.length > 0) {
-                                // Add clickable link for LinkedIn or WhatsApp
-                                const linkUrl = isPhone ? whatsappUrl : linkedinUrl;
-                                doc.textWithLink(parts[0], x + indent, state.y, { url: linkUrl });
-                                // Add remaining lines without link
-                                if (parts.length > 1) {
-                                    for (let i = 1; i < parts.length; i++) {
-                                        doc.text(parts[i], x + indent, state.y + (i * lineSpacing));
-                                    }
-                                }
-                            } else {
-                                doc.text(parts, x + indent, state.y);
-                            }
-                            state.y += parts.length * lineSpacing;
-                            return true;
-                        };
-
-                        const drawSection = (state, x, width, title, sectionLines, compact) => {
-                            if (!sectionLines || sectionLines.length === 0) {
-                                return;
-                            }
-                            if (!drawSectionTitle(state, x, width, title)) {
-                                return;
-                            }
-                            sectionLines.forEach((line) => {
-                                drawBodyLine(state, x, width, line, compact);
-                            });
-                            state.y += 1.5;
-                        };
-
-                        drawSection(leftState, leftX, leftWidth, text.resumeSkills, skillLines, true);
-                        drawSection(leftState, leftX, leftWidth, text.resumeLanguages, languageLines, true);
-                        drawSection(leftState, leftX, leftWidth, text.spokenLanguages, spokenLanguageLines, true);
-                        drawSection(leftState, leftX, leftWidth, text.getInTouch, contactLines, true);
-
-                        drawSection(rightState, rightX, rightWidth, text.resumeExperience, experienceLines, false);
-                        drawSection(rightState, rightX, rightWidth, text.resumeEducation, educationLines, false);
-
-                        doc.save(text.cvFileName);
-                        return;
-                    } catch (err) {
-                        console.warn('jsPDF error, falling back:', err);
-                    }
+                
+                const lines = buildCvPdfLines(text);
+                
+                if (lines.length === 0) {
+                    alert('Erreur: Aucun contenu trouvé pour le CV');
+                    return;
                 }
 
-                // Try html2pdf as fallback
-                if (typeof window.html2pdf === 'function' && window.html2canvas) {
-                    try {
-                        const htmlContainer = buildCvPdfHtml(lines);
-                        document.body.appendChild(htmlContainer);
-
-                        window.html2pdf()
-                            .set({
-                                margin: 6,
-                                filename: text.cvFileName,
-                                image: { type: 'jpeg', quality: 0.98 },
-                                html2canvas: { scale: 2, useCORS: true },
-                                jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' }
-                            })
-                            .from(htmlContainer)
-                            .save()
-                            .then(() => {
-                                if (htmlContainer.parentNode) {
-                                    htmlContainer.parentNode.removeChild(htmlContainer);
-                                }
-                            })
-                            .catch(() => {
-                                if (htmlContainer.parentNode) {
-                                    htmlContainer.parentNode.removeChild(htmlContainer);
-                                }
-                                openTextFallback(lines, text);
-                            });
-                        return;
-                    } catch (err) {
-                        console.warn('html2pdf error, falling back:', err);
-                    }
+                // Check if jsPDF is available
+                if (!window.jspdf || !window.jspdf.jsPDF) {
+                    console.error('jsPDF not available!');
+                    alert('Erreur: jsPDF non disponible');
+                    return;
                 }
 
-                // Last resort: text window
-                openTextFallback(lines, text);
+                tryJsPdfGenerate(lines, text);
+            };
+
+            const tryJsPdfGenerate = (lines, text) => {
+                try {
+                    
+                    // Debug: Check what's available
+                    
+                    if (!window.jspdf || !window.jspdf.jsPDF) {
+                        throw new Error('jsPDF library not available on window.jspdf.jsPDF');
+                    }
+
+                    // Create PDF with correct syntax
+                    const pdf = new window.jspdf.jsPDF({ 
+                        orientation: 'portrait',
+                        unit: 'mm', 
+                        format: 'a4'
+                    });
+
+                    const pageWidth = pdf.internal.pageSize.getWidth();
+                    const maxWidth = pageWidth - 20;
+                    const lineHeight = 5;
+                    let yPosition = 15;
+                    let pageNum = 1;
+
+
+                    lines.forEach((line, index) => {
+                        if (!line.value) {
+                            yPosition += 2;
+                            return;
+                        }
+
+                        const value = line.value;
+
+                        // Check for page break
+                        if (yPosition > 270) {
+                            pdf.addPage();
+                            yPosition = 15;
+                            pageNum++;
+                        }
+
+                        // Style the line
+                        if (line.style === 'title') {
+                            pdf.setFontSize(24);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(0, 102, 204);
+                        } else if (line.style === 'subtitle') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(102, 102, 102);
+                        } else if (line.style === 'contact') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(85, 85, 85);
+                        } else if (line.style === 'section') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(255, 255, 255);
+                            pdf.setFillColor(0, 102, 204);
+                            pdf.rect(10, yPosition - 3, maxWidth + 10, 5, 'F');
+                        } else if (line.style === 'bold') {
+                            pdf.setFontSize(11);
+                            pdf.setFont('helvetica', 'bold');
+                            pdf.setTextColor(26, 26, 26);
+                        } else if (line.style === 'date') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'italic');
+                            pdf.setTextColor(0, 102, 204);
+                        } else if (line.style === 'skills') {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(51, 51, 51);
+                        } else {
+                            pdf.setFontSize(10);
+                            pdf.setFont('helvetica', 'normal');
+                            pdf.setTextColor(51, 51, 51);
+                        }
+
+                        // Split text to fit width
+                        const splitText = pdf.splitTextToSize(value, maxWidth);
+                        
+                        // Calculate if we need a page break
+                        const textHeight = splitText.length * (lineHeight - 1);
+                        if (yPosition + textHeight > 270) {
+                            pdf.addPage();
+                            yPosition = 15;
+                            pageNum++;
+                        }
+
+                        // Write the text
+                        pdf.text(splitText, 15, yPosition);
+                        yPosition += textHeight + 1;
+                    });
+
+                    pdf.save(text.cvFileName);
+                    return true;
+
+                } catch (err) {
+                    console.error('❌ jsPDF generation failed:', err);
+                    console.error('Error message:', err.message);
+                    console.error('Error stack:', err.stack);
+                    
+                    // More detailed diagnostics
+                    
+                    alert('Erreur PDF: ' + err.message + '\n\nVérifiez la console (F12) pour plus de détails.');
+                    return false;
+                }
             };
 
             const openTextFallback = (lines, text) => {
@@ -1560,13 +1287,20 @@
                     .filter((val) => val !== '')
                     .join('\n');
 
-                const win = window.open('', '_blank');
-                if (!win) {
-                    alert(text.cvPdfError);
+                if (textLines.length === 0) {
+                    alert('Erreur: Aucun contenu à afficher');
                     return;
                 }
 
-                win.document.write('<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>');
+                const win = window.open('', '_blank');
+                if (!win) {
+                    alert('Impossible d\'ouvrir une nouvelle fenêtre. Vérifiez les blocages de pop-up.');
+                    return;
+                }
+
+                const htmlContent = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>';
+                
+                win.document.write(htmlContent);
                 win.document.close();
                 win.focus();
             };
@@ -1720,38 +1454,18 @@
                     educationSubtitles[4].textContent = text.eduTrainingSubtitle;
                 }
 
-                const softSkillItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
-                if (softSkillItems.length >= 5) {
-                    softSkillItems[0].textContent = text.softSkill1;
-                    softSkillItems[1].textContent = text.softSkill2;
-                    softSkillItems[2].textContent = text.softSkill3;
-                    softSkillItems[3].textContent = text.softSkill4;
-                    softSkillItems[4].textContent = text.softSkill5;
+                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
+                if (skillHeadings.length >= 3) {
+                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
+                    skillHeadings[1].textContent = text.resumeDatabases;
+                    skillHeadings[2].textContent = text.resumeOther;
                 }
 
-                const spokenLanguageTitle = document.querySelector('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.title.text-danger');
-                if (spokenLanguageTitle) {
-                    spokenLanguageTitle.textContent = text.spokenLanguages;
-                }
-
-                const techItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6:not(.title):not(.spoken-lang-item)');
-                if (techItems.length >= 9) {
-                    techItems[0].textContent = text.tech1;
-                    techItems[1].textContent = text.tech2;
-                    techItems[2].textContent = text.tech3;
-                    techItems[3].textContent = text.tech4;
-                    techItems[4].textContent = text.tech5;
-                    techItems[5].textContent = text.tech6;
-                    techItems[6].textContent = text.tech7;
-                    techItems[7].textContent = text.tech8;
-                    techItems[8].textContent = text.tech9;
-                }
-
-                const spokenLanguageItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.spoken-lang-item');
-                if (spokenLanguageItems.length >= 3) {
-                    spokenLanguageItems[0].textContent = text.langEnglish;
-                    spokenLanguageItems[1].textContent = text.langFrench;
-                    spokenLanguageItems[2].textContent = text.langMalagasy;
+                const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
+                if (spokenLanguages.length >= 3) {
+                    spokenLanguages[0].textContent = text.langEnglish;
+                    spokenLanguages[1].textContent = text.langFrench;
+                    spokenLanguages[2].textContent = text.langMalagasy;
                 }
 
                 setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
@@ -1771,12 +1485,11 @@
                 const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
                 if (contactLabels.length >= 3) {
                     const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
-                    const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
-                    const whatsappUrl = 'https://wa.me/261324908409';
+                    const addressValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'IVC 153 bis Ambodivoanjo Ankaraobato, Antananarivo, Madagascar.';
                     const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
 
-                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted"><a href="' + whatsappUrl + '" target="_blank">' + phoneValue + '</a></span>';
-                    contactLabels[1].innerHTML = text.linkedinLabel + '<br> <span class="text-muted"><a href="' + linkedinUrl + '" target="_blank">Michael Raharison</a></span>';
+                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
+                    contactLabels[1].innerHTML = text.addressLabel + '<br> <span class="text-muted">' + addressValue + '</span>';
                     contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
                 }
 
@@ -1794,8 +1507,9 @@
 
             const languageSelect = document.getElementById('languageSelect');
             const downloadCvBtn = document.getElementById('downloadCvBtn');
+            
+            
             const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
-
             applyLanguage(initialLanguage);
 
             if (languageSelect) {
@@ -1808,14 +1522,12 @@
                 downloadCvBtn.addEventListener('click', function () {
                     generateCvPdf(getActiveLanguage());
                 });
+            } else {
+                console.error('❌ downloadCvBtn NOT FOUND! Searched for id="downloadCvBtn"');
             }
         })();
     </script>
 
 
-
-
-
 </body>
-
 </html>
