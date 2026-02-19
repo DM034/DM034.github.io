@@ -797,37 +797,70 @@
                 return container;
             };
 
+            const extractCvDataFromSite = (text, language) => {
+                const profileName = document.querySelector('.header-title')?.textContent?.trim() || 'Michael Raharison';
+                const profileRole = document.querySelector('.header-mono')?.textContent?.trim() || (language === 'en' ? 'Developer' : 'Développeur');
+
+                const contactLines = Array.from(document.querySelectorAll('.contact-info-card .d-inline'))
+                    .map((node) => node.textContent ? node.textContent.replace(/\s+/g, ' ').trim() : '')
+                    .filter(Boolean);
+
+                const experiences = Array.from(document.querySelectorAll('#resume .experience-list .experience-item')).map((item) => ({
+                    role: item.querySelector('.exp-role')?.textContent?.trim() || '',
+                    date: item.querySelector('.exp-date')?.textContent?.trim() || '',
+                    bullets: Array.from(item.querySelectorAll('.exp-bullets li'))
+                        .map((li) => li.textContent ? li.textContent.trim() : '')
+                        .filter(Boolean)
+                })).filter((item) => item.role || item.date);
+
+                const educationCard = document.querySelector('#resume .col-md-6.col-lg-4:nth-child(2) .card-body');
+                const education = [];
+                if (educationCard) {
+                    const dateNodes = Array.from(educationCard.querySelectorAll('h6.title.text-danger'));
+                    dateNodes.forEach((dateNode) => {
+                        let cursor = dateNode.nextElementSibling;
+                        while (cursor && cursor.tagName.toLowerCase() !== 'p') {
+                            cursor = cursor.nextElementSibling;
+                        }
+                        education.push({
+                            title: cursor?.textContent?.trim() || '',
+                            date: dateNode.textContent?.trim() || ''
+                        });
+                    });
+                }
+
+                const skillItems = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6'))
+                    .map((node) => node.textContent ? node.textContent.trim() : '')
+                    .filter((value) => value && !value.includes('Langage') && !value.includes('Language') && !value.includes('Bases de données') && !value.includes('Database') && !value.includes('Autres') && !value.includes('Other'));
+
+                const spokenLanguages = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6'))
+                    .map((node) => node.textContent ? node.textContent.trim() : '')
+                    .filter((value) => ['Français', 'French', 'Anglais', 'English', 'Malagasy'].includes(value));
+
+                return {
+                    profileName,
+                    profileRole,
+                    contactLines,
+                    experiences,
+                    education,
+                    skillsLine: skillItems.join(', '),
+                    spokenLanguagesLine: (spokenLanguages.length ? spokenLanguages : [text.langFrench, text.langEnglish, text.langMalagasy]).join(', ')
+                };
+            };
+
             const generateCvPdf = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
 
-                const staticFileName = text.cvFileName || 'CV_Michael_Raharison_EN.pdf';
-                const downloadLink = document.createElement('a');
-                downloadLink.href = 'assets/pdf/' + staticFileName;
-                downloadLink.download = staticFileName;
-                document.body.appendChild(downloadLink);
-                downloadLink.click();
-                document.body.removeChild(downloadLink);
-                return;
-                
-                const lines = buildCvPdfLines(text);
-                
-                if (lines.length === 0) {
-                    alert('Erreur: Aucun contenu trouvé pour le CV');
-                    return;
-                }
-
-                // Check if jsPDF is available
                 if (!window.jspdf || !window.jspdf.jsPDF) {
-                    console.error('jsPDF not available!');
                     alert('Erreur: jsPDF non disponible');
                     return;
                 }
 
-                tryJsPdfGenerate(lines, text, language);
+                tryJsPdfGenerate(text, language);
             };
 
-            const tryJsPdfGenerate = (lines, text, language) => {
+            const tryJsPdfGenerate = (text, language) => {
                 try {
                     
                     // Debug: Check what's available
@@ -878,10 +911,12 @@
                         return currentY;
                     };
 
+                    const data = extractCvDataFromSite(text, language);
+
                     pdf.setFont('helvetica', 'bold');
                     pdf.setFontSize(20);
                     pdf.setTextColor(0, 102, 204);
-                    pdf.text('Michael Raharison', margin, top);
+                    pdf.text(data.profileName, margin, top);
 
                     const profileTitle = language === 'en'
                         ? 'Java Developer | Project Coordinator'
@@ -908,12 +943,14 @@
                     pdf.setFont('helvetica', 'normal');
                     pdf.setFontSize(10);
                     pdf.setTextColor(90, 90, 90);
-                    pdf.text(profileTitle, margin, top + 6);
+                    pdf.text(data.profileRole || profileTitle, margin, top + 6);
 
                     const contactY = top + 12;
                     pdf.setTextColor(70, 70, 70);
-                    pdf.text('Email: michaeldm034@gmail.com', margin, contactY);
-                    pdf.text(phoneLabel + ': +261 32 49 084 09', margin + 68, contactY);
+                    const contact1 = data.contactLines[0] || 'Email : michaeldm034@gmail.com';
+                    const contact2 = data.contactLines[1] || (phoneLabel + ' : +261 32 49 084 09');
+                    pdf.text(contact1, margin, contactY);
+                    pdf.text(contact2, margin + 68, contactY);
                     pdf.setTextColor(0, 102, 204);
                     pdf.textWithLink('LinkedIn', margin + 140, contactY, { url: 'https://www.linkedin.com/in/michael-raharison-215901288' });
 
@@ -926,30 +963,7 @@
                     let rightY = contactY + 10;
 
                     leftY = addSectionHeader(sectionExperience, leftX, leftY);
-                    const experiences = [
-                        {
-                            role: text.roleJavaDeveloper,
-                            date: text.expDate1,
-                            bullets: [text.exp0Bullet1, text.exp0Bullet2, text.exp0Bullet3, text.exp0Bullet4]
-                        },
-                        {
-                            role: text.roleProjectCoordinator,
-                            date: text.expDate2,
-                            bullets: [text.exp1Bullet1, text.exp1Bullet2, text.exp1Bullet3, text.exp1Bullet4]
-                        },
-                        {
-                            role: text.rolePrintingQuote,
-                            date: text.expDate3,
-                            bullets: [text.exp2Bullet1, text.exp2Bullet2, text.exp2Bullet3, text.exp2Bullet4]
-                        },
-                        {
-                            role: text.roleEmbeddedTask,
-                            date: text.expDate4,
-                            bullets: [text.exp3Bullet1, text.exp3Bullet2, text.exp3Bullet3]
-                        }
-                    ];
-
-                    experiences.forEach((exp) => {
+                    data.experiences.forEach((exp) => {
                         leftY = addWrapped(exp.role, leftX, leftY, 'bold', 9.5, [30, 30, 30]);
                         leftY = addWrapped(exp.date, leftX, leftY, 'italic', 8.5, [0, 102, 204]);
                         leftY = addBullets(exp.bullets, leftX, leftY + 1);
@@ -957,29 +971,20 @@
                     });
 
                     rightY = addSectionHeader(sectionEducation, rightX, rightY);
-                    const education = [
-                        { title: text.eduM2, date: text.eduDate1 },
-                        { title: text.eduM1, date: text.eduDate2 },
-                        { title: text.eduBachelor, date: text.eduDate3 },
-                        { title: text.eduBaccalaureate, date: text.eduDate4 },
-                        { title: text.eduTraining, date: text.eduDate5 }
-                    ];
-
-                    education.forEach((edu) => {
+                    data.education.forEach((edu) => {
                         rightY = addWrapped(edu.title, rightX, rightY, 'bold', 9.5, [30, 30, 30]);
                         rightY = addWrapped(edu.date, rightX, rightY, 'italic', 8.5, [0, 102, 204]);
                         rightY += 2;
                     });
 
                     rightY = addSectionHeader(sectionSkills, rightX, rightY + 2);
-                    rightY = addWrapped(skillsLine1, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped(data.skillsLine || skillsLine1, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
                     rightY = addWrapped(skillsLine2, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
                     rightY = addWrapped(skillsLine3, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
                     rightY = addSectionHeader(sectionLanguages, rightX, rightY + 2);
-                    rightY = addWrapped(spokenLanguagesLine, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped(data.spokenLanguagesLine || spokenLanguagesLine, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
 
-                    const outputFileName = text.cvFileName.replace('.pdf', '_colonne.pdf');
-                    pdf.save(outputFileName);
+                    pdf.save(text.cvFileName);
                     return true;
 
                 } catch (err) {
