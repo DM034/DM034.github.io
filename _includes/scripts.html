@@ -352,31 +352,35 @@
 
                     const pageWidth = pdf.internal.pageSize.getWidth();
                     const pageHeight = pdf.internal.pageSize.getHeight();
-                    const margin = 3;
-                    const top = 12;
-                    const leftColWidth = 68;
-                    const colGap = 6;
+                    const layoutScale = Math.min(pageWidth / 210, pageHeight / 297);
+                    const s = (value) => value * layoutScale;
+
+                    const margin = Math.max(s(3), pageWidth * 0.014);
+                    const top = Math.max(s(12), pageHeight * 0.035);
+                    const usableWidth = pageWidth - (margin * 2);
+                    const leftColWidth = usableWidth * 0.34;
+                    const colGap = usableWidth * 0.03;
                     const rightColWidth = pageWidth - (margin * 2) - leftColWidth - colGap;
                     const leftX = margin;
                     const rightX = leftX + leftColWidth + colGap;
 
                     const addSectionHeader = (title, x, y, width) => {
                         pdf.setFillColor(25, 101, 207);
-                        pdf.rect(x, y - 4, width, 5, 'F');
+                        pdf.rect(x, y - s(4), width, s(5), 'F');
                         pdf.setTextColor(255, 255, 255);
                         pdf.setFont('helvetica', 'bold');
-                        pdf.setFontSize(8.7);
-                        pdf.text(title, x + 2, y - 0.2);
-                        return y + 4;
+                        pdf.setFontSize(s(8.7));
+                        pdf.text(title, x + s(2), y - s(0.2));
+                        return y + s(4);
                     };
 
                     const addWrapped = (value, x, y, width, font = 'normal', size = 8.3, color = [38, 44, 56], lineHeight = 3.9) => {
                         pdf.setFont('helvetica', font);
-                        pdf.setFontSize(size);
+                        pdf.setFontSize(s(size));
                         pdf.setTextColor(color[0], color[1], color[2]);
-                        const split = pdf.splitTextToSize(value, width - 4);
-                        pdf.text(split, x + 2, y);
-                        return y + (split.length * lineHeight);
+                        const split = pdf.splitTextToSize(value, width - s(4));
+                        pdf.text(split, x + s(2), y);
+                        return y + (split.length * s(lineHeight));
                     };
 
                     const addBullets = (items, x, y, width) => {
@@ -396,29 +400,29 @@
                     };
 
                     const addLabelWithLinkValue = (label, value, href, x, y, width) => {
-                        const left = x + 2;
+                        const left = x + s(2);
                         const line = y;
 
                         pdf.setFont('helvetica', 'normal');
-                        pdf.setFontSize(8.3);
+                        pdf.setFontSize(s(8.3));
                         pdf.setTextColor(28, 34, 44);
 
                         const labelText = (label || '') + ' : ';
                         pdf.text(labelText, left, line);
 
                         const labelWidth = pdf.getTextWidth(labelText);
-                        const valueMaxWidth = Math.max(10, width - 6 - labelWidth);
+                        const valueMaxWidth = Math.max(s(10), width - s(6) - labelWidth);
                         const valueParts = pdf.splitTextToSize(value || '', valueMaxWidth);
 
                         if (valueParts.length > 0) {
                             pdf.setTextColor(20, 88, 185);
                             pdf.textWithLink(valueParts[0], left + labelWidth, line, { url: href });
                             for (let index = 1; index < valueParts.length; index += 1) {
-                                pdf.text(valueParts[index], left, line + (index * 3.8));
+                                pdf.text(valueParts[index], left, line + (index * s(3.8)));
                             }
                         }
 
-                        return line + (Math.max(1, valueParts.length) * 3.8);
+                        return line + (Math.max(1, valueParts.length) * s(3.8));
                     };
 
                     const normalizeImageToDataUrl = (url) => {
@@ -481,15 +485,15 @@
                         }
 
                         pdf.setFont('helvetica', 'bold');
-                        pdf.setFontSize(8.2);
+                        pdf.setFontSize(s(8.2));
                         const textW = pdf.getTextWidth(label);
-                        const badgeW = Math.min(width - 4, Math.max(24, textW + 4));
+                        const badgeW = Math.min(width - s(4), Math.max(s(24), textW + s(4)));
 
                         pdf.setFillColor(225, 236, 255);
-                        pdf.rect(x + 2, y - 2.8, badgeW, 4.6, 'F');
+                        pdf.rect(x + s(2), y - s(2.8), badgeW, s(4.6), 'F');
                         pdf.setTextColor(20, 88, 185);
-                        pdf.text(label, x + 3.2, y + 0.2);
-                        return y + 4.8;
+                        pdf.text(label, x + s(3.2), y + s(0.2));
+                        return y + s(4.8);
                     };
 
                     const data = extractCvDataFromSite(text, language);
@@ -520,58 +524,58 @@
                     pdf.rect(0, 0, pageWidth, pageHeight, 'F');
 
                     pdf.setFont('helvetica', 'bold');
-                    pdf.setFontSize(15);
+                    pdf.setFontSize(s(15));
                     pdf.setTextColor(23, 31, 47);
                     pdf.text(data.profileName, margin, top);
 
                     pdf.setFont('helvetica', 'normal');
-                    pdf.setFontSize(9.5);
+                    pdf.setFontSize(s(9.5));
                     pdf.setTextColor(59, 68, 83);
-                    pdf.text(data.profileRole || profileTitle, margin, top + 5);
+                    pdf.text(data.profileRole || profileTitle, margin, top + s(5));
 
-                    const imageW = 22;
-                    const imageH = 22;
+                    const imageW = Math.max(s(18), Math.min(s(24), rightColWidth * 0.26));
+                    const imageH = imageW;
                     const imageX = pageWidth - margin - imageW;
-                    const imageY = top - 7;
+                    const imageY = top - s(7);
 
                     const renderContent = (imageData) => {
-                        const contentStartY = imageData ? Math.max(top + 13, imageY + imageH + 6) : (top + 13);
+                        const contentStartY = imageData ? Math.max(top + s(13), imageY + imageH + s(6)) : (top + s(13));
 
                         let leftY = contentStartY;
                         let rightY = contentStartY;
 
                         leftY = addSectionHeader(sectionSkills, leftX, leftY, leftColWidth);
-                        leftY = addPlainList(softSkills, leftX, leftY + 0.5, leftColWidth);
-                        leftY += 1;
+                        leftY = addPlainList(softSkills, leftX, leftY + s(0.5), leftColWidth);
+                        leftY += s(1);
 
                         leftY = addSectionHeader(sectionTech, leftX, leftY, leftColWidth);
-                        leftY = addPlainList(techItems, leftX, leftY + 0.5, leftColWidth);
-                        leftY += 1;
+                        leftY = addPlainList(techItems, leftX, leftY + s(0.5), leftColWidth);
+                        leftY += s(1);
 
                         leftY = addSectionHeader(sectionSpoken, leftX, leftY, leftColWidth);
-                        leftY = addPlainList(spokenItems, leftX, leftY + 0.5, leftColWidth);
-                        leftY += 1;
+                        leftY = addPlainList(spokenItems, leftX, leftY + s(0.5), leftColWidth);
+                        leftY += s(1);
 
                         leftY = addSectionHeader(sectionContact, leftX, leftY, leftColWidth);
-                        leftY = addLabelWithLinkValue((language === 'en' ? 'Phone' : 'Téléphone'), data.phoneLine, data.whatsappHref, leftX, leftY + 0.5, leftColWidth);
+                        leftY = addLabelWithLinkValue((language === 'en' ? 'Phone' : 'Téléphone'), data.phoneLine, data.whatsappHref, leftX, leftY + s(0.5), leftColWidth);
                         leftY = addLabelWithLinkValue('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
                         leftY = addWrapped('Email : ' + data.emailLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
 
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
                         data.experiences.forEach((exp) => {
-                            rightY = addWrapped(exp.role, rightX, rightY + 0.5, rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
-                            rightY = addDateBadge(exp.date, rightX, rightY + 0.3, rightColWidth);
-                            rightY = addBullets(exp.bullets, rightX, rightY + 0.4, rightColWidth);
+                            rightY = addWrapped(exp.role, rightX, rightY + s(0.5), rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
+                            rightY = addDateBadge(exp.date, rightX, rightY + s(0.3), rightColWidth);
+                            rightY = addBullets(exp.bullets, rightX, rightY + s(0.4), rightColWidth);
                             pdf.setDrawColor(225, 229, 236);
-                            pdf.line(rightX + 2, rightY + 0.3, rightX + rightColWidth - 2, rightY + 0.3);
-                            rightY += 2.1;
+                            pdf.line(rightX + s(2), rightY + s(0.3), rightX + rightColWidth - s(2), rightY + s(0.3));
+                            rightY += s(2.1);
                         });
 
-                        rightY = addSectionHeader(sectionEducation, rightX, rightY + 0.4, rightColWidth);
+                        rightY = addSectionHeader(sectionEducation, rightX, rightY + s(0.4), rightColWidth);
                         data.education.forEach((edu) => {
-                            rightY = addWrapped(edu.date, rightX, rightY + 0.3, rightColWidth, 'bold', 9.3, [31, 41, 59], 4.1);
+                            rightY = addWrapped(edu.date, rightX, rightY + s(0.3), rightColWidth, 'bold', 9.3, [31, 41, 59], 4.1);
                             rightY = addWrapped(edu.title, rightX, rightY, rightColWidth, 'normal', 9.1, [38, 44, 56], 4);
-                            rightY += 0.8;
+                            rightY += s(0.8);
                         });
 
                         if (imageData) {
