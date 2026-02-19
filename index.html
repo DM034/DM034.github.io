@@ -1289,36 +1289,37 @@
                     pushLine('');
                 });
 
-                pushLine(text.resumeSkills, 'section');
                 const rawSkillLines = getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
+                const blockedSkillHeadings = [
+                    'langage',
+                    'language',
+                    'languages',
+                    'bases de données',
+                    'base de données',
+                    'database',
+                    'databases',
+                    'autres',
+                    'other'
+                ];
                 const spokenLanguageKeywords = ['français', 'french', 'anglais', 'english', 'malagasy'];
-                rawSkillLines
+
+                const cleanSkillLines = Array.from(new Set(rawSkillLines
+                    .map((item) => item.trim())
+                    .filter((item) => item.length > 0)
                     .filter((item) => {
-                        const normalized = item.trim().toLowerCase();
-                        if (!normalized) {
-                            return false;
-                        }
-                        if (normalized === 'langage' || normalized === 'language' || normalized === 'bases de données' || normalized === 'autres') {
-                            return false;
-                        }
-                        return !spokenLanguageKeywords.includes(normalized);
-                    })
-                    .forEach((item) => {
-                        pushLine(item);
-                    });
+                        const normalized = item.toLowerCase();
+                        return !blockedSkillHeadings.includes(normalized) && !spokenLanguageKeywords.includes(normalized);
+                    })));
+
+                pushLine(text.resumeSkills, 'section');
+                cleanSkillLines.forEach((item) => {
+                    pushLine(item);
+                });
                 pushLine('');
 
+                const languageLines = [text.langEnglish, text.langFrench, text.langMalagasy];
+
                 pushLine(text.resumeLanguages, 'section');
-                const languageCandidates = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6')
-                    .filter((item) => {
-                        const normalized = item.trim().toLowerCase();
-                        return ['français', 'french', 'anglais', 'english', 'malagasy'].includes(normalized);
-                    });
-
-                const languageLines = languageCandidates.length > 0
-                    ? languageCandidates
-                    : [text.langEnglish, text.langFrench, text.langMalagasy];
-
                 Array.from(new Set(languageLines))
                     .filter((item) => item && item.trim().length > 0)
                     .forEach((item) => {
