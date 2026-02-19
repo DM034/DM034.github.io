@@ -1112,7 +1112,7 @@
                     errorMessage: 'Oups ! Une erreur est survenue. Veuillez réessayer.',
                     getInTouch: 'Me contacter',
                     phoneLabel: 'Téléphone :',
-                    addressLabel: 'Adresse :',
+                    linkedinLabel: 'LinkedIn :',
                     emailLabel: 'Email :',
                     downloadCvButton: 'Télécharger CV PDF',
                     cvFileName: 'CV_Michael_Raharison_FR.pdf',
@@ -1233,7 +1233,7 @@
                     errorMessage: 'Oops! Something went wrong. Please try again.',
                     getInTouch: 'Get in touch',
                     phoneLabel: 'Phone :',
-                    addressLabel: 'Address :',
+                    linkedinLabel: 'LinkedIn :',
                     emailLabel: 'Email :',
                     downloadCvButton: 'Download CV PDF',
                     cvFileName: 'CV_Michael_Raharison_EN.pdf',
@@ -1881,11 +1881,11 @@
                 const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
                 if (contactLabels.length >= 3) {
                     const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
-                    const addressValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'IVC 153 bis Ambodivoanjo Ankaraobato, Antananarivo, Madagascar.';
+                    const linkedinValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'linkedin.com/in/michaelraharison';
                     const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
 
                     contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
-                    contactLabels[1].innerHTML = text.addressLabel + '<br> <span class="text-muted">' + addressValue + '</span>';
+                    contactLabels[1].innerHTML = text.linkedinLabel + '<br> <span class="text-muted">' + linkedinValue + '</span>';
                     contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
                 }
 
