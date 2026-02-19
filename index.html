@@ -1294,7 +1294,7 @@
                 container.appendChild(heading);
             };
 
-            const buildCvPdfLines = (text) => {
+            const buildCvPdfLines = (text, language) => {
                 const lines = [];
                 const pushLine = (value = '', style = 'normal') => {
                     lines.push({ value, style });
@@ -1469,7 +1469,7 @@
             const generateCvPdf = async (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
-                const lines = buildCvPdfLines(text);
+                const lines = buildCvPdfLines(text, language);
                 const profilePhotoDataUrl = await getProfilePhotoDataUrl();
 
                 if (window.jspdf && window.jspdf.jsPDF) {
