@@ -524,20 +524,30 @@
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                            <h6 class="title text-danger">Langage</h6>
+                            <h6>Communication</h6>
+                            <h6>Travail en équipe</h6>
+                            <h6>Résolution de problèmes</h6>
+                            <h6>Adaptabilité</h6>
+                            <h6>Gestion du temps</h6>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2">Langages</h4>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="card-body pb-2">
                             <h6>Java</h6>
                             <h6>C++</h6>
                             <h6>C#</h6>
                             <h6>.NET</h6>
-                            <h6 class="title text-danger">Bases de données</h6>
                             <h6>PostgreSQL</h6>
                             <h6>Oracle</h6>
                             <h6>MySQL</h6>
-                            <h6 class="title text-danger">Autres</h6>
                             <h6>Linux</h6>
                             <h6>Git</h6>
-                            <h6>Français</h6>
-                            <h6>Malagasy</h6>
                         </div>
                     </div>
                 </div>
@@ -1021,6 +1031,20 @@
                     resumeLanguagesLabel: 'Langages',
                     resumeDatabases: 'Bases de données',
                     resumeOther: 'Autres',
+                    softSkill1: 'Communication',
+                    softSkill2: 'Travail en équipe',
+                    softSkill3: 'Résolution de problèmes',
+                    softSkill4: 'Adaptabilité',
+                    softSkill5: 'Gestion du temps',
+                    tech1: 'Java',
+                    tech2: 'C++',
+                    tech3: 'C#',
+                    tech4: '.NET',
+                    tech5: 'PostgreSQL',
+                    tech6: 'Oracle',
+                    tech7: 'MySQL',
+                    tech8: 'Linux',
+                    tech9: 'Git',
                     expDate1: 'Août 2025 - Présent',
                     expDate2: 'Avril 2025 - Juillet 2025',
                     expDate3: 'Juin 2024 - Avril 2025',
@@ -1127,6 +1151,20 @@
                     resumeLanguagesLabel: 'Language',
                     resumeDatabases: 'Database',
                     resumeOther: 'Other',
+                    softSkill1: 'Communication',
+                    softSkill2: 'Teamwork',
+                    softSkill3: 'Problem solving',
+                    softSkill4: 'Adaptability',
+                    softSkill5: 'Time management',
+                    tech1: 'Java',
+                    tech2: 'C++',
+                    tech3: 'C#',
+                    tech4: '.NET',
+                    tech5: 'PostgreSQL',
+                    tech6: 'Oracle',
+                    tech7: 'MySQL',
+                    tech8: 'Linux',
+                    tech9: 'Git',
                     expDate1: 'August 2025 - Present',
                     expDate2: 'April 2025 - July 2025',
                     expDate3: 'June 2024 - April 2025',
@@ -1289,28 +1327,6 @@
                     pushLine('');
                 });
 
-                const rawSkillLines = getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
-                const blockedSkillHeadings = [
-                    'langage',
-                    'language',
-                    'languages',
-                    'bases de données',
-                    'base de données',
-                    'database',
-                    'databases',
-                    'autres',
-                    'other'
-                ];
-                const spokenLanguageKeywords = ['français', 'french', 'anglais', 'english', 'malagasy'];
-
-                const cleanSkillLines = Array.from(new Set(rawSkillLines
-                    .map((item) => item.trim())
-                    .filter((item) => item.length > 0)
-                    .filter((item) => {
-                        const normalized = item.toLowerCase();
-                        return !blockedSkillHeadings.includes(normalized) && !spokenLanguageKeywords.includes(normalized);
-                    })));
-
                 const softSkills = language === 'fr'
                     ? [
                         'Communication',
@@ -1333,7 +1349,9 @@
                 });
                 pushLine('');
 
-                const languageLines = cleanSkillLines;
+                const languageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6')
+                    .map((item) => item.trim())
+                    .filter((item) => item.length > 0);
 
                 pushLine(text.resumeLanguages, 'section');
                 Array.from(new Set(languageLines))
@@ -1797,18 +1815,26 @@
                     educationSubtitles[4].textContent = text.eduTrainingSubtitle;
                 }
 
-                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
-                if (skillHeadings.length >= 3) {
-                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
-                    skillHeadings[1].textContent = text.resumeDatabases;
-                    skillHeadings[2].textContent = text.resumeOther;
+                const softSkillItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
+                if (softSkillItems.length >= 5) {
+                    softSkillItems[0].textContent = text.softSkill1;
+                    softSkillItems[1].textContent = text.softSkill2;
+                    softSkillItems[2].textContent = text.softSkill3;
+                    softSkillItems[3].textContent = text.softSkill4;
+                    softSkillItems[4].textContent = text.softSkill5;
                 }
 
-                const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
-                if (spokenLanguages.length >= 3) {
-                    spokenLanguages[0].textContent = text.langEnglish;
-                    spokenLanguages[1].textContent = text.langFrench;
-                    spokenLanguages[2].textContent = text.langMalagasy;
+                const techItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
+                if (techItems.length >= 9) {
+                    techItems[0].textContent = text.tech1;
+                    techItems[1].textContent = text.tech2;
+                    techItems[2].textContent = text.tech3;
+                    techItems[3].textContent = text.tech4;
+                    techItems[4].textContent = text.tech5;
+                    techItems[5].textContent = text.tech6;
+                    techItems[6].textContent = text.tech7;
+                    techItems[7].textContent = text.tech8;
+                    techItems[8].textContent = text.tech9;
                 }
 
                 setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
