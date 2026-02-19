@@ -985,8 +985,6 @@
 
     <script>
         (function () {
-            console.log('✓ Script IIFE started');
-            
             const translations = {
                 fr: {
                     pageTitle: 'Michael Raharison - Développeur',
@@ -1371,72 +1369,109 @@
             };
 
             const generateCvPdf = (lang) => {
-                console.log('=== PDF Generation Started ===');
-                console.log('  Language:', lang);
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
                 const lines = buildCvPdfLines(text);
-                console.log('  CV lines built:', lines.length);
 
-                // Try jsPDF first
-                console.log('  Checking jsPDF availability...');
-                console.log('    window.jspdf:', !!window.jspdf);
-                if (window.jspdf) console.log('    window.jspdf.jsPDF:', !!window.jspdf.jsPDF);
-                
                 if (window.jspdf && window.jspdf.jsPDF) {
-                    console.log('  ✓ jsPDF is available, generating...');
                     try {
                         const jsPDFLib = window.jspdf.jsPDF;
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
-                        const maxWidth = 185;
                         const pageHeight = 297;
-                        let y = 14;
+                        const marginLeft = 14;
+                        const marginRight = 14;
+                        const maxWidth = 210 - marginLeft - marginRight;
+                        const sectionHeight = 7;
+                        let y = 16;
+
+                        const ensureSpace = (height) => {
+                            if (y + height > (pageHeight - 14)) {
+                                doc.addPage();
+                                y = 16;
+                            }
+                        };
+
+                        const setBodyStyle = () => {
+                            doc.setFont('helvetica', 'normal');
+                            doc.setFontSize(11);
+                            doc.setTextColor(34, 34, 34);
+                        };
 
                         lines.forEach((line) => {
                             if (!line.value) {
-                                y += 3;
+                                y += 4;
                                 return;
                             }
 
                             if (line.style === 'title') {
                                 doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(20);
-                            } else if (line.style === 'section') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(13);
-                            } else if (line.style === 'bold') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(11);
-                            } else if (line.style === 'subtitle') {
+                                doc.setFontSize(22);
+                                doc.setTextColor(17, 24, 39);
+                                const parts = doc.splitTextToSize(line.value, maxWidth);
+                                ensureSpace(parts.length * 8);
+                                doc.text(parts, marginLeft, y);
+                                y += parts.length * 8;
+                                return;
+                            }
+
+                            if (line.style === 'subtitle') {
                                 doc.setFont('helvetica', 'normal');
                                 doc.setFontSize(12);
-                            } else {
-                                doc.setFont('helvetica', 'normal');
+                                doc.setTextColor(75, 85, 99);
+                                const parts = doc.splitTextToSize(line.value, maxWidth);
+                                ensureSpace(parts.length * 6);
+                                doc.text(parts, marginLeft, y);
+                                y += parts.length * 6;
+                                return;
+                            }
+
+                            if (line.style === 'section') {
+                                ensureSpace(sectionHeight + 4);
+                                doc.setFillColor(11, 94, 215);
+                                doc.rect(marginLeft, y - 4, maxWidth, sectionHeight, 'F');
+                                doc.setFont('helvetica', 'bold');
                                 doc.setFontSize(11);
+                                doc.setTextColor(255, 255, 255);
+                                doc.text(line.value, marginLeft + 2, y + 1);
+                                y += sectionHeight + 3;
+                                setBodyStyle();
+                                return;
                             }
 
-                            const parts = doc.splitTextToSize(line.value, maxWidth);
-                            const step = line.style === 'title' ? 8 : 6;
-
-                            if (y + (parts.length * step) > (pageHeight - 12)) {
-                                doc.addPage();
-                                y = 14;
+                            if (line.style === 'bold') {
+                                doc.setFont('helvetica', 'bold');
+                                doc.setFontSize(11);
+                                doc.setTextColor(31, 41, 55);
+                            } else {
+                                setBodyStyle();
                             }
-                            doc.text(parts, 12, y);
+
+                            const isBullet = line.value.startsWith('• ');
+                            const content = isBullet ? line.value.slice(2) : line.value;
+                            const indent = isBullet ? 4 : 0;
+                            const textWidth = maxWidth - indent;
+                            const parts = doc.splitTextToSize(content, textWidth);
+                            const step = 5.5;
+
+                            ensureSpace(parts.length * step);
+                            if (isBullet) {
+                                doc.setTextColor(11, 94, 215);
+                                doc.text('•', marginLeft, y);
+                                if (line.style === 'bold') {
+                                    doc.setTextColor(31, 41, 55);
+                                } else {
+                                    doc.setTextColor(34, 34, 34);
+                                }
+                            }
+                            doc.text(parts, marginLeft + indent, y);
                             y += parts.length * step;
                         });
 
-                        console.log('  ✓ PDF content rendered, saving...');
-                        console.log('    Filename:', text.cvFileName);
                         doc.save(text.cvFileName);
-                        console.log('  ✓✓✓ PDF SAVED SUCCESSFULLY!');
                         return;
                     } catch (err) {
-                        console.error('❌ jsPDF error:', err);
-                        console.warn('  Falling back to html2pdf...');
+                        console.warn('jsPDF error, falling back:', err);
                     }
-                } else {
-                    console.warn('❌ jsPDF not available, trying html2pdf...');
                 }
 
                 // Try html2pdf as fallback
@@ -1688,11 +1723,7 @@
             const languageSelect = document.getElementById('languageSelect');
             const downloadCvBtn = document.getElementById('downloadCvBtn');
             const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
-            
-            console.log('✓ Looking for elements...');
-            console.log('  languageSelect:', !!languageSelect, languageSelect);
-            console.log('  downloadCvBtn:', !!downloadCvBtn, downloadCvBtn);
-            
+
             applyLanguage(initialLanguage);
 
             if (languageSelect) {
@@ -1702,15 +1733,9 @@
             }
 
             if (downloadCvBtn) {
-                console.log('✓ Binding PDF button click handler...');
                 downloadCvBtn.addEventListener('click', function () {
-                    console.log('✓✓✓ PDF BUTTON CLICKED! Calling generateCvPdf...');
-                    console.log('  Active language:', getActiveLanguage());
                     generateCvPdf(getActiveLanguage());
                 });
-                console.log('✓ PDF button handler bound successfully');
-            } else {
-                console.error('❌ downloadCvBtn NOT FOUND!');
             }
         })();
     </script>
