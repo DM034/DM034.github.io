@@ -910,6 +910,8 @@
 
                     pdf.setDrawColor(220, 220, 220);
                     pdf.line(margin, contactY + 3, pageWidth - margin, contactY + 3);
+                    pdf.setDrawColor(235, 235, 235);
+                    pdf.line(leftX + colWidth + (colGap / 2), contactY + 6, leftX + colWidth + (colGap / 2), 285);
 
                     let leftY = contactY + 10;
                     let rightY = contactY + 10;
@@ -967,7 +969,8 @@
                     rightY = addSectionHeader(sectionLanguages, rightX, rightY + 2);
                     rightY = addWrapped(spokenLanguagesLine, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
 
-                    pdf.save(text.cvFileName);
+                    const outputFileName = text.cvFileName.replace('.pdf', '_colonne.pdf');
+                    pdf.save(outputFileName);
                     return true;
 
                 } catch (err) {
