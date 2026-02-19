@@ -32,27 +32,32 @@ $(document).ready(function(){
 });
 
 // protfolio filters
-$(window).on("load", function() {
+$(document).ready(function() {
     var t = $(".portfolio-container");
     t.isotope({
-        filter: ".new",
-        animationOptions: {
-            duration: 750,
-            easing: "linear",
-            queue: !1
-        }
-    }), $(".filters a").click(function() {
-        $(".filters .active").removeClass("active"), $(this).addClass("active");
-        var i = $(this).attr("data-filter");
-        return t.isotope({
-            filter: i,
-            animationOptions: {
-                duration: 750,
-                easing: "linear",
-                queue: !1
-            }
-        }), !1
+        itemSelector: '.col-md-6',
+        layoutMode: 'fitRows',
+        filter: ".new"
     });
+    
+    $(".filters a").click(function() {
+        $(".filters .active").removeClass("active");
+        $(this).addClass("active");
+        var i = $(this).attr("data-filter");
+        t.isotope({
+            filter: i
+        });
+        return false;
+    });
+});
+
+$(window).on("load", function() {
+    var t = $(".portfolio-container");
+    if (t.length) {
+        setTimeout(function() {
+            t.isotope('reLayout');
+        }, 500);
+    }
 });
 
 
