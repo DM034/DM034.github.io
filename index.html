@@ -1290,15 +1290,40 @@
                 });
 
                 pushLine(text.resumeSkills, 'section');
-                getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6').forEach((item) => {
-                    pushLine(item);
-                });
+                const rawSkillLines = getTextList('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
+                const spokenLanguageKeywords = ['français', 'french', 'anglais', 'english', 'malagasy'];
+                rawSkillLines
+                    .filter((item) => {
+                        const normalized = item.trim().toLowerCase();
+                        if (!normalized) {
+                            return false;
+                        }
+                        if (normalized === 'langage' || normalized === 'language' || normalized === 'bases de données' || normalized === 'autres') {
+                            return false;
+                        }
+                        return !spokenLanguageKeywords.includes(normalized);
+                    })
+                    .forEach((item) => {
+                        pushLine(item);
+                    });
                 pushLine('');
 
                 pushLine(text.resumeLanguages, 'section');
-                getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6').forEach((item) => {
-                    pushLine(item);
-                });
+                const languageCandidates = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6')
+                    .filter((item) => {
+                        const normalized = item.trim().toLowerCase();
+                        return ['français', 'french', 'anglais', 'english', 'malagasy'].includes(normalized);
+                    });
+
+                const languageLines = languageCandidates.length > 0
+                    ? languageCandidates
+                    : [text.langEnglish, text.langFrench, text.langMalagasy];
+
+                Array.from(new Set(languageLines))
+                    .filter((item) => item && item.trim().length > 0)
+                    .forEach((item) => {
+                        pushLine(item);
+                    });
                 pushLine('');
 
                 pushLine(text.getInTouch, 'section');
