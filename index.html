@@ -1260,17 +1260,6 @@
                 pushLine(document.querySelector('.header-mono')?.textContent?.trim() || '', 'subtitle');
                 pushLine('');
 
-                pushLine(text.aboutWho, 'section');
-                const aboutIntro = document.querySelector('#about .about-card:first-child .mb-3')?.textContent?.trim();
-                if (aboutIntro) pushLine(aboutIntro);
-                pushLine('');
-
-                pushLine(text.aboutInfo, 'section');
-                getTextList('#about .about-card:nth-child(2) .info li').forEach((item) => {
-                    pushLine(item.replace(/\s+/g, ' ').trim());
-                });
-                pushLine('');
-
                 pushLine(text.resumeExperience, 'section');
                 const expDates = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
                 const expTexts = getTextList('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
@@ -1379,11 +1368,11 @@
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
                         const pageHeight = 297;
                         const pageWidth = 210;
-                        const margin = 12;
+                        const margin = 10;
                         const gutter = 6;
-                        const headerHeight = 24;
+                        const headerHeight = 18;
                         const contentTop = margin + headerHeight;
-                        const contentBottom = pageHeight - 12;
+                        const contentBottom = pageHeight - 10;
                         const leftWidth = 62;
                         const rightWidth = pageWidth - (margin * 2) - gutter - leftWidth;
                         const leftX = margin;
@@ -1410,87 +1399,75 @@
                             return sectionLines;
                         };
 
-                        const profileLines = getSectionLines(text.aboutWho);
-                        const infoLines = getSectionLines(text.aboutInfo);
                         const skillLines = getSectionLines(text.resumeSkills);
                         const languageLines = getSectionLines(text.resumeLanguages);
                         const contactLines = getSectionLines(text.getInTouch);
                         const experienceLines = getSectionLines(text.resumeExperience);
                         const educationLines = getSectionLines(text.resumeEducation);
 
-                        const ensurePageCount = (targetPage) => {
-                            while (doc.getNumberOfPages() < targetPage) {
-                                doc.addPage();
-                            }
-                        };
-
-                        const drawPageHeader = (pageNumber) => {
-                            doc.setPage(pageNumber);
+                        const drawPageHeader = () => {
                             doc.setFillColor(248, 250, 252);
                             doc.rect(0, 0, pageWidth, margin + headerHeight, 'F');
 
                             doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(20);
+                            doc.setFontSize(17);
                             doc.setTextColor(17, 24, 39);
-                            doc.text(titleLine, margin, margin + 7);
+                            doc.text(titleLine, margin, margin + 6);
 
                             doc.setFont('helvetica', 'normal');
-                            doc.setFontSize(11);
+                            doc.setFontSize(9.5);
                             doc.setTextColor(75, 85, 99);
                             if (subtitleLine) {
-                                doc.text(subtitleLine, margin, margin + 13);
+                                doc.text(subtitleLine, margin, margin + 11);
                             }
 
                             doc.setDrawColor(226, 232, 240);
-                            doc.line(margin, margin + 18, pageWidth - margin, margin + 18);
+                            doc.line(margin, margin + 14, pageWidth - margin, margin + 14);
                         };
 
-                        drawPageHeader(1);
+                        drawPageHeader();
 
-                        const leftState = { page: 1, y: contentTop };
-                        const rightState = { page: 1, y: contentTop };
+                        const leftState = { y: contentTop };
+                        const rightState = { y: contentTop };
 
                         const ensureColumnSpace = (state, neededHeight) => {
-                            if (state.y + neededHeight <= contentBottom) {
-                                return;
-                            }
-                            state.page += 1;
-                            state.y = contentTop;
-                            ensurePageCount(state.page);
-                            drawPageHeader(state.page);
+                            return state.y + neededHeight <= contentBottom;
                         };
 
                         const drawSectionTitle = (state, x, width, label) => {
-                            ensureColumnSpace(state, 9);
-                            doc.setPage(state.page);
+                            if (!ensureColumnSpace(state, 7)) {
+                                return false;
+                            }
                             doc.setFillColor(11, 94, 215);
-                            doc.rect(x, state.y - 4, width, 6.5, 'F');
+                            doc.rect(x, state.y - 3.5, width, 5.5, 'F');
                             doc.setFont('helvetica', 'bold');
-                            doc.setFontSize(10.5);
+                            doc.setFontSize(9.4);
                             doc.setTextColor(255, 255, 255);
-                            doc.text(label, x + 2, state.y + 0.5);
-                            state.y += 8;
+                            doc.text(label, x + 1.8, state.y + 0.2);
+                            state.y += 6.5;
+                            return true;
                         };
 
                         const drawBodyLine = (state, x, width, line, compact) => {
-                            const lineSpacing = compact ? 4.5 : 5.2;
+                            const lineSpacing = compact ? 3.9 : 4.5;
                             const isBullet = line.value.startsWith('• ');
                             const textValue = isBullet ? line.value.slice(2) : line.value;
-                            const indent = isBullet ? 3.2 : 0;
+                            const indent = isBullet ? 2.8 : 0;
 
                             if (line.style === 'bold') {
                                 doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(10.2);
+                                doc.setFontSize(9.1);
                                 doc.setTextColor(31, 41, 55);
                             } else {
                                 doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(9.6);
+                                doc.setFontSize(8.5);
                                 doc.setTextColor(45, 55, 72);
                             }
 
                             const parts = doc.splitTextToSize(textValue, width - indent);
-                            ensureColumnSpace(state, parts.length * lineSpacing + 1);
-                            doc.setPage(state.page);
+                            if (!ensureColumnSpace(state, parts.length * lineSpacing + 0.8)) {
+                                return false;
+                            }
 
                             if (isBullet) {
                                 doc.setTextColor(11, 94, 215);
@@ -1504,21 +1481,22 @@
 
                             doc.text(parts, x + indent, state.y);
                             state.y += parts.length * lineSpacing;
+                            return true;
                         };
 
                         const drawSection = (state, x, width, title, sectionLines, compact) => {
                             if (!sectionLines || sectionLines.length === 0) {
                                 return;
                             }
-                            drawSectionTitle(state, x, width, title);
+                            if (!drawSectionTitle(state, x, width, title)) {
+                                return;
+                            }
                             sectionLines.forEach((line) => {
                                 drawBodyLine(state, x, width, line, compact);
                             });
-                            state.y += 2.5;
+                            state.y += 1.5;
                         };
 
-                        drawSection(leftState, leftX, leftWidth, text.aboutWho, profileLines, true);
-                        drawSection(leftState, leftX, leftWidth, text.aboutInfo, infoLines, true);
                         drawSection(leftState, leftX, leftWidth, text.resumeSkills, skillLines, true);
                         drawSection(leftState, leftX, leftWidth, text.resumeLanguages, languageLines, true);
                         drawSection(leftState, leftX, leftWidth, text.getInTouch, contactLines, true);
