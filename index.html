@@ -1311,13 +1311,29 @@
                         return !blockedSkillHeadings.includes(normalized) && !spokenLanguageKeywords.includes(normalized);
                     })));
 
+                const softSkills = language === 'fr'
+                    ? [
+                        'Communication',
+                        'Travail en équipe',
+                        'Résolution de problèmes',
+                        'Adaptabilité',
+                        'Gestion du temps'
+                    ]
+                    : [
+                        'Communication',
+                        'Teamwork',
+                        'Problem solving',
+                        'Adaptability',
+                        'Time management'
+                    ];
+
                 pushLine(text.resumeSkills, 'section');
-                cleanSkillLines.forEach((item) => {
+                softSkills.forEach((item) => {
                     pushLine(item);
                 });
                 pushLine('');
 
-                const languageLines = [text.langEnglish, text.langFrench, text.langMalagasy];
+                const languageLines = cleanSkillLines;
 
                 pushLine(text.resumeLanguages, 'section');
                 Array.from(new Set(languageLines))
