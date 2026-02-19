@@ -468,6 +468,17 @@
                                     <li>Méthodologie agile/scrum</li>
                                 </ul>
                             </div>
+                            <hr>
+                            <div class="experience-item">
+                                <h6 class="title text-danger exp-date">Juin 2024 - Août 2024</h6>
+                                <p class="exp-role">Gestionnaire de tâches embarqué - ASTEK</p>
+                                <p class="subtitle exp-description">Plateforme de gestion de projet permettant la création et l'attribution de tâches. (C++)</p>
+                                <ul class="exp-bullets">
+                                    <li>Conception du module de rapports et statistiques</li>
+                                    <li>Développement de l'interface utilisateur (QML)</li>
+                                    <li>Tests, optimisation et déploiement sur Raspberry Pi 4</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1618,10 +1629,11 @@
                 }
 
                 const experienceCards = document.querySelectorAll('#resume .experience-list .experience-item .exp-date');
-                if (experienceCards.length >= 3) {
+                if (experienceCards.length >= 4) {
                     experienceCards[0].textContent = text.expDate1;
                     experienceCards[1].textContent = text.expDate2;
                     experienceCards[2].textContent = text.expDate3;
+                    experienceCards[3].textContent = text.expDate4;
                 }
 
                 const educationDates = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
@@ -1634,13 +1646,15 @@
                 }
 
                 const experienceItems = document.querySelectorAll('#resume .experience-list .experience-item');
-                if (experienceItems.length >= 3) {
+                if (experienceItems.length >= 4) {
                     const firstRole = experienceItems[0].querySelector('.exp-role');
                     const firstDescription = experienceItems[0].querySelector('.exp-description');
                     const secondRole = experienceItems[1].querySelector('.exp-role');
                     const secondDescription = experienceItems[1].querySelector('.exp-description');
                     const thirdRole = experienceItems[2].querySelector('.exp-role');
                     const thirdDescription = experienceItems[2].querySelector('.exp-description');
+                    const fourthRole = experienceItems[3].querySelector('.exp-role');
+                    const fourthDescription = experienceItems[3].querySelector('.exp-description');
 
                     if (firstRole) firstRole.textContent = text.roleJavaDeveloper;
                     if (firstDescription) firstDescription.textContent = text.exp0Text;
@@ -1648,10 +1662,12 @@
                     if (secondDescription) secondDescription.textContent = text.exp1Text;
                     if (thirdRole) thirdRole.textContent = text.rolePrintingQuote;
                     if (thirdDescription) thirdDescription.textContent = text.exp2Text;
+                    if (fourthRole) fourthRole.textContent = text.roleEmbeddedTask;
+                    if (fourthDescription) fourthDescription.textContent = text.exp3Text;
                 }
 
                 const firstCardLists = document.querySelectorAll('#resume .experience-list .experience-item .exp-bullets');
-                if (firstCardLists.length >= 3) {
+                if (firstCardLists.length >= 4) {
                     const list1 = firstCardLists[0].querySelectorAll('li');
                     if (list1.length >= 4) {
                         list1[0].textContent = text.exp0Bullet1;
@@ -1674,6 +1690,13 @@
                         list3[1].textContent = text.exp2Bullet2;
                         list3[2].textContent = text.exp2Bullet3;
                         list3[3].textContent = text.exp2Bullet4;
+                    }
+
+                    const list4 = firstCardLists[3].querySelectorAll('li');
+                    if (list4.length >= 3) {
+                        list4[0].textContent = text.exp3Bullet1;
+                        list4[1].textContent = text.exp3Bullet2;
+                        list4[2].textContent = text.exp3Bullet3;
                     }
                 }
 
