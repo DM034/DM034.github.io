@@ -815,10 +815,10 @@
                     return;
                 }
 
-                tryJsPdfGenerate(lines, text);
+                tryJsPdfGenerate(lines, text, language);
             };
 
-            const tryJsPdfGenerate = (lines, text) => {
+            const tryJsPdfGenerate = (lines, text, language) => {
                 try {
                     
                     // Debug: Check what's available
@@ -874,15 +874,37 @@
                     pdf.setTextColor(0, 102, 204);
                     pdf.text('Michael Raharison', margin, top);
 
+                    const profileTitle = language === 'en'
+                        ? 'Java Developer | Project Coordinator'
+                        : 'Développeur Java | Coordinateur de Projet';
+
+                    const sectionExperience = language === 'en' ? 'EXPERIENCE' : 'EXPÉRIENCE';
+                    const sectionEducation = language === 'en' ? 'EDUCATION' : 'FORMATION';
+                    const sectionSkills = language === 'en' ? 'SKILLS' : 'COMPÉTENCES';
+                    const sectionLanguages = language === 'en' ? 'LANGUAGES' : 'LANGUES';
+                    const phoneLabel = language === 'en' ? 'Phone' : 'Téléphone';
+                    const skillsLine1 = language === 'en'
+                        ? 'Languages: Java, C++, C#, .NET'
+                        : 'Langages: Java, C++, C#, .NET';
+                    const skillsLine2 = language === 'en'
+                        ? 'Databases: PostgreSQL, Oracle, MySQL'
+                        : 'BDD: PostgreSQL, Oracle, MySQL';
+                    const skillsLine3 = language === 'en'
+                        ? 'Tools: Linux, Git, Agile/Scrum'
+                        : 'Outils: Linux, Git, Agile/Scrum';
+                    const spokenLanguagesLine = language === 'en'
+                        ? 'English, French, Malagasy'
+                        : 'Français, Anglais, Malagasy';
+
                     pdf.setFont('helvetica', 'normal');
                     pdf.setFontSize(10);
                     pdf.setTextColor(90, 90, 90);
-                    pdf.text('Développeur Java | Coordinateur de Projet', margin, top + 6);
+                    pdf.text(profileTitle, margin, top + 6);
 
                     const contactY = top + 12;
                     pdf.setTextColor(70, 70, 70);
                     pdf.text('Email: michaeldm034@gmail.com', margin, contactY);
-                    pdf.text('Téléphone: +261 32 49 084 09', margin + 68, contactY);
+                    pdf.text(phoneLabel + ': +261 32 49 084 09', margin + 68, contactY);
                     pdf.setTextColor(0, 102, 204);
                     pdf.textWithLink('LinkedIn', margin + 140, contactY, { url: 'https://www.linkedin.com/in/michael-raharison-215901288' });
 
@@ -892,7 +914,7 @@
                     let leftY = contactY + 10;
                     let rightY = contactY + 10;
 
-                    leftY = addSectionHeader('EXPÉRIENCE', leftX, leftY);
+                    leftY = addSectionHeader(sectionExperience, leftX, leftY);
                     const experiences = [
                         {
                             role: text.roleJavaDeveloper,
@@ -923,7 +945,7 @@
                         leftY += 2;
                     });
 
-                    rightY = addSectionHeader('FORMATION', rightX, rightY);
+                    rightY = addSectionHeader(sectionEducation, rightX, rightY);
                     const education = [
                         { title: text.eduM2, date: text.eduDate1 },
                         { title: text.eduM1, date: text.eduDate2 },
@@ -938,12 +960,12 @@
                         rightY += 2;
                     });
 
-                    rightY = addSectionHeader('COMPÉTENCES', rightX, rightY + 2);
-                    rightY = addWrapped('Langages: Java, C++, C#, .NET', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
-                    rightY = addWrapped('BDD: PostgreSQL, Oracle, MySQL', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
-                    rightY = addWrapped('Outils: Linux, Git, Agile/Scrum', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
-                    rightY = addSectionHeader('LANGUES', rightX, rightY + 2);
-                    rightY = addWrapped('Français, Anglais, Malagasy', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addSectionHeader(sectionSkills, rightX, rightY + 2);
+                    rightY = addWrapped(skillsLine1, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped(skillsLine2, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped(skillsLine3, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addSectionHeader(sectionLanguages, rightX, rightY + 2);
+                    rightY = addWrapped(spokenLanguagesLine, rightX, rightY, 'normal', 8.5, [60, 60, 60]);
 
                     pdf.save(text.cvFileName);
                     return true;
