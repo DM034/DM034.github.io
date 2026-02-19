@@ -1378,94 +1378,153 @@
                         const jsPDFLib = window.jspdf.jsPDF;
                         const doc = new jsPDFLib({ unit: 'mm', format: 'a4', orientation: 'portrait' });
                         const pageHeight = 297;
-                        const marginLeft = 14;
-                        const marginRight = 14;
-                        const maxWidth = 210 - marginLeft - marginRight;
-                        const sectionHeight = 7;
-                        let y = 16;
+                        const pageWidth = 210;
+                        const margin = 12;
+                        const gutter = 6;
+                        const headerHeight = 24;
+                        const contentTop = margin + headerHeight;
+                        const contentBottom = pageHeight - 12;
+                        const leftWidth = 62;
+                        const rightWidth = pageWidth - (margin * 2) - gutter - leftWidth;
+                        const leftX = margin;
+                        const rightX = margin + leftWidth + gutter;
 
-                        const ensureSpace = (height) => {
-                            if (y + height > (pageHeight - 14)) {
+                        const titleLine = lines.find((line) => line.style === 'title' && line.value)?.value || 'Michael Raharison';
+                        const subtitleLine = lines.find((line) => line.style === 'subtitle' && line.value)?.value || '';
+
+                        const getSectionLines = (sectionTitle) => {
+                            const sectionIndex = lines.findIndex((line) => line.style === 'section' && line.value === sectionTitle);
+                            if (sectionIndex < 0) {
+                                return [];
+                            }
+                            const sectionLines = [];
+                            for (let index = sectionIndex + 1; index < lines.length; index += 1) {
+                                const line = lines[index];
+                                if (line.style === 'section') {
+                                    break;
+                                }
+                                if (line.value) {
+                                    sectionLines.push(line);
+                                }
+                            }
+                            return sectionLines;
+                        };
+
+                        const profileLines = getSectionLines(text.aboutWho);
+                        const infoLines = getSectionLines(text.aboutInfo);
+                        const skillLines = getSectionLines(text.resumeSkills);
+                        const languageLines = getSectionLines(text.resumeLanguages);
+                        const contactLines = getSectionLines(text.getInTouch);
+                        const experienceLines = getSectionLines(text.resumeExperience);
+                        const educationLines = getSectionLines(text.resumeEducation);
+
+                        const ensurePageCount = (targetPage) => {
+                            while (doc.getNumberOfPages() < targetPage) {
                                 doc.addPage();
-                                y = 16;
                             }
                         };
 
-                        const setBodyStyle = () => {
+                        const drawPageHeader = (pageNumber) => {
+                            doc.setPage(pageNumber);
+                            doc.setFillColor(248, 250, 252);
+                            doc.rect(0, 0, pageWidth, margin + headerHeight, 'F');
+
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(20);
+                            doc.setTextColor(17, 24, 39);
+                            doc.text(titleLine, margin, margin + 7);
+
                             doc.setFont('helvetica', 'normal');
                             doc.setFontSize(11);
-                            doc.setTextColor(34, 34, 34);
+                            doc.setTextColor(75, 85, 99);
+                            if (subtitleLine) {
+                                doc.text(subtitleLine, margin, margin + 13);
+                            }
+
+                            doc.setDrawColor(226, 232, 240);
+                            doc.line(margin, margin + 18, pageWidth - margin, margin + 18);
                         };
 
-                        lines.forEach((line) => {
-                            if (!line.value) {
-                                y += 4;
-                                return;
-                            }
+                        drawPageHeader(1);
 
-                            if (line.style === 'title') {
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(22);
-                                doc.setTextColor(17, 24, 39);
-                                const parts = doc.splitTextToSize(line.value, maxWidth);
-                                ensureSpace(parts.length * 8);
-                                doc.text(parts, marginLeft, y);
-                                y += parts.length * 8;
-                                return;
-                            }
+                        const leftState = { page: 1, y: contentTop };
+                        const rightState = { page: 1, y: contentTop };
 
-                            if (line.style === 'subtitle') {
-                                doc.setFont('helvetica', 'normal');
-                                doc.setFontSize(12);
-                                doc.setTextColor(75, 85, 99);
-                                const parts = doc.splitTextToSize(line.value, maxWidth);
-                                ensureSpace(parts.length * 6);
-                                doc.text(parts, marginLeft, y);
-                                y += parts.length * 6;
+                        const ensureColumnSpace = (state, neededHeight) => {
+                            if (state.y + neededHeight <= contentBottom) {
                                 return;
                             }
+                            state.page += 1;
+                            state.y = contentTop;
+                            ensurePageCount(state.page);
+                            drawPageHeader(state.page);
+                        };
 
-                            if (line.style === 'section') {
-                                ensureSpace(sectionHeight + 4);
-                                doc.setFillColor(11, 94, 215);
-                                doc.rect(marginLeft, y - 4, maxWidth, sectionHeight, 'F');
-                                doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(11);
-                                doc.setTextColor(255, 255, 255);
-                                doc.text(line.value, marginLeft + 2, y + 1);
-                                y += sectionHeight + 3;
-                                setBodyStyle();
-                                return;
-                            }
+                        const drawSectionTitle = (state, x, width, label) => {
+                            ensureColumnSpace(state, 9);
+                            doc.setPage(state.page);
+                            doc.setFillColor(11, 94, 215);
+                            doc.rect(x, state.y - 4, width, 6.5, 'F');
+                            doc.setFont('helvetica', 'bold');
+                            doc.setFontSize(10.5);
+                            doc.setTextColor(255, 255, 255);
+                            doc.text(label, x + 2, state.y + 0.5);
+                            state.y += 8;
+                        };
+
+                        const drawBodyLine = (state, x, width, line, compact) => {
+                            const lineSpacing = compact ? 4.5 : 5.2;
+                            const isBullet = line.value.startsWith('• ');
+                            const textValue = isBullet ? line.value.slice(2) : line.value;
+                            const indent = isBullet ? 3.2 : 0;
 
                             if (line.style === 'bold') {
                                 doc.setFont('helvetica', 'bold');
-                                doc.setFontSize(11);
+                                doc.setFontSize(10.2);
                                 doc.setTextColor(31, 41, 55);
                             } else {
-                                setBodyStyle();
+                                doc.setFont('helvetica', 'normal');
+                                doc.setFontSize(9.6);
+                                doc.setTextColor(45, 55, 72);
                             }
 
-                            const isBullet = line.value.startsWith('• ');
-                            const content = isBullet ? line.value.slice(2) : line.value;
-                            const indent = isBullet ? 4 : 0;
-                            const textWidth = maxWidth - indent;
-                            const parts = doc.splitTextToSize(content, textWidth);
-                            const step = 5.5;
+                            const parts = doc.splitTextToSize(textValue, width - indent);
+                            ensureColumnSpace(state, parts.length * lineSpacing + 1);
+                            doc.setPage(state.page);
 
-                            ensureSpace(parts.length * step);
                             if (isBullet) {
                                 doc.setTextColor(11, 94, 215);
-                                doc.text('•', marginLeft, y);
+                                doc.text('•', x, state.y);
                                 if (line.style === 'bold') {
                                     doc.setTextColor(31, 41, 55);
                                 } else {
-                                    doc.setTextColor(34, 34, 34);
+                                    doc.setTextColor(45, 55, 72);
                                 }
                             }
-                            doc.text(parts, marginLeft + indent, y);
-                            y += parts.length * step;
-                        });
+
+                            doc.text(parts, x + indent, state.y);
+                            state.y += parts.length * lineSpacing;
+                        };
+
+                        const drawSection = (state, x, width, title, sectionLines, compact) => {
+                            if (!sectionLines || sectionLines.length === 0) {
+                                return;
+                            }
+                            drawSectionTitle(state, x, width, title);
+                            sectionLines.forEach((line) => {
+                                drawBodyLine(state, x, width, line, compact);
+                            });
+                            state.y += 2.5;
+                        };
+
+                        drawSection(leftState, leftX, leftWidth, text.aboutWho, profileLines, true);
+                        drawSection(leftState, leftX, leftWidth, text.aboutInfo, infoLines, true);
+                        drawSection(leftState, leftX, leftWidth, text.resumeSkills, skillLines, true);
+                        drawSection(leftState, leftX, leftWidth, text.resumeLanguages, languageLines, true);
+                        drawSection(leftState, leftX, leftWidth, text.getInTouch, contactLines, true);
+
+                        drawSection(rightState, rightX, rightWidth, text.resumeExperience, experienceLines, false);
+                        drawSection(rightState, rightX, rightWidth, text.resumeEducation, educationLines, false);
 
                         doc.save(text.cvFileName);
                         return;
