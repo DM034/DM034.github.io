@@ -845,8 +845,13 @@
                 const imageNode = document.querySelector('.header .img-holder img') || document.querySelector('img[src*="avatar"]');
                 const profileImageSrc = imageNode?.currentSrc || imageNode?.src || imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
                 const absoluteAvatar = (window.location?.origin || '') + '/assets/imgs/avatar.jpg';
+                const absolutePortrait = (window.location?.origin || '') + '/assets/imgs/image3_copy.jpeg';
                 const profileImageCandidates = [
                     profileImageSrc,
+                    'assets/imgs/image3_copy.jpeg',
+                    '/assets/imgs/image3_copy.jpeg',
+                    './assets/imgs/image3_copy.jpeg',
+                    absolutePortrait,
                     absoluteAvatar,
                     'assets/imgs/avatar.jpg',
                     '/assets/imgs/avatar.jpg',
@@ -1005,32 +1010,27 @@
                             img.onload = function () {
                                 try {
                                     const canvas = document.createElement('canvas');
-                                    const targetW = 220;
-                                    const targetH = 160;
+                                    const targetW = 280;
+                                    const targetH = 280;
                                     canvas.width = targetW;
                                     canvas.height = targetH;
                                     const ctx = canvas.getContext('2d');
 
-                                    const sourceW = img.naturalWidth;
-                                    const sourceH = img.naturalHeight;
-                                    const sourceRatio = sourceW / sourceH;
-                                    const targetRatio = targetW / targetH;
+                                    ctx.fillStyle = '#f7f8fa';
+                                    ctx.fillRect(0, 0, targetW, targetH);
+                                    ctx.imageSmoothingEnabled = true;
+                                    ctx.imageSmoothingQuality = 'high';
 
-                                    let cropW = sourceW;
-                                    let cropH = sourceH;
-                                    let cropX = 0;
-                                    let cropY = 0;
+                                    const sourceW = img.naturalWidth || targetW;
+                                    const sourceH = img.naturalHeight || targetH;
+                                    const ratio = Math.min(targetW / sourceW, targetH / sourceH);
+                                    const drawW = Math.round(sourceW * ratio);
+                                    const drawH = Math.round(sourceH * ratio);
+                                    const offsetX = Math.round((targetW - drawW) / 2);
+                                    const offsetY = Math.round((targetH - drawH) / 2);
 
-                                    if (sourceRatio > targetRatio) {
-                                        cropW = sourceH * targetRatio;
-                                        cropX = (sourceW - cropW) / 2;
-                                    } else {
-                                        cropH = sourceW / targetRatio;
-                                        cropY = (sourceH - cropH) / 2;
-                                    }
-
-                                    ctx.drawImage(img, cropX, cropY, cropW, cropH, 0, 0, targetW, targetH);
-                                    resolve(canvas.toDataURL('image/jpeg', 0.92));
+                                    ctx.drawImage(img, 0, 0, sourceW, sourceH, offsetX, offsetY, drawW, drawH);
+                                    resolve(canvas.toDataURL('image/png'));
                                 } catch (_) {
                                     resolve(null);
                                 }
@@ -1108,13 +1108,14 @@
                     pdf.text(data.profileRole || profileTitle, margin, top + 5);
 
                     const imageW = 22;
-                    const imageH = 16;
+                    const imageH = 22;
                     const imageX = pageWidth - margin - imageW;
                     const imageY = top - 7;
 
                     const renderContent = (imageData) => {
                         if (imageData) {
-                            pdf.addImage(imageData, 'JPEG', imageX, imageY, imageW, imageH);
+                            const imageFormat = imageData.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+                            pdf.addImage(imageData, imageFormat, imageX, imageY, imageW, imageH);
                             pdf.setDrawColor(205, 211, 220);
                             pdf.rect(imageX, imageY, imageW, imageH);
                         }
