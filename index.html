@@ -843,7 +843,7 @@
                     .filter(Boolean);
 
                 const imageNode = document.querySelector('.header .img-holder img') || document.querySelector('img[src*="avatar"]');
-                const profileImageSrc = imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
+                const profileImageSrc = imageNode?.currentSrc || imageNode?.src || imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
                 const profileImageCandidates = [
                     profileImageSrc,
                     'assets/imgs/avatar.jpg',
@@ -856,10 +856,18 @@
                     ? linkedInRaw.replace(/^linkedin\s*[:\-]?\s*/i, '').trim()
                     : 'Michael Raharison';
 
+                const linkedInHref = document.querySelector('a[href*="linkedin.com/in/"]')?.getAttribute('href')
+                    || document.querySelector('a[href*="linkedin.com"]')?.getAttribute('href')
+                    || 'https://www.linkedin.com/in/michael-raharison-215901288';
+
                 const phoneRaw = contactLines.find((line) => /phone|t[eé]l[eé]phone/i.test(line));
                 const phoneLine = phoneRaw
                     ? phoneRaw.replace(/^(phone|t[eé]l[eé]phone)\s*[:\-]?\s*/i, '').trim()
                     : '+261 32 49 084 09';
+
+                const phoneDigits = phoneLine.replace(/[^\d+]/g, '');
+                const normalizedPhone = phoneDigits.startsWith('+') ? phoneDigits.slice(1) : phoneDigits;
+                const whatsappHref = 'https://wa.me/' + (normalizedPhone || '261324908409');
 
                 const emailRaw = contactLines.find((line) => /@/.test(line));
                 const emailLine = emailRaw
@@ -873,7 +881,9 @@
                     profileImageCandidates,
                     contactLines,
                     phoneLine,
+                    whatsappHref,
                     linkedInLine,
+                    linkedInHref,
                     emailLine,
                     experiences,
                     education,
@@ -954,6 +964,21 @@
                             currentY = addWrapped(item, x, currentY, width, 'normal', 8.3, [38, 44, 56], 3.8);
                         });
                         return currentY;
+                    };
+
+                    const addLinkLine = (label, value, href, x, y, width) => {
+                        const textLine = (label ? (label + ' : ') : '') + (value || '');
+                        pdf.setFont('helvetica', 'normal');
+                        pdf.setFontSize(8.3);
+                        pdf.setTextColor(20, 88, 185);
+                        const split = pdf.splitTextToSize(textLine, width - 4);
+                        if (split.length > 0) {
+                            pdf.textWithLink(split[0], x + 2, y, { url: href });
+                            for (let index = 1; index < split.length; index += 1) {
+                                pdf.text(split[index], x + 2, y + (index * 3.8));
+                            }
+                        }
+                        return y + (split.length * 3.8);
                     };
 
                     const normalizeImageToDataUrl = (url) => {
@@ -1097,8 +1122,8 @@
                         leftY += 1;
 
                         leftY = addSectionHeader(sectionContact, leftX, leftY, leftColWidth);
-                        leftY = addWrapped((language === 'en' ? 'Phone' : 'Téléphone') + ' : ' + data.phoneLine, leftX, leftY + 0.5, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
-                        leftY = addWrapped('LinkedIn : ' + data.linkedInLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
+                        leftY = addLinkLine((language === 'en' ? 'Phone' : 'Téléphone'), data.phoneLine, data.whatsappHref, leftX, leftY + 0.5, leftColWidth);
+                        leftY = addLinkLine('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
                         leftY = addWrapped('Email : ' + data.emailLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
 
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
