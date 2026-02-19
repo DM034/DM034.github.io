@@ -1357,10 +1357,48 @@
                 return container;
             };
 
-            const generateCvPdf = (lang) => {
+            const getProfilePhotoDataUrl = () => {
+                return new Promise((resolve) => {
+                    try {
+                        const profileImage = document.querySelector('.brand-img');
+                        const source = profileImage?.getAttribute('src') || 'assets/imgs/image3.jpeg';
+                        const image = new Image();
+                        image.crossOrigin = 'anonymous';
+
+                        image.onload = function () {
+                            try {
+                                const canvas = document.createElement('canvas');
+                                canvas.width = image.naturalWidth || image.width;
+                                canvas.height = image.naturalHeight || image.height;
+                                const context = canvas.getContext('2d');
+                                if (!context) {
+                                    resolve(null);
+                                    return;
+                                }
+                                context.drawImage(image, 0, 0);
+                                const dataUrl = canvas.toDataURL('image/jpeg', 0.92);
+                                resolve(dataUrl);
+                            } catch (error) {
+                                resolve(null);
+                            }
+                        };
+
+                        image.onerror = function () {
+                            resolve(null);
+                        };
+
+                        image.src = source;
+                    } catch (error) {
+                        resolve(null);
+                    }
+                });
+            };
+
+            const generateCvPdf = async (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
                 const lines = buildCvPdfLines(text);
+                const profilePhotoDataUrl = await getProfilePhotoDataUrl();
 
                 if (window.jspdf && window.jspdf.jsPDF) {
                     try {
@@ -1408,6 +1446,17 @@
                         const drawPageHeader = () => {
                             doc.setFillColor(248, 250, 252);
                             doc.rect(0, 0, pageWidth, margin + headerHeight, 'F');
+
+                            if (profilePhotoDataUrl) {
+                                const imageWidth = 20;
+                                const imageHeight = 20;
+                                const imageX = pageWidth - margin - imageWidth;
+                                const imageY = margin - 2;
+                                const imageFormat = profilePhotoDataUrl.indexOf('data:image/png') === 0 ? 'PNG' : 'JPEG';
+                                doc.setDrawColor(203, 213, 225);
+                                doc.roundedRect(imageX - 0.7, imageY - 0.7, imageWidth + 1.4, imageHeight + 1.4, 1.6, 1.6, 'S');
+                                doc.addImage(profilePhotoDataUrl, imageFormat, imageX, imageY, imageWidth, imageHeight);
+                            }
 
                             doc.setFont('helvetica', 'bold');
                             doc.setFontSize(17);
