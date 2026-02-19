@@ -1575,6 +1575,8 @@
                             const isBullet = line.value.startsWith('• ');
                             const textValue = isBullet ? line.value.slice(2) : line.value;
                             const indent = isBullet ? 2.8 : 0;
+                            const isLinkedIn = textValue.includes('Michael Raharison') || textValue.includes('LinkedIn :');
+                            const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
 
                             if (line.style === 'bold') {
                                 doc.setFont('helvetica', 'bold');
@@ -1601,7 +1603,18 @@
                                 }
                             }
 
-                            doc.text(parts, x + indent, state.y);
+                            if (isLinkedIn && parts.length > 0) {
+                                // Add clickable link for the first line of LinkedIn contact
+                                doc.textWithLink(parts[0], x + indent, state.y, { url: linkedinUrl });
+                                // Add remaining lines without link
+                                if (parts.length > 1) {
+                                    for (let i = 1; i < parts.length; i++) {
+                                        doc.text(parts[i], x + indent, state.y + (i * lineSpacing));
+                                    }
+                                }
+                            } else {
+                                doc.text(parts, x + indent, state.y);
+                            }
                             state.y += parts.length * lineSpacing;
                             return true;
                         };
