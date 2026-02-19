@@ -581,7 +581,7 @@
             <h1 class="mb-5"><span class="text-danger">My</span> Portfolio</h1>
             <div class="portfolio">
                 
-                <div class="portfolio-container" style="position: relative; height: auto;">
+                <div class="portfolio-container" style="position: relative;">
                     <!-- Backend Projects -->
                     <div class="col-md-6 col-lg-4 backend new" style="position: relative; margin-bottom: 30px;">
                         <div class="portfolio-item">
@@ -860,6 +860,18 @@
     <!-- JohnDoe js -->
     <script src="assets/js/johndoe.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    
+    <script>
+        // Force Isotope to re-layout after DOM ready
+        $(window).on('load', function() {
+            setTimeout(function() {
+                var $container = $('.portfolio-container');
+                if ($container.data('isotope')) {
+                    $container.isotope('reLayout');
+                }
+            }, 500);
+        });
+    </script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
