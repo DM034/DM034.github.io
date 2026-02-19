@@ -829,13 +829,14 @@
                     });
                 }
 
-                const skillItems = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6'))
+                const allSkillTexts = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card .card-body h6'))
                     .map((node) => node.textContent ? node.textContent.trim() : '')
-                    .filter((value) => value && !value.includes('Langage') && !value.includes('Language') && !value.includes('Bases de données') && !value.includes('Database') && !value.includes('Autres') && !value.includes('Other'));
+                    .filter(Boolean);
 
-                const spokenLanguages = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6'))
-                    .map((node) => node.textContent ? node.textContent.trim() : '')
-                    .filter((value) => ['Français', 'French', 'Anglais', 'English', 'Malagasy'].includes(value));
+                const techRegex = /^(Java|C\+\+|C#|\.NET|PostgreSQL|Oracle|MySQL|Linux|Git)$/i;
+                const skillItems = allSkillTexts.filter((value) => techRegex.test(value));
+
+                const spokenLanguages = [text.langFrench, text.langEnglish, text.langMalagasy].filter(Boolean);
 
                 return {
                     profileName,
