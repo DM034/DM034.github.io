@@ -257,79 +257,115 @@
                     });
 
                     const pageWidth = pdf.internal.pageSize.getWidth();
-                    const maxWidth = pageWidth - 20;
-                    const lineHeight = 5;
-                    let yPosition = 15;
-                    let pageNum = 1;
+                    const margin = 10;
+                    const top = 12;
+                    const colGap = 8;
+                    const colWidth = (pageWidth - (margin * 2) - colGap) / 2;
+                    const leftX = margin;
+                    const rightX = leftX + colWidth + colGap;
 
+                    const addSectionHeader = (title, x, y) => {
+                        pdf.setFillColor(0, 102, 204);
+                        pdf.rect(x, y - 4, colWidth, 6, 'F');
+                        pdf.setTextColor(255, 255, 255);
+                        pdf.setFont('helvetica', 'bold');
+                        pdf.setFontSize(10);
+                        pdf.text(title, x + 2, y);
+                        return y + 5;
+                    };
 
-                    lines.forEach((line, index) => {
-                        if (!line.value) {
-                            yPosition += 2;
-                            return;
+                    const addWrapped = (value, x, y, font = 'normal', size = 9, color = [51, 51, 51]) => {
+                        pdf.setFont('helvetica', font);
+                        pdf.setFontSize(size);
+                        pdf.setTextColor(color[0], color[1], color[2]);
+                        const split = pdf.splitTextToSize(value, colWidth - 4);
+                        pdf.text(split, x + 2, y);
+                        return y + (split.length * 4);
+                    };
+
+                    const addBullets = (items, x, y) => {
+                        let currentY = y;
+                        items.forEach((item) => {
+                            currentY = addWrapped('• ' + item, x, currentY, 'normal', 8.5, [70, 70, 70]);
+                        });
+                        return currentY;
+                    };
+
+                    pdf.setFont('helvetica', 'bold');
+                    pdf.setFontSize(20);
+                    pdf.setTextColor(0, 102, 204);
+                    pdf.text('Michael Raharison', margin, top);
+
+                    pdf.setFont('helvetica', 'normal');
+                    pdf.setFontSize(10);
+                    pdf.setTextColor(90, 90, 90);
+                    pdf.text('Développeur Java | Coordinateur de Projet', margin, top + 6);
+
+                    const contactY = top + 12;
+                    pdf.setTextColor(70, 70, 70);
+                    pdf.text('Email: michaeldm034@gmail.com', margin, contactY);
+                    pdf.text('Téléphone: +261 32 49 084 09', margin + 68, contactY);
+                    pdf.setTextColor(0, 102, 204);
+                    pdf.textWithLink('LinkedIn', margin + 140, contactY, { url: 'https://www.linkedin.com/in/michael-raharison-215901288' });
+
+                    pdf.setDrawColor(220, 220, 220);
+                    pdf.line(margin, contactY + 3, pageWidth - margin, contactY + 3);
+
+                    let leftY = contactY + 10;
+                    let rightY = contactY + 10;
+
+                    leftY = addSectionHeader('EXPÉRIENCE', leftX, leftY);
+                    const experiences = [
+                        {
+                            role: text.roleJavaDeveloper,
+                            date: text.expDate1,
+                            bullets: [text.exp0Bullet1, text.exp0Bullet2, text.exp0Bullet3, text.exp0Bullet4]
+                        },
+                        {
+                            role: text.roleProjectCoordinator,
+                            date: text.expDate2,
+                            bullets: [text.exp1Bullet1, text.exp1Bullet2, text.exp1Bullet3, text.exp1Bullet4]
+                        },
+                        {
+                            role: text.rolePrintingQuote,
+                            date: text.expDate3,
+                            bullets: [text.exp2Bullet1, text.exp2Bullet2, text.exp2Bullet3, text.exp2Bullet4]
+                        },
+                        {
+                            role: text.roleEmbeddedTask,
+                            date: text.expDate4,
+                            bullets: [text.exp3Bullet1, text.exp3Bullet2, text.exp3Bullet3]
                         }
+                    ];
 
-                        const value = line.value;
-
-                        // Check for page break
-                        if (yPosition > 270) {
-                            pdf.addPage();
-                            yPosition = 15;
-                            pageNum++;
-                        }
-
-                        // Style the line
-                        if (line.style === 'title') {
-                            pdf.setFontSize(24);
-                            pdf.setFont('helvetica', 'bold');
-                            pdf.setTextColor(0, 102, 204);
-                        } else if (line.style === 'subtitle') {
-                            pdf.setFontSize(11);
-                            pdf.setFont('helvetica', 'normal');
-                            pdf.setTextColor(102, 102, 102);
-                        } else if (line.style === 'contact') {
-                            pdf.setFontSize(10);
-                            pdf.setFont('helvetica', 'normal');
-                            pdf.setTextColor(85, 85, 85);
-                        } else if (line.style === 'section') {
-                            pdf.setFontSize(11);
-                            pdf.setFont('helvetica', 'bold');
-                            pdf.setTextColor(255, 255, 255);
-                            pdf.setFillColor(0, 102, 204);
-                            pdf.rect(10, yPosition - 3, maxWidth + 10, 5, 'F');
-                        } else if (line.style === 'bold') {
-                            pdf.setFontSize(11);
-                            pdf.setFont('helvetica', 'bold');
-                            pdf.setTextColor(26, 26, 26);
-                        } else if (line.style === 'date') {
-                            pdf.setFontSize(10);
-                            pdf.setFont('helvetica', 'italic');
-                            pdf.setTextColor(0, 102, 204);
-                        } else if (line.style === 'skills') {
-                            pdf.setFontSize(10);
-                            pdf.setFont('helvetica', 'normal');
-                            pdf.setTextColor(51, 51, 51);
-                        } else {
-                            pdf.setFontSize(10);
-                            pdf.setFont('helvetica', 'normal');
-                            pdf.setTextColor(51, 51, 51);
-                        }
-
-                        // Split text to fit width
-                        const splitText = pdf.splitTextToSize(value, maxWidth);
-                        
-                        // Calculate if we need a page break
-                        const textHeight = splitText.length * (lineHeight - 1);
-                        if (yPosition + textHeight > 270) {
-                            pdf.addPage();
-                            yPosition = 15;
-                            pageNum++;
-                        }
-
-                        // Write the text
-                        pdf.text(splitText, 15, yPosition);
-                        yPosition += textHeight + 1;
+                    experiences.forEach((exp) => {
+                        leftY = addWrapped(exp.role, leftX, leftY, 'bold', 9.5, [30, 30, 30]);
+                        leftY = addWrapped(exp.date, leftX, leftY, 'italic', 8.5, [0, 102, 204]);
+                        leftY = addBullets(exp.bullets, leftX, leftY + 1);
+                        leftY += 2;
                     });
+
+                    rightY = addSectionHeader('FORMATION', rightX, rightY);
+                    const education = [
+                        { title: text.eduM2, date: text.eduDate1 },
+                        { title: text.eduM1, date: text.eduDate2 },
+                        { title: text.eduBachelor, date: text.eduDate3 },
+                        { title: text.eduBaccalaureate, date: text.eduDate4 },
+                        { title: text.eduTraining, date: text.eduDate5 }
+                    ];
+
+                    education.forEach((edu) => {
+                        rightY = addWrapped(edu.title, rightX, rightY, 'bold', 9.5, [30, 30, 30]);
+                        rightY = addWrapped(edu.date, rightX, rightY, 'italic', 8.5, [0, 102, 204]);
+                        rightY += 2;
+                    });
+
+                    rightY = addSectionHeader('COMPÉTENCES', rightX, rightY + 2);
+                    rightY = addWrapped('Langages: Java, C++, C#, .NET', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped('BDD: PostgreSQL, Oracle, MySQL', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addWrapped('Outils: Linux, Git, Agile/Scrum', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
+                    rightY = addSectionHeader('LANGUES', rightX, rightY + 2);
+                    rightY = addWrapped('Français, Anglais, Malagasy', rightX, rightY, 'normal', 8.5, [60, 60, 60]);
 
                     pdf.save(text.cvFileName);
                     return true;
