@@ -535,15 +535,10 @@
                     const imageY = top - 7;
 
                     const renderContent = (imageData) => {
-                        if (imageData) {
-                            const imageFormat = imageData.startsWith('data:image/png') ? 'PNG' : 'JPEG';
-                            pdf.addImage(imageData, imageFormat, imageX, imageY, imageW, imageH);
-                            pdf.setDrawColor(205, 211, 220);
-                            pdf.rect(imageX, imageY, imageW, imageH);
-                        }
+                        const contentStartY = imageData ? Math.max(top + 13, imageY + imageH + 6) : (top + 13);
 
-                        let leftY = top + 13;
-                        let rightY = top + 13;
+                        let leftY = contentStartY;
+                        let rightY = contentStartY;
 
                         leftY = addSectionHeader(sectionSkills, leftX, leftY, leftColWidth);
                         leftY = addPlainList(softSkills, leftX, leftY + 0.5, leftColWidth);
@@ -578,6 +573,13 @@
                             rightY = addWrapped(edu.title, rightX, rightY, rightColWidth, 'normal', 9.1, [38, 44, 56], 4);
                             rightY += 0.8;
                         });
+
+                        if (imageData) {
+                            const imageFormat = imageData.startsWith('data:image/png') ? 'PNG' : 'JPEG';
+                            pdf.addImage(imageData, imageFormat, imageX, imageY, imageW, imageH);
+                            pdf.setDrawColor(205, 211, 220);
+                            pdf.rect(imageX, imageY, imageW, imageH);
+                        }
 
                         pdf.save(text.cvFileName);
                     };
