@@ -529,10 +529,6 @@
                             <h6>Résolution de problèmes</h6>
                             <h6>Adaptabilité</h6>
                             <h6>Gestion du temps</h6>
-                            <h6 class="title text-danger">Langues parlées</h6>
-                            <h6>Anglais</h6>
-                            <h6>Français</h6>
-                            <h6>Malagasy</h6>
                         </div>
                     </div>
                     <div class="card">
@@ -552,6 +548,10 @@
                             <h6>MySQL</h6>
                             <h6>Linux</h6>
                             <h6>Git</h6>
+                            <h6 class="title text-danger">Langues parlées</h6>
+                            <h6 class="spoken-lang-item">Anglais</h6>
+                            <h6 class="spoken-lang-item">Français</h6>
+                            <h6 class="spoken-lang-item">Malagasy</h6>
                         </div>
                     </div>
                 </div>
@@ -1355,13 +1355,7 @@
                 });
                 pushLine('');
 
-                pushLine(text.spokenLanguages, 'section');
-                [text.langEnglish, text.langFrench, text.langMalagasy].forEach((item) => {
-                    pushLine(item);
-                });
-                pushLine('');
-
-                const languageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6')
+                const languageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6:not(.title):not(.spoken-lang-item)')
                     .map((item) => item.trim())
                     .filter((item) => item.length > 0);
 
@@ -1371,6 +1365,13 @@
                     .forEach((item) => {
                         pushLine(item);
                     });
+                pushLine('');
+
+                pushLine(text.spokenLanguages, 'section');
+                const spokenLanguageLines = getTextList('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.spoken-lang-item');
+                (spokenLanguageLines.length > 0 ? spokenLanguageLines : [text.langEnglish, text.langFrench, text.langMalagasy]).forEach((item) => {
+                    pushLine(item);
+                });
                 pushLine('');
 
                 pushLine(text.getInTouch, 'section');
@@ -1620,8 +1621,8 @@
                         };
 
                         drawSection(leftState, leftX, leftWidth, text.resumeSkills, skillLines, true);
-                        drawSection(leftState, leftX, leftWidth, text.spokenLanguages, spokenLanguageLines, true);
                         drawSection(leftState, leftX, leftWidth, text.resumeLanguages, languageLines, true);
+                        drawSection(leftState, leftX, leftWidth, text.spokenLanguages, spokenLanguageLines, true);
                         drawSection(leftState, leftX, leftWidth, text.getInTouch, contactLines, true);
 
                         drawSection(rightState, rightX, rightWidth, text.resumeExperience, experienceLines, false);
@@ -1830,19 +1831,20 @@
                 }
 
                 const softSkillItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6');
-                if (softSkillItems.length >= 9) {
+                if (softSkillItems.length >= 5) {
                     softSkillItems[0].textContent = text.softSkill1;
                     softSkillItems[1].textContent = text.softSkill2;
                     softSkillItems[2].textContent = text.softSkill3;
                     softSkillItems[3].textContent = text.softSkill4;
                     softSkillItems[4].textContent = text.softSkill5;
-                    softSkillItems[5].textContent = text.spokenLanguages;
-                    softSkillItems[6].textContent = text.langEnglish;
-                    softSkillItems[7].textContent = text.langFrench;
-                    softSkillItems[8].textContent = text.langMalagasy;
                 }
 
-                const techItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6');
+                const spokenLanguageTitle = document.querySelector('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.title.text-danger');
+                if (spokenLanguageTitle) {
+                    spokenLanguageTitle.textContent = text.spokenLanguages;
+                }
+
+                const techItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6:not(.title):not(.spoken-lang-item)');
                 if (techItems.length >= 9) {
                     techItems[0].textContent = text.tech1;
                     techItems[1].textContent = text.tech2;
@@ -1853,6 +1855,13 @@
                     techItems[6].textContent = text.tech7;
                     techItems[7].textContent = text.tech8;
                     techItems[8].textContent = text.tech9;
+                }
+
+                const spokenLanguageItems = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:last-child .card-body h6.spoken-lang-item');
+                if (spokenLanguageItems.length >= 3) {
+                    spokenLanguageItems[0].textContent = text.langEnglish;
+                    spokenLanguageItems[1].textContent = text.langFrench;
+                    spokenLanguageItems[2].textContent = text.langMalagasy;
                 }
 
                 setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
