@@ -432,42 +432,42 @@
                                 <span class="line"></span>
                             </div>
                         </div>
-                        <div class="card-body">
-                            <h6 class="title text-danger">Août 2025 - Présent</h6>
-                            <p>Développeur Java - BICI (Projet ASYNC)</p>
-                            <p class="subtitle">
-                            <p>Développement et maintenance de services backend Java avec le framework APJ.</p>
-                            <ul>
-                                <li>Développement de services Java avec le framework APJ</li>
-                                <li>Implémentation de la logique métier et intégration des services</li>
-                                <li>Conception et optimisation des accès aux données Oracle et PostgreSQL</li>
-                                <li>Écriture de tests unitaires et maintenance corrective</li>
-                            </ul>
-                            </p>
+                        <div class="card-body experience-list">
+                            <div class="experience-item">
+                                <h6 class="title text-danger exp-date">Août 2025 - Présent</h6>
+                                <p class="exp-role">Développeur Java - BICI (Projet ASYNC)</p>
+                                <p class="subtitle exp-description">Développement et maintenance de services backend Java avec le framework APJ.</p>
+                                <ul class="exp-bullets">
+                                    <li>Développement de services Java avec le framework APJ</li>
+                                    <li>Implémentation de la logique métier et intégration des services</li>
+                                    <li>Conception et optimisation des accès aux données Oracle et PostgreSQL</li>
+                                    <li>Écriture de tests unitaires et maintenance corrective</li>
+                                </ul>
+                            </div>
                             <hr>
-                            <h6 class="title text-danger">Avril 2025 - Juillet 2025</h6>
-                            <p>Coordinateur de projet - BICI</p>
-                            <p class="subtitle">
-                            <p>Support à la gestion et à la bonne exécution du projet de digitalisation des services.</p>
-                            <ul>
-                                <li>Suivi quotidien de l'avancement et mise à jour du planning</li>
-                                <li>Coordination entre équipes techniques, fonctionnelles et parties prenantes</li>
-                                <li>Rédaction des rapports et des documents de suivi</li>
-                                <li>Vérification de la mise en œuvre des processus qualité</li>
-                            </ul>
-                            </p>
+                            <div class="experience-item">
+                                <h6 class="title text-danger exp-date">Avril 2025 - Juillet 2025</h6>
+                                <p class="exp-role">Coordinateur de projet - BICI</p>
+                                <p class="subtitle exp-description">Support à la gestion et à la bonne exécution du projet de digitalisation des services.</p>
+                                <ul class="exp-bullets">
+                                    <li>Suivi quotidien de l'avancement et mise à jour du planning</li>
+                                    <li>Coordination entre équipes techniques, fonctionnelles et parties prenantes</li>
+                                    <li>Rédaction des rapports et des documents de suivi</li>
+                                    <li>Vérification de la mise en œuvre des processus qualité</li>
+                                </ul>
+                            </div>
                             <hr>
-                            <h6 class="title text-danger">Juin 2024 - Avril 2025</h6>
-                            <p>Gestion des devis d'impression - Grafiky (BICI)</p>
-                            <p class="subtitle">
-                            <p>Développement d'un système de suivi en temps réel des commandes et des flux de production. (Java)</p>
-                            <ul>
-                                <li>Développement de nouvelles fonctionnalités</li>
-                                <li>Conception et amélioration des pages</li>
-                                <li>Revue de code et assurance qualité</li>
-                                <li>Méthodologie agile/scrum</li>
-                            </ul>
-                            </p>
+                            <div class="experience-item">
+                                <h6 class="title text-danger exp-date">Juin 2024 - Avril 2025</h6>
+                                <p class="exp-role">Gestion des devis d'impression - Grafiky (BICI)</p>
+                                <p class="subtitle exp-description">Développement d'un système de suivi en temps réel des commandes et des flux de production. (Java)</p>
+                                <ul class="exp-bullets">
+                                    <li>Développement de nouvelles fonctionnalités</li>
+                                    <li>Conception et amélioration des pages</li>
+                                    <li>Revue de code et assurance qualité</li>
+                                    <li>Méthodologie agile/scrum</li>
+                                </ul>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -1004,7 +1004,7 @@
                     aboutTechWatch: 'Technological monitoring',
                     resumeTitlePrefix: 'My',
                     resumeTitle: ' Resume',
-                    resumeExperience: 'Expertise',
+                    resumeExperience: 'Experience',
                     resumeEducation: 'Education',
                     resumeSkills: 'Skills',
                     resumeLanguages: 'Tech Stack',
@@ -1611,19 +1611,17 @@
                 setHtml('#resume > .container > h2', '<span class="text-danger">' + text.resumeTitlePrefix + '</span>' + text.resumeTitle);
 
                 const resumeCardHeaders = document.querySelectorAll('#resume .card-header h4');
-                if (resumeCardHeaders.length >= 4) {
+                if (resumeCardHeaders.length >= 3) {
                     resumeCardHeaders[0].textContent = text.resumeExperience;
                     resumeCardHeaders[1].textContent = text.resumeEducation;
                     resumeCardHeaders[2].textContent = text.resumeSkills;
-                    resumeCardHeaders[3].textContent = text.resumeLanguages;
                 }
 
-                const experienceCards = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > h6.title.text-danger');
-                if (experienceCards.length >= 4) {
+                const experienceCards = document.querySelectorAll('#resume .experience-list .experience-item .exp-date');
+                if (experienceCards.length >= 3) {
                     experienceCards[0].textContent = text.expDate1;
                     experienceCards[1].textContent = text.expDate2;
                     experienceCards[2].textContent = text.expDate3;
-                    experienceCards[3].textContent = text.expDate4;
                 }
 
                 const educationDates = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > h6.title.text-danger');
@@ -1635,20 +1633,25 @@
                     educationDates[4].textContent = text.eduDate5;
                 }
 
-                const firstCardTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body > p:not(.subtitle)');
-                if (firstCardTextBlocks.length >= 8) {
-                    firstCardTextBlocks[0].textContent = text.roleJavaDeveloper;
-                    firstCardTextBlocks[1].textContent = text.exp0Text;
-                    firstCardTextBlocks[2].textContent = text.roleProjectCoordinator;
-                    firstCardTextBlocks[3].textContent = text.exp1Text;
-                    firstCardTextBlocks[4].textContent = text.rolePrintingQuote;
-                    firstCardTextBlocks[5].textContent = text.exp2Text;
-                    firstCardTextBlocks[6].textContent = text.roleEmbeddedTask;
-                    firstCardTextBlocks[7].textContent = text.exp3Text;
+                const experienceItems = document.querySelectorAll('#resume .experience-list .experience-item');
+                if (experienceItems.length >= 3) {
+                    const firstRole = experienceItems[0].querySelector('.exp-role');
+                    const firstDescription = experienceItems[0].querySelector('.exp-description');
+                    const secondRole = experienceItems[1].querySelector('.exp-role');
+                    const secondDescription = experienceItems[1].querySelector('.exp-description');
+                    const thirdRole = experienceItems[2].querySelector('.exp-role');
+                    const thirdDescription = experienceItems[2].querySelector('.exp-description');
+
+                    if (firstRole) firstRole.textContent = text.roleJavaDeveloper;
+                    if (firstDescription) firstDescription.textContent = text.exp0Text;
+                    if (secondRole) secondRole.textContent = text.roleProjectCoordinator;
+                    if (secondDescription) secondDescription.textContent = text.exp1Text;
+                    if (thirdRole) thirdRole.textContent = text.rolePrintingQuote;
+                    if (thirdDescription) thirdDescription.textContent = text.exp2Text;
                 }
 
-                const firstCardLists = document.querySelectorAll('#resume .col-md-6.col-lg-4:first-child .card-body ul');
-                if (firstCardLists.length >= 4) {
+                const firstCardLists = document.querySelectorAll('#resume .experience-list .experience-item .exp-bullets');
+                if (firstCardLists.length >= 3) {
                     const list1 = firstCardLists[0].querySelectorAll('li');
                     if (list1.length >= 4) {
                         list1[0].textContent = text.exp0Bullet1;
@@ -1671,13 +1674,6 @@
                         list3[1].textContent = text.exp2Bullet2;
                         list3[2].textContent = text.exp2Bullet3;
                         list3[3].textContent = text.exp2Bullet4;
-                    }
-
-                    const list4 = firstCardLists[3].querySelectorAll('li');
-                    if (list4.length >= 3) {
-                        list4[0].textContent = text.exp3Bullet1;
-                        list4[1].textContent = text.exp3Bullet2;
-                        list4[2].textContent = text.exp3Bullet3;
                     }
                 }
 
