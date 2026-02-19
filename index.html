@@ -931,7 +931,7 @@
                                 <i class="ti-link icon-md"></i>
                             </div>
                             <div class="col-10">
-                                <h6 class="d-inline">LinkedIn :<br> <span class="text-muted">https://www.linkedin.com/in/michael-raharison-215901288</span></h6>
+                                <h6 class="d-inline">LinkedIn :<br> <span class="text-muted"><a href="https://www.linkedin.com/in/michael-raharison-215901288" target="_blank">Michael Raharison</a></span></h6>
                             </div>
                         </div>
                         <div class="row mb-2">
@@ -1880,11 +1880,11 @@
                 const contactLabels = document.querySelectorAll('.contact-info-card .d-inline');
                 if (contactLabels.length >= 3) {
                     const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
-                    const linkedinValue = contactLabels[1].querySelector('.text-muted')?.textContent || 'https://www.linkedin.com/in/michael-raharison-215901288';
+                    const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
                     const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
 
                     contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
-                    contactLabels[1].innerHTML = text.linkedinLabel + '<br> <span class="text-muted">' + linkedinValue + '</span>';
+                    contactLabels[1].innerHTML = text.linkedinLabel + '<br> <span class="text-muted"><a href="' + linkedinUrl + '" target="_blank">Michael Raharison</a></span>';
                     contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
                 }
 
