@@ -266,8 +266,10 @@
 
                 const imageNode = document.querySelector('.header .img-holder img') || document.querySelector('img[src*="avatar"]');
                 const profileImageSrc = imageNode?.currentSrc || imageNode?.src || imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
+                const absoluteAvatar = (window.location?.origin || '') + '/assets/imgs/avatar.jpg';
                 const profileImageCandidates = [
                     profileImageSrc,
+                    absoluteAvatar,
                     'assets/imgs/avatar.jpg',
                     '/assets/imgs/avatar.jpg',
                     './assets/imgs/avatar.jpg'
@@ -388,19 +390,30 @@
                         return currentY;
                     };
 
-                    const addLinkLine = (label, value, href, x, y, width) => {
-                        const textLine = (label ? (label + ' : ') : '') + (value || '');
+                    const addLabelWithLinkValue = (label, value, href, x, y, width) => {
+                        const left = x + 2;
+                        const line = y;
+
                         pdf.setFont('helvetica', 'normal');
                         pdf.setFontSize(8.3);
-                        pdf.setTextColor(20, 88, 185);
-                        const split = pdf.splitTextToSize(textLine, width - 4);
-                        if (split.length > 0) {
-                            pdf.textWithLink(split[0], x + 2, y, { url: href });
-                            for (let index = 1; index < split.length; index += 1) {
-                                pdf.text(split[index], x + 2, y + (index * 3.8));
+                        pdf.setTextColor(28, 34, 44);
+
+                        const labelText = (label || '') + ' : ';
+                        pdf.text(labelText, left, line);
+
+                        const labelWidth = pdf.getTextWidth(labelText);
+                        const valueMaxWidth = Math.max(10, width - 6 - labelWidth);
+                        const valueParts = pdf.splitTextToSize(value || '', valueMaxWidth);
+
+                        if (valueParts.length > 0) {
+                            pdf.setTextColor(20, 88, 185);
+                            pdf.textWithLink(valueParts[0], left + labelWidth, line, { url: href });
+                            for (let index = 1; index < valueParts.length; index += 1) {
+                                pdf.text(valueParts[index], left, line + (index * 3.8));
                             }
                         }
-                        return y + (split.length * 3.8);
+
+                        return line + (Math.max(1, valueParts.length) * 3.8);
                     };
 
                     const normalizeImageToDataUrl = (url) => {
@@ -544,8 +557,8 @@
                         leftY += 1;
 
                         leftY = addSectionHeader(sectionContact, leftX, leftY, leftColWidth);
-                        leftY = addLinkLine((language === 'en' ? 'Phone' : 'Téléphone'), data.phoneLine, data.whatsappHref, leftX, leftY + 0.5, leftColWidth);
-                        leftY = addLinkLine('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
+                        leftY = addLabelWithLinkValue((language === 'en' ? 'Phone' : 'Téléphone'), data.phoneLine, data.whatsappHref, leftX, leftY + 0.5, leftColWidth);
+                        leftY = addLabelWithLinkValue('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
                         leftY = addWrapped('Email : ' + data.emailLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
 
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
