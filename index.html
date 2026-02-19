@@ -296,6 +296,18 @@
                             <h6 class="title text-danger">Autres</h6>
                             <h6>Linux</h6>
                             <h6>Git</h6>
+                        </div>
+                    </div>
+
+                    <div class="card spoken-languages-card">
+                        <div class="card-header">
+                            <div class="pull-left">
+                                <h4 class="mt-2">Langues</h4>
+                                <span class="line"></span>
+                            </div>
+                        </div>
+                        <div class="card-body pb-2">
+                            <h6>Anglais</h6>
                             <h6>Français</h6>
                             <h6>Malagasy</h6>
                         </div>
@@ -1359,6 +1371,11 @@
                     skillHeadings[0].textContent = text.resumeLanguagesLabel;
                     skillHeadings[1].textContent = text.resumeDatabases;
                     skillHeadings[2].textContent = text.resumeOther;
+                }
+
+                const spokenLanguagesTitle = document.querySelector('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-header h4');
+                if (spokenLanguagesTitle) {
+                    spokenLanguagesTitle.textContent = text.resumeLanguages;
                 }
 
                 const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-body h6');

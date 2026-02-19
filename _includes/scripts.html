@@ -783,6 +783,11 @@
                     skillHeadings[2].textContent = text.resumeOther;
                 }
 
+                const spokenLanguagesTitle = document.querySelector('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-header h4');
+                if (spokenLanguagesTitle) {
+                    spokenLanguagesTitle.textContent = text.resumeLanguages;
+                }
+
                 const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-body h6');
                 if (spokenLanguages.length >= 3) {
                     spokenLanguages[0].textContent = text.langEnglish;
