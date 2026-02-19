@@ -922,7 +922,7 @@
                                 <i class="ti-mobile icon-md"></i>
                             </div>
                             <div class="col-10 ">
-                                <h6 class="d-inline">Téléphone : <br> <span class="text-muted">+ 261 32 49 084 09</span>
+                                <h6 class="d-inline">Téléphone : <br> <span class="text-muted"><a href="https://wa.me/261324908409" target="_blank">+ 261 32 49 084 09</a></span>
                                 </h6>
                             </div>
                         </div>
@@ -1576,7 +1576,9 @@
                             const textValue = isBullet ? line.value.slice(2) : line.value;
                             const indent = isBullet ? 2.8 : 0;
                             const isLinkedIn = textValue.includes('Michael Raharison') || textValue.includes('LinkedIn :');
+                            const isPhone = textValue.includes('+ 261') || textValue.includes('261');
                             const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
+                            const whatsappUrl = 'https://wa.me/261324908409';
 
                             if (line.style === 'bold') {
                                 doc.setFont('helvetica', 'bold');
@@ -1603,9 +1605,10 @@
                                 }
                             }
 
-                            if (isLinkedIn && parts.length > 0) {
-                                // Add clickable link for the first line of LinkedIn contact
-                                doc.textWithLink(parts[0], x + indent, state.y, { url: linkedinUrl });
+                            if ((isLinkedIn || isPhone) && parts.length > 0) {
+                                // Add clickable link for LinkedIn or WhatsApp
+                                const linkUrl = isPhone ? whatsappUrl : linkedinUrl;
+                                doc.textWithLink(parts[0], x + indent, state.y, { url: linkUrl });
                                 // Add remaining lines without link
                                 if (parts.length > 1) {
                                     for (let i = 1; i < parts.length; i++) {
@@ -1894,9 +1897,10 @@
                 if (contactLabels.length >= 3) {
                     const phoneValue = contactLabels[0].querySelector('.text-muted')?.textContent || '+ 261 32 49 084 09';
                     const linkedinUrl = 'https://www.linkedin.com/in/michael-raharison-215901288';
+                    const whatsappUrl = 'https://wa.me/261324908409';
                     const emailValue = contactLabels[2].querySelector('.text-muted')?.textContent || 'michaeldm034@gmail.com';
 
-                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted">' + phoneValue + '</span>';
+                    contactLabels[0].innerHTML = text.phoneLabel + ' <br> <span class="text-muted"><a href="' + whatsappUrl + '" target="_blank">' + phoneValue + '</a></span>';
                     contactLabels[1].innerHTML = text.linkedinLabel + '<br> <span class="text-muted"><a href="' + linkedinUrl + '" target="_blank">Michael Raharison</a></span>';
                     contactLabels[2].innerHTML = text.emailLabel + '<br> <span class="text-muted">' + emailValue + '</span>';
                 }
