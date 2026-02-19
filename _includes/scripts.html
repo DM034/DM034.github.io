@@ -222,6 +222,15 @@
             const generateCvPdf = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
+
+                const staticFileName = text.cvFileName || 'CV_Michael_Raharison_EN.pdf';
+                const downloadLink = document.createElement('a');
+                downloadLink.href = 'assets/pdf/' + staticFileName;
+                downloadLink.download = staticFileName;
+                document.body.appendChild(downloadLink);
+                downloadLink.click();
+                document.body.removeChild(downloadLink);
+                return;
                 
                 const lines = buildCvPdfLines(text);
                 
