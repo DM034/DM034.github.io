@@ -137,7 +137,6 @@
                 <h3 class="font-weight-light">Informations personnelles</h3>
                 <span class="line mb-5"></span>
                 <ul class="mt40 info list-unstyled">
-                    <li><span>Date de naissance</span> : 28/12/2000</li>
                     <li><span>Email</span> : michaeldm034@gmail.com</li>
                     <li><span>Téléphone</span> : + 261 32 49 084 09</li>
                     <li><span>Skype</span> : Michael Raharison </li>
@@ -251,9 +250,10 @@
                             </div>
                         </div>
                         <div class="card-body">
-                            <h6 class="title text-danger">Octobre 2025 - Présent</h6>
+                            <h6 class="title text-danger">Octobre 2025 - Octobre 2026</h6>
                             <p>MBDS - Master 2 en développement informatique</p>
                             <p class="subtitle">Université Côte d'Azur</p>
+                            <p class="subtitle degree-status">Diplôme obtenu</p>
                             <hr>
                             <h6 class="title text-danger">Décembre 2024 - Septembre 2025</h6>
                             <p>Master 1 en développement informatique</p>
@@ -578,6 +578,18 @@
 
         </div>
 
+        <div class="container mt-4">
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-info-card py-3 px-4">
+                        <h5 class="contact-title mb-3" id="professionalInfoTitle">Informations professionnelles</h5>
+                        <p class="mb-1">NIF : 5020268665</p>
+                        <p class="mb-0">STAT : 74908112026022115</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
 
         <footer class="footer py-3">
@@ -704,7 +716,9 @@
                 pushLine('');
                 
                 pushLine('MBDS - Master 2 en Développement Informatique', 'bold');
-                pushLine('Octobre 2025 - Présent', 'date');
+                pushLine('Octobre 2025 - Octobre 2026', 'date');
+                pushLine('Diplôme obtenu', 'normal');
+                pushLine('');
                 pushLine('');
                 
                 pushLine('Master 1 - Développement Informatique', 'bold');
@@ -837,7 +851,10 @@
                         }
                         education.push({
                             title: cursor?.textContent?.trim() || '',
-                            date: dateNode.textContent?.trim() || ''
+                            date: dateNode.textContent?.trim() || '',
+                            status: cursor?.nextElementSibling?.classList.contains('degree-status')
+                                ? cursor.nextElementSibling.textContent.trim()
+                                : ''
                         });
                     });
                 }
@@ -1152,6 +1169,11 @@
                         leftY = addLabelWithLinkValue('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
                         leftY = addWrapped('Email : ' + data.emailLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
 
+                        leftY += s(1);
+                        leftY = addSectionHeader(text.professionalInfo, leftX, leftY, leftColWidth);
+                        leftY = addWrapped('NIF : 5020268665', leftX, leftY + s(0.5), leftColWidth);
+                        leftY = addWrapped('STAT : 74908112026022115', leftX, leftY, leftColWidth);
+
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
                         data.experiences.forEach((exp) => {
                             rightY = addWrapped(exp.role, rightX, rightY + s(0.5), rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
@@ -1166,6 +1188,7 @@
                         data.education.forEach((edu) => {
                             rightY = addWrapped(edu.date, rightX, rightY + s(0.3), rightColWidth, 'bold', 9.3, [31, 41, 59], 4.1);
                             rightY = addWrapped(edu.title, rightX, rightY, rightColWidth, 'normal', 9.1, [38, 44, 56], 4);
+                            if (edu.status) rightY = addWrapped(edu.status, rightX, rightY, rightColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
                             rightY += s(0.8);
                         });
 
@@ -1248,12 +1271,11 @@
                 setText('#about .about-card .mb-3', text.aboutWhoText);
 
                 const personalInfoLabels = document.querySelectorAll('#about .info span');
-                if (personalInfoLabels.length >= 5) {
-                    personalInfoLabels[0].textContent = text.aboutBirthdate;
-                    personalInfoLabels[1].textContent = text.aboutEmail;
-                    personalInfoLabels[2].textContent = text.aboutPhone;
-                    personalInfoLabels[3].textContent = text.aboutSkype;
-                    personalInfoLabels[4].textContent = text.aboutAddress;
+                if (personalInfoLabels.length >= 4) {
+                    personalInfoLabels[0].textContent = text.aboutEmail;
+                    personalInfoLabels[1].textContent = text.aboutPhone;
+                    personalInfoLabels[2].textContent = text.aboutSkype;
+                    personalInfoLabels[3].textContent = text.aboutAddress;
                 }
 
                 setText('#about .about-card:last-child h6', text.aboutWebDev);
@@ -1291,6 +1313,14 @@
                     educationDates[3].textContent = text.eduDate4;
                     educationDates[4].textContent = text.eduDate5;
                 }
+                const degreeStatus = document.querySelector('#resume .degree-status');
+                if (degreeStatus) degreeStatus.textContent = text.eduDegreeStatus;
+                const degreeStatusLine = document.querySelector('#resume .degree-status');
+                if (degreeStatusLine) {
+                    degreeStatusLine.textContent = text.eduDegreeStatus;
+                }
+                const professionalInfoTitle = document.querySelector('#professionalInfoTitle');
+                if (professionalInfoTitle) professionalInfoTitle.textContent = text.professionalInfo;
 
                 const experienceItems = document.querySelectorAll('#resume .experience-list .experience-item');
                 if (experienceItems.length >= 4) {
@@ -1347,7 +1377,7 @@
                     }
                 }
 
-                const educationTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p:not(.subtitle)');
+                const educationTextBlocks = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p:not(.subtitle):not(.degree-status)');
                 if (educationTextBlocks.length >= 7) {
                     educationTextBlocks[0].textContent = text.eduM2;
                     educationTextBlocks[1].textContent = text.eduM1;
