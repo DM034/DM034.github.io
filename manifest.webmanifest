@@ -1,0 +1,11 @@
+{
+  "name": "Michael Raharison — Portfolio",
+  "short_name": "Portfolio",
+  "start_url": "/?lang=fr",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1e90ff",
+  "icons": [
+    { "src": "/assets/imgs/favicon.svg", "sizes": "any", "type": "image/svg+xml", "purpose": "any maskable" }
+  ]
+}

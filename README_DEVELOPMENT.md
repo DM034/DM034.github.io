@@ -7,7 +7,7 @@ A professional portfolio website built with Bootstrap and custom JavaScript for 
 - **Multi-language support**: French (FR) and English (EN) with browser localStorage
 - **PDF CV Download**: Generate and download CV in the active language
 - **Responsive Design**: Works on desktop, tablet, and mobile
-- **Modern Stack**: Bootstrap 4, jQuery, custom CSS/SCSS
+- **Modern Stack**: Bootstrap 5.3.9, vanilla JavaScript, custom CSS/SCSS
 
 ## File Structure
 
@@ -64,7 +64,7 @@ A professional portfolio website built with Bootstrap and custom JavaScript for 
 - **GitHub Pages is static**: It cannot execute Python, Ruby, or any server-side code
 - **Pre-compiled HTML**: The `index.html` must be fully compiled before uploading to GitHub
 - **Local compilation**: Use `compile_templates.py` to embed templates before committing
-- **`.gitignore`**: The `compile_templates.py` is excluded from Git (local development only)
+- The template compiler is versioned and run by GitHub Actions before the link and Lighthouse checks.
 
 ## PDF Generation
 
@@ -73,10 +73,8 @@ The PDF download button in the navbar:
 - Generates a PDF with the active language (FR or EN)
 - Downloads with filename: `CV_Michael_Raharison_FR.pdf` or `CV_Michael_Raharison_EN.pdf`
 
-**Libraries used**:
-- `html2pdf.js` - Primary PDF generator (handles images)
-- `jsPDF` - Fallback text-based generator
-- `html2canvas` - Renders HTML to canvas for image conversion
+**Library used**:
+- `jsPDF` - Generates the PDF directly from current page content
 
 ## Deployment
 
@@ -85,13 +83,11 @@ Push to the `main` branch on GitHub. Your site will be live at:
 
 ## Technologies
 
-- **Bootstrap 4.3.1** - Responsive UI framework
-- **jQuery 3.4.1** - DOM manipulation
+- **Bootstrap 5.3.9** - Responsive UI framework
+- **Sass** - Stylesheet compilation
 - **jsPDF 2.5.1** - PDF generation
-- **html2pdf.js** - HTML to PDF converter
-- **html2canvas 1.4.1** - Canvas rendering
 - **SCSS** - CSS preprocessor
 
 ---
 
-**Last updated**: February 18, 2026
+**Last updated**: November 17, 2026

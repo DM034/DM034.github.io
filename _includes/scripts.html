@@ -1,24 +1,10 @@
-    <!-- core  -->
-    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
-    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
-
-    <!-- bootstrap 3 affix -->
-    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
-
-    <!-- Isotope  -->
-    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
-
-    <!-- Google mpas -->
-
-
-    <!-- JohnDoe js -->
-    <script src="assets/js/johndoe.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-    <script src="assets/js/translations.js"></script>
+    <script defer src="assets/vendors/bootstrap-5/bootstrap.bundle.min.js"></script>
+    <script defer src="assets/js/johndoe.js"></script>
+    <script defer src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+    <script defer src="assets/js/translations.js"></script>
 
     <script>
+        window.addEventListener('DOMContentLoaded', function () {
         (function () {
             const translations = window.siteTranslations || {};
 
@@ -54,171 +40,6 @@
                 if (element) {
                     element.setAttribute(attribute, value);
                 }
-            };
-
-            const getTextList = (selector) => {
-                return Array.from(document.querySelectorAll(selector))
-                    .map((node) => node.textContent ? node.textContent.trim() : '')
-                    .filter((value) => value.length > 0);
-            };
-
-            const appendSectionTitle = (container, value) => {
-                const heading = document.createElement('h2');
-                heading.textContent = value;
-                heading.style.fontSize = '18px';
-                heading.style.margin = '18px 0 8px 0';
-                heading.style.borderBottom = '1px solid #dddddd';
-                heading.style.paddingBottom = '4px';
-                container.appendChild(heading);
-            };
-
-            const buildCvPdfLines = (text) => {
-                const lines = [];
-                const pushLine = (value = '', style = 'normal') => {
-                    lines.push({ value, style });
-                };
-
-                // Header: Name and title (no extra line)
-                pushLine('Michael Raharison', 'title');
-                pushLine('Développeur Java | Coordinateur de Projet', 'subtitle');
-                pushLine('michael@example.com | +261 34 XX XX XX | linkedin.com/in/michael-raharison', 'contact');
-                pushLine('');
-
-                // Experience
-                pushLine('EXPÉRIENCE PROFESSIONNELLE', 'section');
-                pushLine('');
-                
-                // Exp 1
-                pushLine('Développeur Java - BICI (Projet ASYNC)', 'bold');
-                pushLine('Août 2025 - Présent', 'date');
-                pushLine('');
-
-                // Exp 2
-                pushLine('Coordinateur de Projet - BICI', 'bold');
-                pushLine('Avril 2025 - Juillet 2025', 'date');
-                pushLine('');
-
-                // Exp 3
-                pushLine('Manager Devis Impression - Grafiky (BICI)', 'bold');
-                pushLine('Juin 2024 - Avril 2025', 'date');
-                pushLine('');
-
-                // Exp 4
-                pushLine('Gestionnaire de tâches embarqué - ASTEK', 'bold');
-                pushLine('Juin 2024 - Août 2024', 'date');
-                pushLine('');
-
-                // Education
-                pushLine('FORMATION ACADEMIQUE', 'section');
-                pushLine('');
-                
-                pushLine('MBDS - Master 2 en Développement Informatique', 'bold');
-                pushLine('Octobre 2025 - Octobre 2026', 'date');
-                pushLine('Diplôme obtenu', 'normal');
-                pushLine('');
-                pushLine('');
-                
-                pushLine('Master 1 - Développement Informatique', 'bold');
-                pushLine('Décembre 2024 - Septembre 2025', 'date');
-                pushLine('');
-                
-                pushLine('Licence - Développement Informatique', 'bold');
-                pushLine('2021 - Juin 2024', 'date');
-                pushLine('');
-
-                // Skills
-                pushLine('COMPETENCES TECHNIQUES', 'section');
-                pushLine('');
-                
-                pushLine('Langages  Java • SQL • C++ • JavaScript • QML', 'skills');
-                pushLine('Bases de Données  PostgreSQL • Oracle • MySQL', 'skills');
-                pushLine('Outils & Frameworks  APJ • Bootstrap • Git • Agile/Scrum', 'skills');
-                pushLine('');
-
-                // Languages
-                pushLine('LANGUES', 'section');
-                pushLine('');
-                pushLine('Français (Natif) • Anglais (Courant)', 'skills');
-                
-                return lines;
-            };
-
-            const buildCvPdfHtml = (lines) => {
-                const container = document.createElement('div');
-                container.style.background = '#ffffff';
-                container.style.color = '#1a1a1a';
-                container.style.fontFamily = '"Segoe UI", Tahoma, Geneva, Verdana, sans-serif';
-                container.style.padding = '30px';
-                container.style.width = '750px';
-                container.style.lineHeight = '1.5';
-                container.style.maxWidth = '100%';
-
-                lines.forEach((line, index) => {
-                    const value = line.value || '';
-                    
-                    if (!value) {
-                        const spacer = document.createElement('div');
-                        spacer.style.height = '8px';
-                        container.appendChild(spacer);
-                        return;
-                    }
-
-                    const node = document.createElement('div');
-                    node.textContent = value;
-                    node.style.margin = '0';
-
-                    if (line.style === 'title') {
-                        node.style.fontSize = '32px';
-                        node.style.fontWeight = '700';
-                        node.style.marginBottom = '3px';
-                        node.style.color = '#0066cc';
-                        node.style.letterSpacing = '-0.5px';
-                    } else if (line.style === 'subtitle') {
-                        node.style.fontSize = '14px';
-                        node.style.color = '#666666';
-                        node.style.fontWeight = '500';
-                        node.style.marginBottom = '8px';
-                        node.style.letterSpacing = '0.5px';
-                    } else if (line.style === 'contact') {
-                        node.style.fontSize = '11px';
-                        node.style.color = '#555555';
-                        node.style.marginBottom = '12px';
-                        node.style.borderBottom = '2px solid #0066cc';
-                        node.style.paddingBottom = '8px';
-                    } else if (line.style === 'section') {
-                        node.style.fontSize = '13px';
-                        node.style.fontWeight = '700';
-                        node.style.color = '#ffffff';
-                        node.style.background = '#0066cc';
-                        node.style.padding = '6px 10px';
-                        node.style.marginTop = '12px';
-                        node.style.marginBottom = '8px';
-                        node.style.letterSpacing = '0.5px';
-                    } else if (line.style === 'bold') {
-                        node.style.fontWeight = '700';
-                        node.style.fontSize = '12px';
-                        node.style.color = '#1a1a1a';
-                        node.style.marginTop = '6px';
-                    } else if (line.style === 'date') {
-                        node.style.fontSize = '11px';
-                        node.style.color = '#0066cc';
-                        node.style.fontStyle = 'italic';
-                        node.style.marginBottom = '4px';
-                    } else if (line.style === 'skills') {
-                        node.style.fontSize = '11px';
-                        node.style.color = '#333333';
-                        node.style.marginBottom = '4px';
-                        node.style.lineHeight = '1.6';
-                    } else {
-                        node.style.fontSize = '11px';
-                        node.style.color = '#333333';
-                        node.style.marginBottom = '2px';
-                    }
-
-                    container.appendChild(node);
-                });
-
-                return container;
             };
 
             const extractCvDataFromSite = (text, language) => {
@@ -262,6 +83,9 @@
 
                 const techRegex = /^(Java|C\+\+|C#|\.NET|PostgreSQL|Oracle|MySQL|Linux|Git)$/i;
                 const skillItems = allSkillTexts.filter((value) => techRegex.test(value));
+                const currentStackItems = Array.from(document.querySelectorAll('#resume .current-stack li'))
+                    .map((node) => node.textContent ? node.textContent.trim() : '')
+                    .filter(Boolean);
 
                 const spokenLanguages = [text.langFrench, text.langEnglish, text.langMalagasy].filter(Boolean);
 
@@ -322,7 +146,7 @@
                     experiences,
                     education,
                     softSkills,
-                    skillsLine: skillItems.join(', '),
+                    skillsLine: skillItems.concat(currentStackItems).join(', '),
                     spokenLanguagesLine: (spokenLanguages.length ? spokenLanguages : [text.langFrench, text.langEnglish, text.langMalagasy]).join(', ')
                 };
             };
@@ -566,11 +390,6 @@
                         leftY = addLabelWithLinkValue('LinkedIn', data.linkedInLine, data.linkedInHref, leftX, leftY, leftColWidth);
                         leftY = addWrapped('Email : ' + data.emailLine, leftX, leftY, leftColWidth, 'normal', 8.3, [38, 44, 56], 3.8);
 
-                        leftY += s(1);
-                        leftY = addSectionHeader(text.professionalInfo, leftX, leftY, leftColWidth);
-                        leftY = addWrapped('NIF : 5020268665', leftX, leftY + s(0.5), leftColWidth);
-                        leftY = addWrapped('STAT : 74908112026022115', leftX, leftY, leftColWidth);
-
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
                         data.experiences.forEach((exp) => {
                             rightY = addWrapped(exp.role, rightX, rightY + s(0.5), rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
@@ -614,36 +433,28 @@
                 }
             };
 
-            const openTextFallback = (lines, text) => {
-                const textLines = lines
-                    .map((line) => line.value || '')
-                    .filter((val) => val !== '')
-                    .join('\n');
-
-                if (textLines.length === 0) {
-                    alert('Erreur: Aucun contenu à afficher');
-                    return;
-                }
-
-                const win = window.open('', '_blank');
-                if (!win) {
-                    alert('Impossible d\'ouvrir une nouvelle fenêtre. Vérifiez les blocages de pop-up.');
-                    return;
-                }
-
-                const htmlContent = '<!DOCTYPE html><html><head><meta charset="utf-8"><title>' + text.cvFileName + '</title><style>body{font-family:Arial,sans-serif;padding:20px;line-height:1.6;white-space:pre-wrap;word-wrap:break-word;}</style></head><body>' + textLines.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;') + '</body></html>';
-                
-                win.document.write(htmlContent);
-                win.document.close();
-                win.focus();
-            };
-
             const applyLanguage = (lang) => {
                 const language = translations[lang] ? lang : 'fr';
                 const text = translations[language];
 
                 document.documentElement.lang = language;
                 document.title = text.pageTitle;
+                setAttr('.navbar', 'aria-label', text.navigationLabel);
+                setAttr('#languageSelect', 'aria-label', text.languageLabel);
+                const ogTitle = document.querySelector('meta[property="og:title"]');
+                const twitterTitle = document.querySelector('meta[name="twitter:title"]');
+                if (ogTitle) ogTitle.content = text.pageTitle;
+                if (twitterTitle) twitterTitle.content = text.pageTitle;
+                const description = document.querySelector('meta[name="description"]');
+                if (description) description.content = text.metaDescription;
+                const ogDescription = document.querySelector('meta[property="og:description"]');
+                if (ogDescription) ogDescription.content = text.metaDescription;
+                const twitterDescription = document.querySelector('meta[name="twitter:description"]');
+                if (twitterDescription) twitterDescription.content = text.metaDescription;
+                document.querySelectorAll('[data-i18n]').forEach((node) => {
+                    const key = node.getAttribute('data-i18n');
+                    if (Object.prototype.hasOwnProperty.call(text, key)) node.textContent = text[key];
+                });
 
                 setText('.header-subtitle', text.headerSubtitle);
                 setText('.header-mono', text.headerRole);
@@ -711,12 +522,6 @@
                 }
                 const degreeStatus = document.querySelector('#resume .degree-status');
                 if (degreeStatus) degreeStatus.textContent = text.eduDegreeStatus;
-                const degreeStatusLine = document.querySelector('#resume .degree-status');
-                if (degreeStatusLine) {
-                    degreeStatusLine.textContent = text.eduDegreeStatus;
-                }
-                const professionalInfoTitle = document.querySelector('#professionalInfoTitle');
-                if (professionalInfoTitle) professionalInfoTitle.textContent = text.professionalInfo;
 
                 const experienceItems = document.querySelectorAll('#resume .experience-list .experience-item');
                 if (experienceItems.length >= 4) {
@@ -784,7 +589,7 @@
                     educationTextBlocks[6].textContent = text.eduTrainingDetail;
                 }
 
-                const educationSubtitles = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p.subtitle');
+                const educationSubtitles = document.querySelectorAll('#resume .col-md-6.col-lg-4:nth-child(2) .card-body > p.subtitle:not(.degree-status)');
                 if (educationSubtitles.length >= 5) {
                     educationSubtitles[0].textContent = 'Université Côte d\'Azur';
                     educationSubtitles[1].textContent = 'IT University Andoharanofotsy';
@@ -803,13 +608,6 @@
                 const spokenLanguagesTitle = document.querySelector('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-header h4');
                 if (spokenLanguagesTitle) {
                     spokenLanguagesTitle.textContent = text.resumeLanguages;
-                }
-
-                const spokenLanguages = document.querySelectorAll('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-body h6');
-                if (spokenLanguages.length >= 3) {
-                    spokenLanguages[0].textContent = text.langEnglish;
-                    spokenLanguages[1].textContent = text.langFrench;
-                    spokenLanguages[2].textContent = text.langMalagasy;
                 }
 
                 setText('.section.bg-dark.py-5 h2', text.freelanceTitle);
@@ -836,8 +634,10 @@
                 }
 
                 setHtml('.footer .small.mb-0.text-light',
-                    '© 2024 ' + text.footerBy + ' <a href="https://DM034.github.io" target="_blank"><span class="text-danger" title="' + text.footerTitle + '">Michael Raharison</span></a>'
+                    '© ' + new Date().getFullYear() + ' ' + text.footerBy + ' <a href="https://DM034.github.io" target="_blank" rel="noopener noreferrer"><span class="text-danger" title="' + text.footerTitle + '">Michael Raharison</span></a>'
                 );
+                const darkToggle = document.getElementById('themeToggle');
+                if (darkToggle) darkToggle.textContent = document.body.classList.contains('dark-mode') ? text.themeDark : text.themeLight;
 
                 const languageSelect = document.getElementById('languageSelect');
                 if (languageSelect) {
@@ -851,7 +651,8 @@
             const downloadCvBtn = document.getElementById('downloadCvBtn');
             
             
-            const initialLanguage = localStorage.getItem('siteLanguage') || 'fr';
+            const requestedLanguage = new URLSearchParams(window.location.search).get('lang');
+            const initialLanguage = translations[requestedLanguage] ? requestedLanguage : (localStorage.getItem('siteLanguage') || 'fr');
             applyLanguage(initialLanguage);
 
             if (languageSelect) {
@@ -867,6 +668,43 @@
             } else {
                 console.error('❌ downloadCvBtn NOT FOUND! Searched for id="downloadCvBtn"');
             }
+
+            const themeToggle = document.getElementById('themeToggle');
+            const applyTheme = (theme) => {
+                const dark = theme === 'dark';
+                document.body.classList.toggle('dark-mode', dark);
+                if (themeToggle) {
+                    themeToggle.setAttribute('aria-pressed', String(dark));
+                    themeToggle.textContent = dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight;
+                }
+            };
+            const savedTheme = localStorage.getItem('siteTheme');
+            applyTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+            if (themeToggle) themeToggle.addEventListener('click', () => {
+                const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
+                localStorage.setItem('siteTheme', nextTheme);
+                applyTheme(nextTheme);
+            });
+
+            const contactForm = document.getElementById('contactForm');
+            if (contactForm) contactForm.addEventListener('submit', (event) => {
+                event.preventDefault();
+                const language = getActiveLanguage();
+                if (!contactForm.checkValidity()) {
+                    contactForm.reportValidity();
+                    return;
+                }
+                const formData = new FormData(contactForm);
+                const name = String(formData.get('name') || '').trim();
+                const subject = String(formData.get('subject') || '').trim();
+                const message = String(formData.get('message') || '').trim();
+                const body = (language === 'en' ? 'From: ' : 'De : ') + name + '\n\n' + message;
+                document.getElementById('successMessage').textContent = translations[language].contactConfirmation;
+                document.getElementById('successMessage').classList.remove('d-none');
+                document.getElementById('errorMessage').classList.add('d-none');
+                window.location.href = 'mailto:michaeldm034@gmail.com?subject=' + encodeURIComponent(subject) + '&body=' + encodeURIComponent(body);
+            });
         })();
+        });
     </script>
 

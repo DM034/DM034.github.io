@@ -1,12 +1,12 @@
-    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white affix" data-spy="affix" data-offset-top="510">
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" aria-label="Navigation principale">
         <div class="container">
-            <button class="navbar-toggler ml-auto collapsed" type="button" data-toggle="collapse"
-                data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
+            <button class="navbar-toggler ms-auto collapsed" type="button" data-bs-toggle="collapse"
+                data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="mt-sm-20 navbar-collapse collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mr-auto">
+                <ul class="navbar-nav me-auto">
                     <li class="nav-item">
                         <a href="#home" class="nav-link">Accueil</a>
                     </li>
@@ -18,13 +18,13 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav brand">
-                    <img src="assets/imgs/image3.jpeg" alt="" class="brand-img">
+                    <img src="assets/imgs/image3.jpeg" alt="Portrait de Michael Raharison" width="55" height="55" loading="lazy" class="brand-img">
                     <li class="brand-txt">
                         <h5 class="brand-title">Michael Raharison</h5>
                         <div class="brand-subtitle">Développeur</div>
                     </li>
                 </ul>
-                <ul class="navbar-nav ml-auto">
+                <ul class="navbar-nav ms-auto">
                     <li class="nav-item">
                         <a href="#portfolio" class="nav-link">Portfolio</a>
                     </li>
@@ -34,13 +34,17 @@
                     <li class="nav-item last-item">
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
-                    <li class="nav-item d-flex align-items-center ml-lg-3">
-                        <select id="languageSelect" class="custom-select custom-select-sm" aria-label="Language selector">
+                    <li class="nav-item d-flex align-items-center ms-lg-3">
+                        <label class="visually-hidden" for="languageSelect" data-i18n="languageLabel">Langue</label>
+                        <select id="languageSelect" class="form-select form-select-sm language-select" aria-label="Language selector">
                             <option value="fr">Français</option>
                             <option value="en">English</option>
                         </select>
                     </li>
-                    <li class="nav-item d-flex align-items-center ml-lg-2 mt-2 mt-lg-0">
+                    <li class="nav-item d-flex align-items-center ms-lg-2">
+                        <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-pressed="false" data-i18n="themeLight">Mode sombre</button>
+                    </li>
+                    <li class="nav-item d-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
                         <button id="downloadCvBtn" class="btn btn-primary btn-sm" type="button">Télécharger CV PDF</button>
                     </li>
                 </ul>

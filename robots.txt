@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://dm034.github.io/sitemap.xml

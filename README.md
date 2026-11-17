@@ -4,7 +4,7 @@ Personal portfolio website (FR/EN) with dynamic PDF CV generation from live page
 
 ## Overview
 
-- Stack: HTML, SCSS/CSS, JavaScript, Bootstrap 4, jQuery
+- Stack: HTML, SCSS/CSS, JavaScript vanilla, Bootstrap 5.3.9
 - i18n: French / English via `assets/js/translations.js`
 - Templates: `index.template.html` + `_includes/*.html` components
 - HTML build: `compile_templates.py` → generates `index.html`
@@ -80,11 +80,12 @@ Then open:
 
 ## Deployment
 
-Deploy with GitHub Pages from the `main` branch.
+Deploy with GitHub Pages from the `main` branch. GitHub Actions compiles the templates and styles and runs link and Lighthouse checks on pushes to `main`.
 
 URL: `https://DM034.github.io`
 
 ## Useful notes
 
-- Do not manually edit `index.html` for structural changes; edit `index.template.html` / `_includes` first.
+- Do not manually edit `index.html` for content or structural changes; edit `index.template.html` / `_includes` first.
+- Install build dependencies with `npm install`, then use `npm run build:css` to rebuild the Bootstrap 5 stylesheet.
 - If rendering looks inconsistent, rebuild before debugging.

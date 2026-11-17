@@ -1,23 +1,65 @@
 ---
 ---
+<!doctype html>
 <html lang="fr">
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="DM's portfolio">
-    <meta name="author" content="DM">
+    <meta name="description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
+    <meta name="author" content="Michael Raharison">
+    <meta name="theme-color" content="#1e90ff">
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://dm034.github.io/">
+    <meta property="og:title" content="Michael Raharison — Développeur Java">
+    <meta property="og:description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
+    <meta property="og:image" content="https://dm034.github.io/social-preview.webp">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Michael Raharison — Développeur Java">
+    <meta name="twitter:description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
+    <meta name="twitter:image" content="https://dm034.github.io/social-preview.webp">
+    <link rel="canonical" href="https://dm034.github.io/">
+    <link rel="alternate" hreflang="fr" href="https://dm034.github.io/?lang=fr">
+    <link rel="alternate" hreflang="en" href="https://dm034.github.io/?lang=en">
+    <link rel="alternate" hreflang="x-default" href="https://dm034.github.io/">
+    <link rel="icon" href="assets/imgs/favicon.svg" type="image/svg+xml">
+    <link rel="manifest" href="manifest.webmanifest">
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Dosis:wght@200;300;400;500;600;700&family=Source+Sans+3:wght@200;300;400;600;700&display=swap" rel="stylesheet">
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Michael Raharison",
+      "jobTitle": "Développeur Java",
+      "alumniOf": [
+        {"@type": "CollegeOrUniversity", "name": "Université Côte d'Azur", "description": "MBDS — Master 2 en développement informatique, diplôme obtenu en octobre 2026"},
+        {"@type": "CollegeOrUniversity", "name": "IT University Andoharanofotsy"}
+      ],
+      "url": "https://dm034.github.io/",
+      "sameAs": ["https://github.com/DM034", "https://www.linkedin.com/in/michael-raharison-215901288"]
+    }
+    </script>
     <title>Michael Raharison - Développeur</title>
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/johndoe.css">
+    <link rel="stylesheet" href="assets/css/portfolio-enhancements.css">
 </head>
-<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+<body id="home">
+    <a class="skip-link" href="#main-content" data-i18n="skipToContent">Aller au contenu</a>
     {% include header.html %}
     {% include navbar.html %}
+    <main id="main-content">
     {% include about.html %}
     {% include resume.html %}
     {% include freelance.html %}
     {% include portfolio.html %}
     {% include contact.html %}
+    </main>
     {% include footer.html %}
     {% include scripts.html %}
 </body>

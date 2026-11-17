@@ -1,0 +1,42 @@
+name: Build and verify portfolio
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build-and-check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.x"
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+      - name: Compile templates and styles
+        run: |
+          npm ci --no-audit --no-fund
+          python3 compile_templates.py --base-dir .
+          npm run build:css
+          git diff --exit-code -- index.html assets/css/johndoe.css
+      - name: Check links
+        uses: lycheeverse/lychee-action@v2
+        with:
+          args: --verbose --no-progress index.template.html index.html _includes
+      - name: Prepare Pages artifact
+        run: |
+          mkdir -p _site
+          cp index.html robots.txt sitemap.xml manifest.webmanifest image1.webp image2.webp social-preview.webp _site/
+          cp -R assets _site/assets
+      - name: Run Lighthouse CI
+        run: npx --yes @lhci/cli@0.15.1 autorun --collect.staticDistDir=_site --collect.url=http://localhost:3000/ --upload.target=filesystem --upload.outputDir=./lighthouse-report
