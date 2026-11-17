@@ -13,6 +13,10 @@
 .text-danger { color: #9d2438 !important; }
 .language-select { min-width: 8.5rem; border-color: #555; }
 .about-story p { margin-bottom: .65rem; }
+.header-no-cover { background-image: none !important; background-color: #263648; }
+.header-no-cover::before, .header-no-cover::after { background-image: none !important; }
+.profile-image, .avatar, .header .img-holder img { border-radius: 50% !important; aspect-ratio: 1 / 1; object-fit: cover; }
+.about-portraits { display: none !important; }
 .current-stack li { margin: .3rem 0; }
 .language-level { color: #495057; font-size: .9em; }
 .freelance-offers { margin-top: .5rem; }
@@ -20,6 +24,7 @@
 .freelance-offer h3 { font-size: 1.15rem; }
 .freelance-offer p { margin-bottom: .5rem; }
 .portfolio-container > [class*="col-"] { margin-bottom: 1.25rem; }
+.portfolio-container > [class*="col-"] { display: flex; }
 .portfolio .portfolio-container .portfolio-item.case-study,
 .portfolio .portfolio-container .portfolio-item.portfolio-compact { min-height: 0; height: 100%; margin: 0; }
 .portfolio .portfolio-container .portfolio-item .content-holder {
@@ -35,6 +40,7 @@
 .case-study-details pre { margin: .25rem 0; padding: .75rem; color: #f7f9fc; background: #253247; white-space: pre-wrap; overflow-wrap: anywhere; }
 .portfolio-compact .content-holder { min-height: 12rem !important; }
 .portfolio-compact a, .case-study a { font-weight: 700; }
+.project-stack { margin: .75rem 0; padding: .75rem; background: #f1f4f7; border-radius: .25rem; }
 .contact-form-card .form-group { margin-bottom: 1rem; }
 body.dark-mode { color: #edf2f8; background: #151a22; }
 body.dark-mode .navbar, body.dark-mode .navbar.bg-white { background: #202936 !important; }
@@ -49,5 +55,6 @@ body.dark-mode .form-control, body.dark-mode .form-select { color: #f5f7fa; back
 body.dark-mode a:not(.btn) { color: #9ccaff; }
 body.dark-mode .freelance-offer { color: #edf2f8; background: #202936; }
 body.dark-mode .freelance-offer h3 { color: #fff; }
+body.dark-mode .project-stack { color: #edf2f8; background: #303d4d; }
 body.dark-mode .text-danger { color: #ff9baa !important; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }

@@ -49,7 +49,7 @@
 </head>
 <body id="home">
     <a class="skip-link" href="#main-content" data-i18n="skipToContent">Aller au contenu</a>
-        <header class="header">
+        <header class="header header-no-cover">
         <div class="container">
             <ul class="social-icons pt-3">
                 <li class="social-item"><a aria-label="Facebook" class="social-link text-light" href="https://www.facebook.com/dmrhrsn"><i
@@ -137,10 +137,6 @@
                     <p data-i18n="story2">Expérience en développement Java chez BICI sur le projet ASYNC.</p>
                     <p data-i18n="story3">Diplômé du MBDS de l’Université Côte d’Azur en octobre 2026.</p>
                     <p data-i18n="story4">Aujourd’hui, je propose mes compétences en freelance sur des projets backend et data.</p>
-                </div>
-                <div class="row about-portraits">
-                    <figure class="col-6"><img src="image1.webp" width="1400" height="2100" loading="lazy" alt="Portrait professionnel de Michael Raharison en veste bleue" class="img-fluid rounded"></figure>
-                    <figure class="col-6"><img src="image2.webp" width="1400" height="933" loading="lazy" alt="Portrait de Michael Raharison en tenue décontractée" class="img-fluid rounded"></figure>
                 </div>
                 <!-- <p class="mt-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.sit amet, Qui deserunt consequatur fugit repellendusillo voluptas?</p> -->
             </div>
@@ -326,8 +322,8 @@
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                            <h6><span data-i18n="langFrench">Français</span> <span class="language-level" data-i18n="frenchLevel">[A REMPLIR]</span></h6>
-                            <h6><span data-i18n="langEnglish">Anglais</span> <span class="language-level" data-i18n="englishLevel">[A REMPLIR : ex B2]</span></h6>
+                            <h6><span data-i18n="langFrench">Français</span> <span class="language-level" data-i18n="frenchLevel">À préciser</span></h6>
+                            <h6><span data-i18n="langEnglish">Anglais</span> <span class="language-level" data-i18n="englishLevel">À préciser</span></h6>
                             <h6><span data-i18n="langMalagasy">Malagasy</span> <span class="language-level" data-i18n="malagasyLevel">natif</span></h6>
                         </div>
                     </div>
@@ -344,11 +340,6 @@
         <section class="section bg-dark py-5">
         <div class="container text-center">
             <h2 class="text-light mb-4 fw-normal" data-i18n="freelanceTitle">Je suis disponible en freelance</h2>
-            <div class="row text-start freelance-offers">
-                <div class="col-md-4"><article class="freelance-offer"><h3 data-i18n="serviceJavaTitle">Backend Java / Spring Boot</h3><p data-i18n="serviceJavaText">Conception d’API et de services backend fiables.</p><p data-i18n="serviceJavaText2">Intégration de la logique métier, des bases de données et des tests.</p></article></div>
-                <div class="col-md-4"><article class="freelance-offer"><h3 data-i18n="serviceDbTitle">Audit et optimisation Oracle / PostgreSQL</h3><p data-i18n="serviceDbText">Analyse des requêtes, accès aux données et schémas.</p><p data-i18n="serviceDbText2">Pistes d’amélioration documentées et adaptées au contexte.</p></article></div>
-                <div class="col-md-4"><article class="freelance-offer"><h3 data-i18n="serviceDataTitle">MVP / plateforme Data</h3><p data-i18n="serviceDataText">Cadrage et construction d’un premier produit data.</p><p data-i18n="serviceDataText2">API, interface et intégration des données selon le besoin.</p></article></div>
-            </div>
             <div class="freelance-process mt-4">
                 <h3 data-i18n="processTitle">Mon processus</h3>
                 <ol class="list-inline"><li class="list-inline-item" data-i18n="process1">1. Appel cadrage</li><li class="list-inline-item" data-i18n="process2">2. Devis / planning</li><li class="list-inline-item" data-i18n="process3">3. Livraison + suivi</li></ol>
@@ -357,7 +348,6 @@
                 <a href="https://wa.me/261324908409" class="btn btn-primary m-1" target="_blank" rel="noopener noreferrer" data-i18n="whatsappCta">WhatsApp</a>
                 <a href="https://www.linkedin.com/in/michael-raharison-215901288" class="btn btn-outline-light m-1" target="_blank" rel="noopener noreferrer">LinkedIn</a>
                 <a href="mailto:michaeldm034@gmail.com" class="btn btn-outline-light m-1" data-i18n="emailCta">Email</a>
-                <a href="#contact" class="btn btn-outline-light m-1" data-i18n="calendlyPlaceholder">Calendly : [A REMPLIR : lien Calendly]</a>
             </div>
         </div>
     </section>
@@ -366,65 +356,38 @@
     <div class="container">
         <h2 class="mb-5" id="portfolioTitle"><span class="text-danger" data-i18n="portfolioHeadingPrefix">Mon</span><span data-i18n="portfolioHeading"> portfolio</span></h2>
         <div class="row portfolio-container">
-            <div class="col-md-6 col-lg-4 portfolio-case-study">
+            <div class="col-md-6 col-lg-4 portfolio-case-study portfolio-grid-item">
                 <article class="portfolio-item case-study">
                     <div class="content-holder">
                         <h3 class="title">DataOps Intelligent Platform</h3>
-                        <p data-i18n="dataopsSummary">Plateforme full-stack de pilotage des ventes, stocks, agences et produits.</p>
                         <p><a href="https://github.com/DM034/dataops-intelligent-platform" target="_blank" rel="noopener noreferrer" aria-label="DataOps Intelligent Platform sur GitHub"><i class="ti-github" aria-hidden="true"></i> GitHub</a></p>
-                        <details open><summary data-i18n="caseStudyMore">Voir l’étude de cas</summary>
-                            <dl class="case-study-details">
-                                <dt data-i18n="problemLabel">Problème</dt><dd data-i18n="dataopsProblem">Les PME multi-sites ont besoin de centraliser les données de ventes et de stocks de leurs agences.</dd>
-                                <dt data-i18n="solutionLabel">Solution construite</dt><dd data-i18n="dataopsSolution">Plateforme full-stack de pilotage des ventes, stocks, agences et produits, avec indicateurs, analyse IA et traçabilité.</dd>
-                                <dt data-i18n="stackLabel">Stack</dt><dd data-i18n="dataopsStack">Java 21, Spring Boot, React 18, Vite, Recharts, Python 3.12, FastAPI, Pandas, NumPy, PostgreSQL, Docker Compose.</dd>
-                                <dt data-i18n="resultLabel">Résultat</dt><dd data-i18n="resultPlaceholder">[A REMPLIR : 1 chiffre ou résultat]</dd>
-                                <dt data-i18n="schemaLabel">Schéma fonctionnel</dt><dd><pre data-i18n="dataopsDiagram">Sources ventes / stocks → API Spring Boot → PostgreSQL → Dashboard React + service IA FastAPI</pre></dd>
-                            </dl>
-                        </details>
+                        <p class="project-stack" data-i18n="dataopsStack">Java 21, Spring Boot, React 18, Vite, Recharts, Python 3.12, FastAPI, Pandas, NumPy, PostgreSQL, Docker Compose.</p>
                     </div>
                 </article>
             </div>
-            <div class="col-md-6 col-lg-4 portfolio-case-study">
+            <div class="col-md-6 col-lg-4 portfolio-case-study portfolio-grid-item">
                 <article class="portfolio-item case-study">
                     <div class="content-holder">
                         <h3 class="title">BiblioFlow</h3>
-                        <p data-i18n="biblioSummary">Bibliothèque numérique avec back-office et front-office.</p>
                         <p><a href="https://github.com/DM034/BiblioFlow" target="_blank" rel="noopener noreferrer" aria-label="BiblioFlow sur GitHub"><i class="ti-github" aria-hidden="true"></i> GitHub</a></p>
-                        <details open><summary data-i18n="caseStudyMore">Voir l’étude de cas</summary>
-                            <dl class="case-study-details">
-                                <dt data-i18n="problemLabel">Problème</dt><dd data-i18n="biblioProblem">Gérer une bibliothèque numérique avec des espaces dédiés aux opérations et aux lecteurs.</dd>
-                                <dt data-i18n="solutionLabel">Solution construite</dt><dd data-i18n="biblioSolution">Back-office Razor Pages et front-office MVC connectés à SQL Server, avec consultation en ligne à durée limitée.</dd>
-                                <dt data-i18n="stackLabel">Stack</dt><dd data-i18n="biblioStack">C#, .NET, Razor Pages, MVC, EF Core, ADO.NET, REST API, SQL Server.</dd>
-                                <dt data-i18n="resultLabel">Résultat</dt><dd data-i18n="resultPlaceholder">[A REMPLIR : 1 chiffre ou résultat]</dd>
-                                <dt data-i18n="schemaLabel">Schéma fonctionnel</dt><dd><pre data-i18n="biblioDiagram">Lecteurs → Front-office MVC → API / données SQL Server ← Back-office Razor Pages</pre></dd>
-                            </dl>
-                        </details>
+                        <p class="project-stack" data-i18n="biblioStack">C#, .NET, Razor Pages, MVC, EF Core, ADO.NET, REST API, SQL Server.</p>
                     </div>
                 </article>
             </div>
-            <div class="col-md-6 col-lg-4 portfolio-case-study">
+            <div class="col-md-6 col-lg-4 portfolio-case-study portfolio-grid-item">
                 <article class="portfolio-item case-study">
                     <div class="content-holder">
                         <h3 class="title">Spring CI/CD Demo</h3>
-                        <p data-i18n="springSummary">Application Spring Boot avec pipeline d’intégration et de livraison continues.</p>
                         <p><a href="https://github.com/DM034/spring-cicd-demo" target="_blank" rel="noopener noreferrer" aria-label="Spring CI/CD Demo sur GitHub"><i class="ti-github" aria-hidden="true"></i> GitHub</a></p>
-                        <details open><summary data-i18n="caseStudyMore">Voir l’étude de cas</summary>
-                            <dl class="case-study-details">
-                                <dt data-i18n="problemLabel">Problème</dt><dd data-i18n="springProblem">[A REMPLIR : problème métier ciblé — dépôt de démonstration]</dd>
-                                <dt data-i18n="solutionLabel">Solution construite</dt><dd data-i18n="springSolution">Démonstrateur avec endpoints Spring Boot et pipeline GitHub Actions : tests Maven sur les pull requests et pushes, puis build et publication de l’image Docker Hub sur main.</dd>
-                                <dt data-i18n="stackLabel">Stack</dt><dd data-i18n="springStack">Java 8, Spring Boot, Maven, GitHub Actions, Docker, Docker Hub.</dd>
-                                <dt data-i18n="resultLabel">Résultat</dt><dd data-i18n="resultPlaceholder">[A REMPLIR : 1 chiffre ou résultat]</dd>
-                                <dt data-i18n="schemaLabel">Schéma fonctionnel</dt><dd><pre data-i18n="springDiagram">Code source → Tests Maven / GitHub Actions → Image Docker Hub sur main</pre></dd>
-                            </dl>
-                        </details>
+                        <p class="project-stack" data-i18n="springStack">Java 8, Spring Boot, Maven, GitHub Actions, Docker, Docker Hub.</p>
                     </div>
                 </article>
             </div>
-            <div class="col-md-6 col-lg-4"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">Gondor Chic DIL</h3><p data-i18n="gondorSummary">Frontend Angular — projet de Master 1 — TypeScript.</p><a href="https://github.com/DM034/Gondor_chic_DIL_M1_frontend" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
-            <div class="col-md-6 col-lg-4"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">One Page Wonder</h3><p data-i18n="onePageSummary">Analyse et développement web — TypeScript.</p><a href="https://github.com/DM034/one-page-wonder-analyse" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
-            <div class="col-md-6 col-lg-4"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">Forum Forge Suite</h3><p data-i18n="forumSummary">Application de forum full-stack — TypeScript.</p><a href="https://github.com/DM034/forum-forge-suite" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
-            <div class="col-md-6 col-lg-4"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">MEAN Stack Project</h3><p>MongoDB · Express · Angular · Node.js</p><a href="https://github.com/DM034/m1p12mean-Michael-Maroussia-BACK" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
-            <div class="col-md-6 col-lg-4"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">MADA IMMO</h3><p data-i18n="madaSummary">Plateforme immobilière full-stack — JavaScript.</p><a href="https://github.com/DM034/MADA-IMMO" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
+            <div class="col-md-6 col-lg-4 portfolio-grid-item"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">Gondor Chic DIL</h3><p class="project-stack" data-i18n="gondorSummary">Angular · TypeScript</p><a href="https://github.com/DM034/Gondor_chic_DIL_M1_frontend" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
+            <div class="col-md-6 col-lg-4 portfolio-grid-item"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">One Page Wonder</h3><p class="project-stack" data-i18n="onePageSummary">TypeScript</p><a href="https://github.com/DM034/one-page-wonder-analyse" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
+            <div class="col-md-6 col-lg-4 portfolio-grid-item"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">Forum Forge Suite</h3><p class="project-stack" data-i18n="forumSummary">TypeScript</p><a href="https://github.com/DM034/forum-forge-suite" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
+            <div class="col-md-6 col-lg-4 portfolio-grid-item"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">MEAN Stack Project</h3><p class="project-stack">MongoDB · Express · Angular · Node.js</p><a href="https://github.com/DM034/m1p12mean-Michael-Maroussia-BACK" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
+            <div class="col-md-6 col-lg-4 portfolio-grid-item"><article class="portfolio-item portfolio-compact"><div class="content-holder"><h3 class="title">MADA IMMO</h3><p class="project-stack" data-i18n="madaSummary">JavaScript</p><a href="https://github.com/DM034/MADA-IMMO" target="_blank" rel="noopener noreferrer">GitHub</a></div></article></div>
         </div>
     </div>
 </section>
