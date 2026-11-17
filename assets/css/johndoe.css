@@ -12257,6 +12257,10 @@ pre .code {
   z-index: 2;
   box-shadow: 0 5px 1px rgba(128, 128, 128, 0.13);
   width: 170px;
+  height: 170px;
+  aspect-ratio: 1/1;
+  object-fit: cover;
+  clip-path: circle(50%);
   border-radius: 50%;
 }
 .navbar .brand .brand-txt {

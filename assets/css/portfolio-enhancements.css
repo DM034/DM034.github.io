@@ -16,6 +16,9 @@
 .header-no-cover { background-image: none !important; background-color: #263648; }
 .header-no-cover::before, .header-no-cover::after { background-image: none !important; }
 .profile-image, .avatar, .header .img-holder img { border-radius: 50% !important; aspect-ratio: 1 / 1; object-fit: cover; }
+.navbar .brand .brand-img { width: 170px !important; height: 170px !important; aspect-ratio: 1 / 1; object-fit: cover; clip-path: circle(50%); border-radius: 50% !important; }
+.navbar .nav-link.active { color: #d92749 !important; }
+.navbar .nav-link:focus-visible { color: #d92749 !important; }
 .about-portraits { display: none !important; }
 .current-stack li { margin: .3rem 0; }
 .language-level { color: #495057; font-size: .9em; }
