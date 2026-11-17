@@ -290,27 +290,29 @@
                             </div>
                         </div>
                         <div class="card-body pb-2">
-                            <h6 class="title text-danger">Langage</h6>
-                            <h6>Java</h6>
-                            <h6>C++</h6>
-                            <h6>C#</h6>
-                            <h6>.NET</h6>
-                            <h6 class="title text-danger">Bases de données</h6>
-                            <h6>PostgreSQL</h6>
-                            <h6>Oracle</h6>
-                            <h6>MySQL</h6>
-                            <h6 class="title text-danger">Autres</h6>
-                            <h6>Linux</h6>
-                            <h6>Git</h6>
-                            <h6 class="title text-danger current-stack-title" data-i18n="currentStack">Stack actuelle</h6>
-                            <ul class="current-stack list-unstyled">
-                                <li>Java 21 / Spring Boot</li>
-                                <li data-i18n="apjStack">Framework APJ</li>
-                                <li>Oracle / PostgreSQL</li>
-                                <li>Docker / CI/CD</li>
-                                <li>React 18 / Angular / TypeScript</li>
-                                <li>Python / FastAPI</li>
-                            </ul>
+                            <section class="skill-group" aria-labelledby="skillTechTitle">
+                                <h6 class="title text-danger" id="skillTechTitle" data-i18n="resumeTech">Tech</h6>
+                                <ul class="skill-list list-unstyled"><li>Java</li><li>C++</li><li>C#</li><li>.NET</li></ul>
+                            </section>
+                            <section class="skill-group" aria-labelledby="skillDatabaseTitle">
+                                <h6 class="title text-danger" id="skillDatabaseTitle" data-i18n="resumeDatabases">Bases de données</h6>
+                                <ul class="skill-list list-unstyled"><li>PostgreSQL</li><li>Oracle</li><li>MySQL</li></ul>
+                            </section>
+                            <section class="skill-group" aria-labelledby="skillOtherTitle">
+                                <h6 class="title text-danger" id="skillOtherTitle" data-i18n="resumeOther">Autres</h6>
+                                <ul class="skill-list list-unstyled"><li>Linux</li><li>Git</li></ul>
+                            </section>
+                            <section class="skill-group current-stack-group" aria-labelledby="currentStackTitle">
+                                <h6 class="title text-danger current-stack-title" id="currentStackTitle" data-i18n="currentStack">Stack actuelle</h6>
+                                <ul class="current-stack list-unstyled">
+                                    <li>Java 21 / Spring Boot</li>
+                                    <li data-i18n="apjStack">Framework APJ</li>
+                                    <li>Oracle / PostgreSQL</li>
+                                    <li>Docker / CI/CD</li>
+                                    <li>React 18 / Angular / TypeScript</li>
+                                    <li>Python / FastAPI</li>
+                                </ul>
+                            </section>
                         </div>
                     </div>
 
@@ -555,7 +557,7 @@
                     });
                 }
 
-                const allSkillTexts = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card .card-body h6'))
+                const allSkillTexts = Array.from(document.querySelectorAll('#resume .skill-list li'))
                     .map((node) => node.textContent ? node.textContent.trim() : '')
                     .filter(Boolean);
 
@@ -1074,13 +1076,6 @@
                     educationSubtitles[2].textContent = 'IT University Andoharanofotsy';
                     educationSubtitles[3].textContent = text.eduBaccalaureateSubtitle;
                     educationSubtitles[4].textContent = text.eduTrainingSubtitle;
-                }
-
-                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
-                if (skillHeadings.length >= 3) {
-                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
-                    skillHeadings[1].textContent = text.resumeDatabases;
-                    skillHeadings[2].textContent = text.resumeOther;
                 }
 
                 const spokenLanguagesTitle = document.querySelector('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-header h4');

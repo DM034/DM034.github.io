@@ -77,7 +77,7 @@
                     });
                 }
 
-                const allSkillTexts = Array.from(document.querySelectorAll('#resume .row > .col-lg-4:last-child .card .card-body h6'))
+                const allSkillTexts = Array.from(document.querySelectorAll('#resume .skill-list li'))
                     .map((node) => node.textContent ? node.textContent.trim() : '')
                     .filter(Boolean);
 
@@ -596,13 +596,6 @@
                     educationSubtitles[2].textContent = 'IT University Andoharanofotsy';
                     educationSubtitles[3].textContent = text.eduBaccalaureateSubtitle;
                     educationSubtitles[4].textContent = text.eduTrainingSubtitle;
-                }
-
-                const skillHeadings = document.querySelectorAll('#resume .row > .col-lg-4:last-child .card:first-child .card-body h6.title.text-danger');
-                if (skillHeadings.length >= 3) {
-                    skillHeadings[0].textContent = text.resumeLanguagesLabel;
-                    skillHeadings[1].textContent = text.resumeDatabases;
-                    skillHeadings[2].textContent = text.resumeOther;
                 }
 
                 const spokenLanguagesTitle = document.querySelector('#resume .row > .col-lg-4:last-child .spoken-languages-card .card-header h4');
