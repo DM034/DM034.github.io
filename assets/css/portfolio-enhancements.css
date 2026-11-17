@@ -26,6 +26,10 @@
 .freelance-offer { height: 100%; padding: 1.25rem; color: #20242a; background: #fff; border-radius: .25rem; }
 .freelance-offer h3 { font-size: 1.15rem; }
 .freelance-offer p { margin-bottom: .5rem; }
+.freelance-process { color: #fff; }
+.freelance-process h3 { color: #fff; }
+.freelance-process ol { display: flex; flex-wrap: wrap; justify-content: center; gap: .5rem 1.5rem; margin: 0; padding: 0; list-style: none; }
+.freelance-process li { color: #fff; font-weight: 600; }
 .portfolio-container > [class*="col-"] { margin-bottom: 1.25rem; }
 .portfolio-container > [class*="col-"] { display: flex; }
 .portfolio .portfolio-container .portfolio-item.case-study,
@@ -54,6 +58,8 @@ body:not(.dark-mode) .contact-info-card .text-muted, body:not(.dark-mode) .text-
 body:not(.dark-mode) .form-control, body:not(.dark-mode) .form-select { color: #252a31; background: #fff; border-color: #727b86; }
 body:not(.dark-mode) .form-control::placeholder { color: #5b6470; opacity: 1; }
 body:not(.dark-mode) .text-danger { color: #9d2438 !important; }
+body:not(.dark-mode) .freelance-process, body:not(.dark-mode) .freelance-process h3,
+body:not(.dark-mode) .freelance-process li { color: #fff !important; }
 body.dark-mode { color: #f1f5f9; background: #111820; color-scheme: dark; }
 body.dark-mode .navbar, body.dark-mode .navbar.bg-white { background: #1b2633 !important; }
 body.dark-mode .navbar .nav-link, body.dark-mode .brand-title, body.dark-mode .brand-subtitle { color: #e8eef5; }
@@ -78,6 +84,8 @@ body.dark-mode a:not(.btn) { color: #a9d2ff; }
 body.dark-mode .social-link.text-dark { color: #a9d2ff !important; }
 body.dark-mode .freelance-offer { color: #f1f5f9; background: #1b2633; }
 body.dark-mode .freelance-offer h3 { color: #fff; }
+body.dark-mode .freelance-process, body.dark-mode .freelance-process h3,
+body.dark-mode .freelance-process li { color: #fff !important; }
 body.dark-mode .project-stack { color: #f1f5f9; background: #2a3949; }
 body.dark-mode .text-danger { color: #ff9baa !important; }
 body.dark-mode .alert-success { color: #d1fae5; background: #164b3b; border-color: #27805f; }
