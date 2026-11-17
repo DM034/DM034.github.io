@@ -26,6 +26,17 @@
 .header .header-content { left: 0; right: 0; text-align: center; }
 .header .header-logo-picture { display: flex; width: fit-content; margin: 0 auto 1rem; }
 .header .header-title { margin: .5rem 0 1.2rem; line-height: 1 !important; }
+.header .header-content .header-mono { margin-bottom: 1rem; }
+.header-description { max-width: 42rem; margin: 0 auto; padding: 0 1rem; color: #fff; font-size: clamp(1rem, 2vw, 1.25rem); line-height: 1.5; }
+.services-section { padding-top: 3.5rem; padding-bottom: 3.5rem; }
+.service-card { height: 100%; min-height: 9rem; padding: 1.5rem; color: #20242a; background: #fff; border: 2px solid #aeb8c4; border-radius: .55rem; box-shadow: 0 3px 10px rgba(30, 42, 56, .09); transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease; }
+.service-card h3 { margin: 0 0 .65rem; font-size: 1.35rem; }
+.service-card p { margin: 0; line-height: 1.6; }
+.service-card:hover { transform: translateY(-2px); border-color: #68798d; box-shadow: 0 7px 18px rgba(30, 42, 56, .15); }
+.experience-category { display: inline-block; margin: 0 0 .35rem; padding: .18rem .6rem; color: #174f86; background: #e6f0fb; border: 1px solid #c2d8ee; border-radius: 999px; font-size: .72rem; font-weight: 700; line-height: 1.4; }
+.category-consulting { color: #594889; background: #f0ecfa; border-color: #d7ccef; }
+.freelance-process ol { counter-reset: process-step -1; }
+.freelance-process li::before { counter-increment: process-step; content: counter(process-step) ". "; }
 .about-logo-figure { text-align: center; }
 .about-logo-picture .theme-logo { height: 140px; }
 .about-logo-figure figcaption { margin-top: .5rem; color: #49515b; font-size: .9rem; }
@@ -118,10 +129,13 @@ body.dark-mode .switch-thumb { background: #34475b; }
 body.dark-mode .switch-control:hover { border-color: #b5c6da; }
 body.dark-mode .section, body.dark-mode .bg-custom-gray { color: #f1f5f9; background: #111820; }
 body.dark-mode #resume { background: #111820; }
-body.dark-mode .card, body.dark-mode .contact-form-card, body.dark-mode .contact-info-card, body.dark-mode #about.about-section > .about-card,
+body.dark-mode .card, body.dark-mode .contact-form-card, body.dark-mode .contact-info-card, body.dark-mode #about.about-section > .about-card, body.dark-mode .service-card,
 body.dark-mode #portfolio .portfolio-container .portfolio-item .content-holder { color: #f1f5f9; background: #1b2633; border-color: #718196; box-shadow: 0 3px 12px rgba(0, 0, 0, .28); }
+body.dark-mode .experience-category { color: #c9e1fa; background: #263c52; border-color: #49657f; }
+body.dark-mode .category-consulting { color: #e0d6f8; background: #37304a; border-color: #655585; }
 body.dark-mode #portfolio .portfolio-grid-item:hover .content-holder { border-color: #b5c6da; box-shadow: 0 8px 20px rgba(0, 0, 0, .38); }
 body.dark-mode #about.about-section > .about-card:hover, body.dark-mode #resume .card:hover { border-color: #b5c6da; box-shadow: 0 8px 20px rgba(0, 0, 0, .38); }
+body.dark-mode .service-card:hover { border-color: #b5c6da; box-shadow: 0 8px 20px rgba(0, 0, 0, .38); }
 body.dark-mode .card h1, body.dark-mode .card h2, body.dark-mode .card h3, body.dark-mode .card h4,
 body.dark-mode .card h5, body.dark-mode .card h6, body.dark-mode .card p, body.dark-mode .card li,
 body.dark-mode .contact-form-card, body.dark-mode .contact-info-card h6, body.dark-mode .case-study .title,

@@ -46,6 +46,7 @@
                     .filter(Boolean);
 
                 const experiences = Array.from(document.querySelectorAll('#resume .experience-list .experience-item')).map((item) => ({
+                    category: item.querySelector('.experience-category')?.textContent?.trim() || '',
                     role: item.querySelector('.exp-role')?.textContent?.trim() || '',
                     date: item.querySelector('.exp-date')?.textContent?.trim() || '',
                     bullets: Array.from(item.querySelectorAll('.exp-bullets li'))
@@ -287,6 +288,21 @@
                         }, Promise.resolve(null));
                     };
 
+                    const addCategoryBadge = (value, x, y, width) => {
+                        const label = value || '';
+                        if (!label) return y;
+
+                        pdf.setFont('helvetica', 'bold');
+                        pdf.setFontSize(s(7.2));
+                        const badgeW = Math.min(width - s(4), pdf.getTextWidth(label) + s(4));
+                        pdf.setFillColor(230, 240, 251);
+                        pdf.setDrawColor(194, 216, 238);
+                        pdf.roundedRect(x + s(2), y - s(2.6), badgeW, s(4.5), s(1.5), s(1.5), 'FD');
+                        pdf.setTextColor(23, 79, 134);
+                        pdf.text(label, x + s(4), y + s(0.2));
+                        return y + s(5);
+                    };
+
                     const addDateBadge = (value, x, y, width) => {
                         const label = value || '';
                         if (!label) {
@@ -372,6 +388,7 @@
 
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
                         data.experiences.forEach((exp) => {
+                            rightY = addCategoryBadge(exp.category, rightX, rightY + s(0.5), rightColWidth);
                             rightY = addWrapped(exp.role, rightX, rightY + s(0.5), rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
                             rightY = addDateBadge(exp.date, rightX, rightY + s(0.3), rightColWidth);
                             rightY = addBullets(exp.bullets, rightX, rightY + s(0.4), rightColWidth);

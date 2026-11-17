@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
+    <meta name="description" content="Michael Raharison, développeur Java et consultant en digitalisation à Madagascar. Backend Java, audit, digitalisation des process et Data pour les entreprises.">
     <meta name="author" content="Michael Raharison">
     <meta name="theme-color" content="#1e90ff">
     <meta property="og:type" content="website">
@@ -44,7 +44,7 @@
       "sameAs": ["https://github.com/DM034", "https://www.linkedin.com/in/michael-raharison-215901288"]
     }
     </script>
-    <title>Michael Raharison - Développeur</title>
+    <title>Michael Raharison - Développeur Java &amp; Consultant en Digitalisation - Madagascar</title>
     <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
     <link rel="stylesheet" href="assets/css/johndoe.css">
     <link rel="stylesheet" href="assets/css/portfolio-enhancements.css">
@@ -74,6 +74,7 @@
                 <h4 class="header-subtitle">Bonjour, je suis</h4>
                 <h1 class="header-title">Michael Raharison</h1>
                 <h6 class="header-mono">Développeur Java</h6>
+                <p class="header-description" data-i18n="heroDescription">Développeur &amp; Consultant. J'aide les entreprises à digitaliser, optimiser et construire leurs outils.</p>
             </div>
         </div>
     </header>
@@ -138,6 +139,26 @@
     </nav>
 
     <main id="main-content">
+        <section class="section services-section" id="services" aria-labelledby="servicesTitle">
+        <div class="container">
+            <h2 class="mb-5" id="servicesTitle"><span class="text-danger" data-i18n="servicesTitlePrefix">Mes</span> <span data-i18n="servicesTitle">services</span></h2>
+            <div class="row g-4">
+                <div class="col-12 col-md-6">
+                    <article class="service-card">
+                        <h3 data-i18n="serviceDevelopmentTitle">Développement</h3>
+                        <p data-i18n="serviceDevelopmentText">Backend Java, API, optimisation BDD, MVP Data</p>
+                    </article>
+                </div>
+                <div class="col-12 col-md-6">
+                    <article class="service-card">
+                        <h3 data-i18n="serviceConsultingTitle">Conseil</h3>
+                        <p data-i18n="serviceConsultingText">Audit, cadrage, digitalisation des process, accompagnement projet</p>
+                    </article>
+                </div>
+            </div>
+        </div>
+    </section>
+
         <div class="container-fluid">
         <div id="about" class="row about-section">
             <div class="col-lg-4 about-card">
@@ -216,6 +237,7 @@
                         </div>
                         <div class="card-body experience-list">
                             <div class="experience-item">
+                                <span class="experience-category category-development" data-i18n="expCategoryDevelopment">Développement</span>
                                 <h6 class="title text-danger exp-date">Août 2025 - Présent</h6>
                                 <p class="exp-role">Développeur Java - BICI (Projet ASYNC)</p>
                                 <p class="subtitle exp-description">Développement et maintenance de services backend Java avec le framework APJ.</p>
@@ -228,6 +250,7 @@
                             </div>
                             <hr>
                             <div class="experience-item">
+                                <span class="experience-category category-consulting" data-i18n="expCategoryConsulting">Conseil / Coordination</span>
                                 <h6 class="title text-danger exp-date">Avril 2025 - Juillet 2025</h6>
                                 <p class="exp-role">Coordinateur de projet - BICI</p>
                                 <p class="subtitle exp-description">Support à la gestion et à la bonne exécution du projet de digitalisation des services.</p>
@@ -240,6 +263,7 @@
                             </div>
                             <hr>
                             <div class="experience-item">
+                                <span class="experience-category category-development" data-i18n="expCategoryDevelopment">Développement</span>
                                 <h6 class="title text-danger exp-date">Juin 2024 - Avril 2025</h6>
                                 <p class="exp-role">Gestion des devis d'impression - Grafiky (BICI)</p>
                                 <p class="subtitle exp-description">Développement d'un système de suivi en temps réel des commandes et des flux de production. (Java)</p>
@@ -252,6 +276,7 @@
                             </div>
                             <hr>
                             <div class="experience-item">
+                                <span class="experience-category category-development" data-i18n="expCategoryDevelopment">Développement</span>
                                 <h6 class="title text-danger exp-date">Juin 2024 - Août 2024</h6>
                                 <p class="exp-role">Gestionnaire de tâches embarqué - ASTEK</p>
                                 <p class="subtitle exp-description">Plateforme de gestion de projet permettant la création et l'attribution de tâches. (C++)</p>
@@ -361,7 +386,7 @@
             <h2 class="text-light mb-4 fw-normal" data-i18n="freelanceTitle">Je suis disponible en freelance</h2>
             <div class="freelance-process mt-4">
                 <h3 data-i18n="processTitle">Mon processus</h3>
-                <ol class="list-inline"><li class="list-inline-item" data-i18n="process1">1. Appel cadrage</li><li class="list-inline-item" data-i18n="process2">2. Devis / planning</li><li class="list-inline-item" data-i18n="process3">3. Livraison + suivi</li></ol>
+                <ol class="list-inline"><li class="list-inline-item" data-i18n="process0">Audit</li><li class="list-inline-item" data-i18n="process1">Appel cadrage</li><li class="list-inline-item" data-i18n="process2">Devis / planning</li><li class="list-inline-item" data-i18n="process3">Livraison + suivi</li></ol>
             </div>
             <div class="freelance-actions mt-3 d-flex flex-wrap justify-content-center">
                 <a href="https://wa.me/261324908409" class="btn btn-primary m-1" target="_blank" rel="noopener noreferrer" data-i18n="whatsappCta">WhatsApp</a>
@@ -547,6 +572,7 @@
                     .filter(Boolean);
 
                 const experiences = Array.from(document.querySelectorAll('#resume .experience-list .experience-item')).map((item) => ({
+                    category: item.querySelector('.experience-category')?.textContent?.trim() || '',
                     role: item.querySelector('.exp-role')?.textContent?.trim() || '',
                     date: item.querySelector('.exp-date')?.textContent?.trim() || '',
                     bullets: Array.from(item.querySelectorAll('.exp-bullets li'))
@@ -788,6 +814,21 @@
                         }, Promise.resolve(null));
                     };
 
+                    const addCategoryBadge = (value, x, y, width) => {
+                        const label = value || '';
+                        if (!label) return y;
+
+                        pdf.setFont('helvetica', 'bold');
+                        pdf.setFontSize(s(7.2));
+                        const badgeW = Math.min(width - s(4), pdf.getTextWidth(label) + s(4));
+                        pdf.setFillColor(230, 240, 251);
+                        pdf.setDrawColor(194, 216, 238);
+                        pdf.roundedRect(x + s(2), y - s(2.6), badgeW, s(4.5), s(1.5), s(1.5), 'FD');
+                        pdf.setTextColor(23, 79, 134);
+                        pdf.text(label, x + s(4), y + s(0.2));
+                        return y + s(5);
+                    };
+
                     const addDateBadge = (value, x, y, width) => {
                         const label = value || '';
                         if (!label) {
@@ -873,6 +914,7 @@
 
                         rightY = addSectionHeader(sectionExperience, rightX, rightY, rightColWidth);
                         data.experiences.forEach((exp) => {
+                            rightY = addCategoryBadge(exp.category, rightX, rightY + s(0.5), rightColWidth);
                             rightY = addWrapped(exp.role, rightX, rightY + s(0.5), rightColWidth, 'bold', 10.2, [24, 33, 49], 4.25);
                             rightY = addDateBadge(exp.date, rightX, rightY + s(0.3), rightColWidth);
                             rightY = addBullets(exp.bullets, rightX, rightY + s(0.4), rightColWidth);
