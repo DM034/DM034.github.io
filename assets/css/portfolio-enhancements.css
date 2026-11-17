@@ -13,11 +13,12 @@
 .text-danger { color: #9d2438 !important; }
 .language-select { min-width: 8.5rem; border-color: #555; }
 .about-story p { margin-bottom: .65rem; }
-.header-no-cover { background-image: none !important; background-color: #263648; }
-.header-no-cover::before, .header-no-cover::after { background-image: none !important; }
 .theme-logo-picture { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
 .theme-logo { display: block; width: auto; max-width: 100%; object-fit: contain; }
 .header-logo-picture .theme-logo { height: 40px; }
+.header .header-content { left: 0; right: 0; text-align: center; }
+.header .header-logo-picture { display: flex; width: fit-content; margin: 0 auto 1rem; }
+.header .header-title { margin: .5rem 0 1.2rem; line-height: 1 !important; }
 .about-logo-figure { text-align: center; }
 .about-logo-picture .theme-logo { height: 140px; }
 .about-logo-figure figcaption { margin-top: .5rem; color: #49515b; font-size: .9rem; }
@@ -82,8 +83,6 @@ body:not(.dark-mode) .contact-info-card .text-muted, body:not(.dark-mode) .text-
 body:not(.dark-mode) .form-control, body:not(.dark-mode) .form-select { color: #252a31; background: #fff; border-color: #727b86; }
 body:not(.dark-mode) .form-control::placeholder { color: #5b6470; opacity: 1; }
 body:not(.dark-mode) .text-danger { color: #9d2438 !important; }
-body:not(.dark-mode) .header-no-cover { color: #252a31; background-color: #f1f3f5; }
-body:not(.dark-mode) .header-no-cover .social-link { color: #252a31 !important; }
 body:not(.dark-mode) .footer { background: #edf0f4; }
 body:not(.dark-mode) .footer .text-light { color: #252a31 !important; }
 body:not(.dark-mode) .about-logo-figure figcaption { color: #49515b; }
@@ -118,8 +117,6 @@ body.dark-mode .freelance-process, body.dark-mode .freelance-process h3,
 body.dark-mode .freelance-process li { color: #fff !important; }
 body.dark-mode .project-stack { color: #f1f5f9; background: #2a3949; }
 body.dark-mode .text-danger { color: #ff9baa !important; }
-body.dark-mode .header-no-cover { color: #f1f5f9; background-color: #263648; }
-body.dark-mode .header-no-cover .social-link { color: #f1f5f9 !important; }
 body.dark-mode .footer { background: #17263c; }
 body.dark-mode .footer .text-light { color: #f1f5f9 !important; }
 body.dark-mode .about-logo-figure figcaption { color: #c8d2de; }
