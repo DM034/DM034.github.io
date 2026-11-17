@@ -114,14 +114,20 @@
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-3">
-                        <label class="visually-hidden" for="languageSelect" data-i18n="languageLabel">Langue</label>
-                        <select id="languageSelect" class="form-select form-select-sm language-select" aria-label="Language selector">
-                            <option value="fr">Français</option>
-                            <option value="en">English</option>
-                        </select>
+                        <button id="languageToggle" class="switch-control language-switch" type="button" role="switch" aria-checked="false" aria-label="Changer de langue" title="Changer de langue">
+                            <span class="switch-thumb" aria-hidden="true"></span>
+                            <span class="switch-option" aria-hidden="true">🇫🇷</span>
+                            <span class="switch-option" aria-hidden="true">🇺🇸</span>
+                            <span class="visually-hidden" data-i18n="languageLabel">Langue</span>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-2">
-                        <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-pressed="false" data-i18n="themeLight">Mode sombre</button>
+                        <button id="themeToggle" class="switch-control theme-switch" type="button" role="switch" aria-checked="false" aria-label="Activer le mode sombre" title="Activer le mode sombre">
+                            <span class="switch-thumb" aria-hidden="true"></span>
+                            <span class="switch-option" aria-hidden="true">☀</span>
+                            <span class="switch-option" aria-hidden="true">☾</span>
+                            <span class="visually-hidden" data-i18n="themeLight">Mode sombre</span>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
                         <button id="downloadCvBtn" class="btn btn-primary btn-sm" type="button">Télécharger CV PDF</button>
@@ -504,12 +510,7 @@
             const translations = window.siteTranslations || {};
 
             const getActiveLanguage = () => {
-                const languageSelect = document.getElementById('languageSelect');
-                const selected = languageSelect ? languageSelect.value : null;
                 const saved = localStorage.getItem('siteLanguage');
-                if (selected && translations[selected]) {
-                    return selected;
-                }
                 if (saved && translations[saved]) {
                     return saved;
                 }
@@ -918,7 +919,7 @@
                 document.documentElement.lang = language;
                 document.title = text.pageTitle;
                 setAttr('.navbar', 'aria-label', text.navigationLabel);
-                setAttr('#languageSelect', 'aria-label', text.languageLabel);
+                setAttr('#languageToggle', 'aria-label', text.languageLabel);
                 const ogTitle = document.querySelector('meta[property="og:title"]');
                 const twitterTitle = document.querySelector('meta[name="twitter:title"]');
                 if (ogTitle) ogTitle.content = text.pageTitle;
@@ -1108,17 +1109,26 @@
                     '© ' + new Date().getFullYear() + ' ' + text.footerBy + ' <a href="https://DM034.github.io" target="_blank" rel="noopener noreferrer"><span class="text-danger" title="' + text.footerTitle + '">Michael Raharison</span></a>'
                 );
                 const darkToggle = document.getElementById('themeToggle');
-                if (darkToggle) darkToggle.textContent = document.body.classList.contains('dark-mode') ? text.themeDark : text.themeLight;
+                if (darkToggle) {
+                    const dark = document.body.classList.contains('dark-mode');
+                    darkToggle.setAttribute('aria-checked', String(dark));
+                    darkToggle.setAttribute('aria-label', dark ? text.themeDark : text.themeLight);
+                    darkToggle.title = dark ? text.themeDark : text.themeLight;
+                }
 
-                const languageSelect = document.getElementById('languageSelect');
-                if (languageSelect) {
-                    languageSelect.value = language;
+                const languageToggle = document.getElementById('languageToggle');
+                if (languageToggle) {
+                    languageToggle.setAttribute('aria-checked', String(language === 'en'));
+                    const currentLanguageLabel = language === 'fr' ? text.languageCurrentFr : text.languageCurrentEn;
+                    languageToggle.setAttribute('aria-label', currentLanguageLabel);
+                    languageToggle.title = currentLanguageLabel;
+                    languageToggle.dataset.language = language;
                 }
 
                 localStorage.setItem('siteLanguage', language);
             };
 
-            const languageSelect = document.getElementById('languageSelect');
+            const languageToggle = document.getElementById('languageToggle');
             const downloadCvBtn = document.getElementById('downloadCvBtn');
             
             
@@ -1126,9 +1136,9 @@
             const initialLanguage = translations[requestedLanguage] ? requestedLanguage : (localStorage.getItem('siteLanguage') || 'fr');
             applyLanguage(initialLanguage);
 
-            if (languageSelect) {
-                languageSelect.addEventListener('change', function (event) {
-                    applyLanguage(event.target.value);
+            if (languageToggle) {
+                languageToggle.addEventListener('click', function () {
+                    applyLanguage(getActiveLanguage() === 'fr' ? 'en' : 'fr');
                 });
             }
 
@@ -1149,7 +1159,9 @@
                 });
                 if (themeToggle) {
                     themeToggle.setAttribute('aria-pressed', String(dark));
-                    themeToggle.textContent = dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight;
+                    themeToggle.setAttribute('aria-checked', String(dark));
+                    themeToggle.setAttribute('aria-label', dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight);
+                    themeToggle.title = dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight;
                 }
             };
             const savedTheme = localStorage.getItem('siteTheme');

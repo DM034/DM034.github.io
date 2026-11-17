@@ -34,14 +34,20 @@
                         <a href="#contact" class="nav-link">Contact</a>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-3">
-                        <label class="visually-hidden" for="languageSelect" data-i18n="languageLabel">Langue</label>
-                        <select id="languageSelect" class="form-select form-select-sm language-select" aria-label="Language selector">
-                            <option value="fr">Français</option>
-                            <option value="en">English</option>
-                        </select>
+                        <button id="languageToggle" class="switch-control language-switch" type="button" role="switch" aria-checked="false" aria-label="Changer de langue" title="Changer de langue">
+                            <span class="switch-thumb" aria-hidden="true"></span>
+                            <span class="switch-option" aria-hidden="true">🇫🇷</span>
+                            <span class="switch-option" aria-hidden="true">🇺🇸</span>
+                            <span class="visually-hidden" data-i18n="languageLabel">Langue</span>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-2">
-                        <button id="themeToggle" class="btn btn-outline-secondary btn-sm" type="button" aria-pressed="false" data-i18n="themeLight">Mode sombre</button>
+                        <button id="themeToggle" class="switch-control theme-switch" type="button" role="switch" aria-checked="false" aria-label="Activer le mode sombre" title="Activer le mode sombre">
+                            <span class="switch-thumb" aria-hidden="true"></span>
+                            <span class="switch-option" aria-hidden="true">☀</span>
+                            <span class="switch-option" aria-hidden="true">☾</span>
+                            <span class="visually-hidden" data-i18n="themeLight">Mode sombre</span>
+                        </button>
                     </li>
                     <li class="nav-item d-flex align-items-center ms-lg-2 mt-2 mt-lg-0">
                         <button id="downloadCvBtn" class="btn btn-primary btn-sm" type="button">Télécharger CV PDF</button>
