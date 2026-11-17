@@ -57,15 +57,18 @@
 .freelance-process li { color: #fff; font-weight: 600; }
 .portfolio-container > [class*="col-"] { margin-bottom: 1.25rem; }
 .portfolio-container > [class*="col-"] { display: flex; }
-#portfolio .portfolio-container .portfolio-item.case-study,
-#portfolio .portfolio-container .portfolio-item.portfolio-compact { min-height: 0; height: 100%; margin: 0; }
+#portfolio .portfolio-container { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); grid-auto-rows: 20rem; gap: 1.25rem; margin: 0; }
+#portfolio .portfolio-container > [class*="col-"] { width: auto; max-width: none; min-width: 0; margin: 0; padding: 0; display: block; }
+#portfolio .portfolio-container .portfolio-item { position: relative; display: block; width: 100%; height: 100%; min-height: 0; margin: 0; overflow: visible; }
 #portfolio .portfolio-container .portfolio-item .content-holder {
-  height: 100%; min-height: 100%; display: block; padding: 1.25rem; text-align: left;
+  position: relative; top: auto; left: auto; transform: none; width: 100%; height: 100%; min-height: 0;
+  display: flex; flex-direction: column; align-items: stretch; justify-content: flex-start;
+  opacity: 1; visibility: visible; padding: 1.25rem; text-align: left;
   color: #20242a; background: #fff; border: 2px solid #aeb8c4; border-radius: .55rem;
   box-shadow: 0 3px 10px rgba(30, 42, 56, .09);
   transition: border-color .2s ease, box-shadow .2s ease, transform .2s ease;
 }
-.portfolio-grid-item:hover .content-holder { border-color: #68798d; box-shadow: 0 7px 18px rgba(30, 42, 56, .15); transform: translateY(-2px); }
+#portfolio .portfolio-grid-item:hover .content-holder { border-color: #68798d; box-shadow: 0 7px 18px rgba(30, 42, 56, .15); transform: translateY(-2px); }
 .case-study .title, .portfolio-compact .title { margin-top: 0; }
 .case-study details { margin-top: 1rem; }
 .case-study summary { color: #075aa8; font-weight: 700; cursor: pointer; }
@@ -73,7 +76,10 @@
 .case-study-details dt { margin-top: .7rem; color: #303b48; }
 .case-study-details dd { margin: .2rem 0 0; }
 .case-study-details pre { margin: .25rem 0; padding: .75rem; color: #f7f9fc; background: #253247; white-space: pre-wrap; overflow-wrap: anywhere; }
-.portfolio-compact .content-holder { min-height: 12rem !important; }
+.project-github { display: inline-flex; align-items: center; gap: .45rem; align-self: flex-start; margin-top: auto; padding-top: .75rem; font-weight: 700; text-decoration: none; }
+.project-github i { font-size: 1.1rem; }
+.project-github:hover span { text-decoration: underline; }
+.portfolio-compact .content-holder { min-height: 0 !important; }
 .portfolio-compact a, .case-study a { font-weight: 700; }
 .project-stack { margin: .75rem 0; padding: .75rem; background: #f1f4f7; border-radius: .25rem; }
 .contact-form-card .form-group { margin-bottom: 1rem; }
@@ -99,7 +105,7 @@ body.dark-mode .section, body.dark-mode .bg-custom-gray { color: #f1f5f9; backgr
 body.dark-mode #resume { background: #111820; }
 body.dark-mode .card, body.dark-mode .contact-form-card, body.dark-mode .contact-info-card,
 body.dark-mode #portfolio .portfolio-container .portfolio-item .content-holder { color: #f1f5f9; background: #1b2633; border-color: #718196; box-shadow: 0 3px 12px rgba(0, 0, 0, .28); }
-body.dark-mode .portfolio-grid-item:hover .content-holder { border-color: #b5c6da; box-shadow: 0 8px 20px rgba(0, 0, 0, .38); }
+body.dark-mode #portfolio .portfolio-grid-item:hover .content-holder { border-color: #b5c6da; box-shadow: 0 8px 20px rgba(0, 0, 0, .38); }
 body.dark-mode .card h1, body.dark-mode .card h2, body.dark-mode .card h3, body.dark-mode .card h4,
 body.dark-mode .card h5, body.dark-mode .card h6, body.dark-mode .card p, body.dark-mode .card li,
 body.dark-mode .contact-form-card, body.dark-mode .contact-info-card h6, body.dark-mode .case-study .title,
@@ -139,7 +145,11 @@ body.dark-mode .btn-outline-secondary:hover { color: #111820; background: #e8eef
   .navbar .language-select { width: 100%; }
   .navbar .nav-link { padding: .6rem .25rem; }
 }
+@media (max-width: 991.98px) {
+  #portfolio .portfolio-container { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
 @media (max-width: 575.98px) {
+  #portfolio .portfolio-container { grid-template-columns: minmax(0, 1fr); grid-auto-rows: 19rem; }
   .navbar { padding-top: .35rem; padding-bottom: .35rem; }
   .navbar .container { padding-left: 1rem; padding-right: 1rem; }
   .navbar .navbar-toggler { margin-left: auto; }
