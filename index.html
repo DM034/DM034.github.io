@@ -10,18 +10,20 @@
     <meta property="og:url" content="https://dm034.github.io/">
     <meta property="og:title" content="Michael Raharison — Développeur Java">
     <meta property="og:description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
-    <meta property="og:image" content="https://dm034.github.io/social-preview.webp">
-    <meta property="og:image:width" content="1200">
-    <meta property="og:image:height" content="630">
+    <meta property="og:image" content="https://dm034.github.io/assets/imgs/logo/logo-dm-noir.png">
+    <meta property="og:image:width" content="335">
+    <meta property="og:image:height" content="228">
     <meta name="twitter:card" content="summary_large_image">
     <meta name="twitter:title" content="Michael Raharison — Développeur Java">
     <meta name="twitter:description" content="Portfolio de Michael Raharison, développeur Java à Madagascar. Projets full-stack, Spring Boot, DataOps et développement web.">
-    <meta name="twitter:image" content="https://dm034.github.io/social-preview.webp">
+    <meta name="twitter:image" content="https://dm034.github.io/assets/imgs/logo/logo-dm-noir.png">
     <link rel="canonical" href="https://dm034.github.io/">
     <link rel="alternate" hreflang="fr" href="https://dm034.github.io/?lang=fr">
     <link rel="alternate" hreflang="en" href="https://dm034.github.io/?lang=en">
     <link rel="alternate" hreflang="x-default" href="https://dm034.github.io/">
-    <link rel="icon" href="assets/imgs/favicon.svg" type="image/svg+xml">
+    <link rel="icon" href="favicon.ico" sizes="any">
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
     <link rel="manifest" href="manifest.webmanifest">
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin>
@@ -66,7 +68,11 @@
             </ul>
             <div class="header-content">
                 <h4 class="header-subtitle">Bonjour, je suis</h4>
-                <h1 class="header-title">Michael Raharison</h1>
+                <picture class="theme-logo-picture header-logo-picture">
+                    <source data-dark-logo srcset="assets/imgs/logo/logo-dm-blanc.png" media="(prefers-color-scheme: dark)">
+                    <img src="assets/imgs/logo/logo-dm-noir.png" alt="Logo DM - Michael Raharison, RM en ombre" height="40" class="theme-logo">
+                </picture>
+                <h1 class="header-title visually-hidden">Michael Raharison</h1>
                 <h6 class="header-mono">Développeur Java</h6>
             </div>
         </div>
@@ -92,10 +98,12 @@
                     </li>
                 </ul>
                 <ul class="navbar-nav brand">
-                    <img src="assets/imgs/image3.jpeg" alt="Portrait de Michael Raharison" width="170" height="170" loading="lazy" class="brand-img">
-                    <li class="brand-txt">
-                        <h5 class="brand-title">Michael Raharison</h5>
-                        <div class="brand-subtitle">Développeur</div>
+                    <li class="brand-logo-item">
+                        <picture class="theme-logo-picture navbar-logo-picture">
+                            <source data-dark-logo srcset="assets/imgs/logo/logo-dm-blanc.png" media="(prefers-color-scheme: dark)">
+                            <img src="assets/imgs/logo/logo-dm-noir.png" alt="Logo DM - Michael Raharison, RM en ombre" height="40" class="theme-logo">
+                        </picture>
+                        <span class="visually-hidden">Michael Raharison</span>
                     </li>
                 </ul>
                 <ul class="navbar-nav ms-auto">
@@ -138,6 +146,13 @@
                     <p data-i18n="story3">Diplômé du MBDS de l’Université Côte d’Azur en octobre 2026.</p>
                     <p data-i18n="story4">Aujourd’hui, je propose mes compétences en freelance sur des projets backend et data.</p>
                 </div>
+                <figure class="about-logo-figure mt-4">
+                    <picture class="theme-logo-picture about-logo-picture">
+                        <source data-dark-logo srcset="assets/imgs/logo/logo-dm-blanc.png" media="(prefers-color-scheme: dark)">
+                        <img src="assets/imgs/logo/logo-dm-noir.png" alt="Logo DM - Michael Raharison, RM en ombre" height="140" class="theme-logo">
+                    </picture>
+                    <figcaption data-i18n="logoCaption">DM, avec RM en ombre pour Raharison Michael</figcaption>
+                </figure>
                 <!-- <p class="mt-20">Lorem ipsum dolor sit amet, consectetur adipisicing elit.sit amet, Qui deserunt consequatur fugit repellendusillo voluptas?</p> -->
             </div>
             <div class="col-lg-4 about-card">
@@ -470,7 +485,11 @@
 
     </main>
         <footer class="footer py-3">
-        <div class="container">
+        <div class="container text-center">
+            <picture class="theme-logo-picture footer-logo-picture">
+                <source data-dark-logo srcset="assets/imgs/logo/logo-dm-blanc.png" media="(prefers-color-scheme: dark)">
+                <img src="assets/imgs/logo/logo-dm-noir.png" alt="Logo DM - Michael Raharison, RM en ombre" height="32" class="theme-logo">
+            </picture>
             <p class="small mb-0 text-light">
                 © <span id="currentYear"></span> Par <a href="https://DM034.github.io" target="_blank" rel="noopener noreferrer"><span class="text-danger"
                         title="Portfolio de Michael Raharison">Michael Raharison</span></a>
@@ -573,21 +592,8 @@
                     .map((node) => node.textContent ? node.textContent.trim() : '')
                     .filter(Boolean);
 
-                const imageNode = document.querySelector('.header .img-holder img') || document.querySelector('img[src*="avatar"]');
-                const profileImageSrc = imageNode?.currentSrc || imageNode?.src || imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
-                const absoluteAvatar = (window.location?.origin || '') + '/assets/imgs/avatar.jpg';
-                const absolutePortrait = (window.location?.origin || '') + '/assets/imgs/image3_copy.jpeg';
-                const profileImageCandidates = [
-                    profileImageSrc,
-                    'assets/imgs/image3_copy.jpeg',
-                    '/assets/imgs/image3_copy.jpeg',
-                    './assets/imgs/image3_copy.jpeg',
-                    absolutePortrait,
-                    absoluteAvatar,
-                    'assets/imgs/avatar.jpg',
-                    '/assets/imgs/avatar.jpg',
-                    './assets/imgs/avatar.jpg'
-                ].filter(Boolean);
+                const profileImageSrc = 'assets/imgs/logo/logo-dm-noir.png';
+                const profileImageCandidates = [profileImageSrc];
 
                 const linkedInRaw = contactLines.find((line) => /linkedin/i.test(line));
                 const linkedInLine = linkedInRaw
@@ -745,14 +751,12 @@
                             img.onload = function () {
                                 try {
                                     const canvas = document.createElement('canvas');
-                                    const targetW = 280;
-                                    const targetH = 280;
+                                    const targetW = 420;
+                                    const targetH = 286;
                                     canvas.width = targetW;
                                     canvas.height = targetH;
                                     const ctx = canvas.getContext('2d');
 
-                                    ctx.fillStyle = '#f7f8fa';
-                                    ctx.fillRect(0, 0, targetW, targetH);
                                     ctx.imageSmoothingEnabled = true;
                                     ctx.imageSmoothingQuality = 'high';
 
@@ -842,10 +846,10 @@
                     pdf.setTextColor(59, 68, 83);
                     pdf.text(data.profileRole || profileTitle, margin, top + s(5));
 
-                    const imageW = Math.max(s(18), Math.min(s(24), rightColWidth * 0.26));
-                    const imageH = imageW;
+                                    const imageW = Math.max(s(28), Math.min(s(34), rightColWidth * 0.36));
+                                    const imageH = imageW * (286 / 420);
                     const imageX = pageWidth - margin - imageW;
-                    const imageY = top - s(7);
+                                    const imageY = top - s(4);
 
                     const renderContent = (imageData) => {
                         const contentStartY = imageData ? Math.max(top + s(13), imageY + imageH + s(6)) : (top + s(13));
@@ -891,8 +895,6 @@
                         if (imageData) {
                             const imageFormat = imageData.startsWith('data:image/png') ? 'PNG' : 'JPEG';
                             pdf.addImage(imageData, imageFormat, imageX, imageY, imageW, imageH);
-                            pdf.setDrawColor(205, 211, 220);
-                            pdf.rect(imageX, imageY, imageW, imageH);
                         }
 
                         pdf.save(text.cvFileName);
@@ -1146,6 +1148,9 @@
             const applyTheme = (theme) => {
                 const dark = theme === 'dark';
                 document.body.classList.toggle('dark-mode', dark);
+                document.querySelectorAll('.theme-logo-picture source[data-dark-logo]').forEach((source) => {
+                    source.media = dark ? 'all' : 'not all';
+                });
                 if (themeToggle) {
                     themeToggle.setAttribute('aria-pressed', String(dark));
                     themeToggle.textContent = dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight;
@@ -1153,6 +1158,10 @@
             };
             const savedTheme = localStorage.getItem('siteTheme');
             applyTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+            const colorSchemePreference = window.matchMedia('(prefers-color-scheme: dark)');
+            colorSchemePreference.addEventListener?.('change', (event) => {
+                if (!localStorage.getItem('siteTheme')) applyTheme(event.matches ? 'dark' : 'light');
+            });
             if (themeToggle) themeToggle.addEventListener('click', () => {
                 const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
                 localStorage.setItem('siteTheme', nextTheme);

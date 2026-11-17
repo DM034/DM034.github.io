@@ -93,21 +93,8 @@
                     .map((node) => node.textContent ? node.textContent.trim() : '')
                     .filter(Boolean);
 
-                const imageNode = document.querySelector('.header .img-holder img') || document.querySelector('img[src*="avatar"]');
-                const profileImageSrc = imageNode?.currentSrc || imageNode?.src || imageNode?.getAttribute('src') || 'assets/imgs/avatar.jpg';
-                const absoluteAvatar = (window.location?.origin || '') + '/assets/imgs/avatar.jpg';
-                const absolutePortrait = (window.location?.origin || '') + '/assets/imgs/image3_copy.jpeg';
-                const profileImageCandidates = [
-                    profileImageSrc,
-                    'assets/imgs/image3_copy.jpeg',
-                    '/assets/imgs/image3_copy.jpeg',
-                    './assets/imgs/image3_copy.jpeg',
-                    absolutePortrait,
-                    absoluteAvatar,
-                    'assets/imgs/avatar.jpg',
-                    '/assets/imgs/avatar.jpg',
-                    './assets/imgs/avatar.jpg'
-                ].filter(Boolean);
+                const profileImageSrc = 'assets/imgs/logo/logo-dm-noir.png';
+                const profileImageCandidates = [profileImageSrc];
 
                 const linkedInRaw = contactLines.find((line) => /linkedin/i.test(line));
                 const linkedInLine = linkedInRaw
@@ -265,14 +252,12 @@
                             img.onload = function () {
                                 try {
                                     const canvas = document.createElement('canvas');
-                                    const targetW = 280;
-                                    const targetH = 280;
+                                    const targetW = 420;
+                                    const targetH = 286;
                                     canvas.width = targetW;
                                     canvas.height = targetH;
                                     const ctx = canvas.getContext('2d');
 
-                                    ctx.fillStyle = '#f7f8fa';
-                                    ctx.fillRect(0, 0, targetW, targetH);
                                     ctx.imageSmoothingEnabled = true;
                                     ctx.imageSmoothingQuality = 'high';
 
@@ -362,10 +347,10 @@
                     pdf.setTextColor(59, 68, 83);
                     pdf.text(data.profileRole || profileTitle, margin, top + s(5));
 
-                    const imageW = Math.max(s(18), Math.min(s(24), rightColWidth * 0.26));
-                    const imageH = imageW;
+                                    const imageW = Math.max(s(28), Math.min(s(34), rightColWidth * 0.36));
+                                    const imageH = imageW * (286 / 420);
                     const imageX = pageWidth - margin - imageW;
-                    const imageY = top - s(7);
+                                    const imageY = top - s(4);
 
                     const renderContent = (imageData) => {
                         const contentStartY = imageData ? Math.max(top + s(13), imageY + imageH + s(6)) : (top + s(13));
@@ -411,8 +396,6 @@
                         if (imageData) {
                             const imageFormat = imageData.startsWith('data:image/png') ? 'PNG' : 'JPEG';
                             pdf.addImage(imageData, imageFormat, imageX, imageY, imageW, imageH);
-                            pdf.setDrawColor(205, 211, 220);
-                            pdf.rect(imageX, imageY, imageW, imageH);
                         }
 
                         pdf.save(text.cvFileName);
@@ -666,6 +649,9 @@
             const applyTheme = (theme) => {
                 const dark = theme === 'dark';
                 document.body.classList.toggle('dark-mode', dark);
+                document.querySelectorAll('.theme-logo-picture source[data-dark-logo]').forEach((source) => {
+                    source.media = dark ? 'all' : 'not all';
+                });
                 if (themeToggle) {
                     themeToggle.setAttribute('aria-pressed', String(dark));
                     themeToggle.textContent = dark ? translations[getActiveLanguage()].themeDark : translations[getActiveLanguage()].themeLight;
@@ -673,6 +659,10 @@
             };
             const savedTheme = localStorage.getItem('siteTheme');
             applyTheme(savedTheme || (window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'));
+            const colorSchemePreference = window.matchMedia('(prefers-color-scheme: dark)');
+            colorSchemePreference.addEventListener?.('change', (event) => {
+                if (!localStorage.getItem('siteTheme')) applyTheme(event.matches ? 'dark' : 'light');
+            });
             if (themeToggle) themeToggle.addEventListener('click', () => {
                 const nextTheme = document.body.classList.contains('dark-mode') ? 'light' : 'dark';
                 localStorage.setItem('siteTheme', nextTheme);

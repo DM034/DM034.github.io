@@ -15,11 +15,20 @@
 .about-story p { margin-bottom: .65rem; }
 .header-no-cover { background-image: none !important; background-color: #263648; }
 .header-no-cover::before, .header-no-cover::after { background-image: none !important; }
+.theme-logo-picture { display: inline-flex; align-items: center; justify-content: center; line-height: 0; }
+.theme-logo { display: block; width: auto; max-width: 100%; object-fit: contain; }
+.header-logo-picture .theme-logo { height: 40px; }
+.about-logo-figure { text-align: center; }
+.about-logo-picture .theme-logo { height: 140px; }
+.about-logo-figure figcaption { margin-top: .5rem; color: #49515b; font-size: .9rem; }
+.navbar .brand { position: relative; width: auto; min-width: 0; height: 5rem; margin: 0; align-items: center; justify-content: center; }
+.navbar .brand-logo-item { display: flex; align-items: center; justify-content: center; }
+.navbar-logo-picture .theme-logo { height: 40px; }
+.footer-logo-picture { margin: 0 auto .5rem; }
+.footer-logo-picture .theme-logo { height: 32px; }
 .profile-image, .avatar, .header .img-holder img { border-radius: 50% !important; aspect-ratio: 1 / 1; object-fit: cover; }
 .navbar { min-height: 5rem; }
 .navbar .container { min-height: 5rem; }
-.navbar .brand { position: relative; width: 8rem; min-width: 8rem; height: 5rem; margin: 0; align-items: center; justify-content: center; }
-.navbar .brand .brand-img { position: static !important; display: block; width: 4.5rem !important; height: 4.5rem !important; min-width: 4.5rem; aspect-ratio: 1 / 1; margin: 0; transform: none !important; object-fit: cover; clip-path: circle(50%); border: 3px solid #fff; border-radius: 50% !important; box-shadow: 0 2px 6px rgba(0,0,0,.16); }
 .navbar .brand .brand-txt { display: none; }
 .navbar .navbar-collapse { align-items: center; }
 .navbar .navbar-nav { align-items: center; }
@@ -73,6 +82,11 @@ body:not(.dark-mode) .contact-info-card .text-muted, body:not(.dark-mode) .text-
 body:not(.dark-mode) .form-control, body:not(.dark-mode) .form-select { color: #252a31; background: #fff; border-color: #727b86; }
 body:not(.dark-mode) .form-control::placeholder { color: #5b6470; opacity: 1; }
 body:not(.dark-mode) .text-danger { color: #9d2438 !important; }
+body:not(.dark-mode) .header-no-cover { color: #252a31; background-color: #f1f3f5; }
+body:not(.dark-mode) .header-no-cover .social-link { color: #252a31 !important; }
+body:not(.dark-mode) .footer { background: #edf0f4; }
+body:not(.dark-mode) .footer .text-light { color: #252a31 !important; }
+body:not(.dark-mode) .about-logo-figure figcaption { color: #49515b; }
 body:not(.dark-mode) .freelance-process, body:not(.dark-mode) .freelance-process h3,
 body:not(.dark-mode) .freelance-process li { color: #fff !important; }
 body.dark-mode { color: #f1f5f9; background: #111820; color-scheme: dark; }
@@ -104,6 +118,11 @@ body.dark-mode .freelance-process, body.dark-mode .freelance-process h3,
 body.dark-mode .freelance-process li { color: #fff !important; }
 body.dark-mode .project-stack { color: #f1f5f9; background: #2a3949; }
 body.dark-mode .text-danger { color: #ff9baa !important; }
+body.dark-mode .header-no-cover { color: #f1f5f9; background-color: #263648; }
+body.dark-mode .header-no-cover .social-link { color: #f1f5f9 !important; }
+body.dark-mode .footer { background: #17263c; }
+body.dark-mode .footer .text-light { color: #f1f5f9 !important; }
+body.dark-mode .about-logo-figure figcaption { color: #c8d2de; }
 body.dark-mode .alert-success { color: #d1fae5; background: #164b3b; border-color: #27805f; }
 body.dark-mode .alert-danger { color: #ffe0e4; background: #5a2630; border-color: #9d4350; }
 body.dark-mode .btn-outline-secondary { color: #e8eef5; border-color: #aab6c4; }
@@ -124,5 +143,7 @@ body.dark-mode .btn-outline-secondary:hover { color: #111820; background: #e8eef
   .navbar .container { padding-left: 1rem; padding-right: 1rem; }
   .navbar .navbar-toggler { margin-left: auto; }
   #themeToggle, #downloadCvBtn { width: 100%; }
+  .header-logo-picture .theme-logo { height: 34px; }
+  .about-logo-picture .theme-logo { height: 112px; }
 }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { scroll-behavior: auto !important; transition-duration: .01ms !important; } }
